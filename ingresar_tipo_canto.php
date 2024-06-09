@@ -10,9 +10,9 @@
 
     </header>
     <main>
-        <form action="" method="post">
+        <form action="insertar_tipo_canto.php" method="post">
             <p>
-                <label for="" name="tdc">Tipo de canto:</label>
+                <label for="tdc">Tipo de canto:</label>
                 <input type="text" name="tdc">
                 <input type="submit" value="Insertar">
             </p>
