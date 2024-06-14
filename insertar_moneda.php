@@ -4,23 +4,30 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
-echo $_FILES['anv']['name'];
-echo $_FILES['anv']['tmp_name'];
-echo $_FILES['anv']['type'];
-echo $_FILES['anv']['size'];
-echo $_FILES['anv']['error'];
-echo $_FILES['rvo']['name'];
-echo $_FILES['rvo']['tmp_name'];
-echo $_FILES['rvo']['type'];
-echo $_FILES['rvo']['size'];
-echo $_FILES['rvo']['error'];
+$dvs = $_POST['divisa'];
+$v_n = $_POST['v_n']; //valor nominal
+$t_c = $_POST['t_c']; //tipo canto
+$ld = $_POST['lado'];
+$lstl = $_POST['listel'];
+$fg = $_POST['efigie'];
+$lynd = $_POST['leyenda'];
+$exergo = $_POST['exergo'];
+$ly = $_POST['ley'];
+$grfla = $_POST['grafilia'];
+$crclcn = $_POST['circulacion'];
+$cmpscn = $_POST['composicion'];
+$dmtr = $_POST['diametro'];
+$spsr = $_POST['espesor'];
+$hstr = $_POST['historia'];
+$nc_msn = $_POST['ini_emi'];
+$fn_msm = $_POST['fin_emi'];
 
 $ruta_indexphp = dirname(realpath(__FILE__));
-echo "<script>alert('$ruta_indexphp');</script>";
-$ruta_fichero_origen = $_FILES['anv']['tmp_name'];
-$ruta_nuevo_destino = $ruta_indexphp . '/imagenes/'. $_FILES['anv']['name'];
-echo "<script>alert('$ruta_nuevo_destino');</script>";
+$anverso = $_FILES['anv']['tmp_name'];
+$reverso = $_FILES['rvo']['tmp_name'];
+$anverso_destino = $ruta_indexphp . '/imagenes/'. $_FILES['anv']['name'];
+$reverso_destino = $ruta_indexphp . '/imagenes/'. $_FILES['rvo']['name'];
+
 
 $extensiones = array(0=>'image/jpg', 1=>'image/jpeg', 2=>'image/png');
 $max_tamanio = 1024*1024*8;
@@ -29,9 +36,29 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
     echo "<script>alert('Efectivamente es una imagen');</script>";
     if($_FILES['anv']['size']<$max_tamanio){
         echo "<script>alert('Pesa menos de 1 MB medio raro');</script>";
-        if(move_uploaded_file($ruta_fichero_origen, $ruta_nuevo_destino)){
-            echo "<script>alert('fichero guardado con éxito');</script>";
-        }
+        if((move_uploaded_file($anverso, $anverso_destino)) && (move_uploaded_file($reverso, $reverso_destino))){
+            include 'conexion.php';
+            $sql = "INSERT INTO `imagen`(`direccion`) VALUES ('$anverso_destino')";
+            $res = mysqli_query($conectar, $sql);
+            $id_img_anv = last_insert($res);
+            $sql = "INSERT INTO `imagen`(`direccion`) VALUES ('$reverso_destino')";
+            $res = mysqli_query($conectar, $sql);
+            $id_img_rev = last_insert($res);
+
+            if($res){
+                $sql = "INSERT INTO 'moneda_atributos'(`id_divisa`, `id_valor_nominal`, 
+                        `id_tipo_canto`, `circulacion`, `composicion`, `diametro`, `espesor`, `historia`, `inicio_emision`,
+                        `fin_emision`)
+                        VALUES ('$dvs','$v_n','$t_c','$crclcn','$cmpscn','$dmtr', '$spsr','$hstr','$ini_emi','$fin_emi')";
+                $res = mysqli_query($conectar, $sql);
+
+                if($res){
+                    $sql = "INSERT INTO 'partes'(`id_imagen`, `id_moneda_atributos`, `lado`, `listel`, `efigie`, `leyenda`, `exergo`, `ley`, `grafilia`) VALUE ();";
+                }
+            }else{
+                echo "<script>alert('ERROR: No se pudo ingresar las imagenes de la moneda');</script>";
+            }
+            }
     }
 }
 
