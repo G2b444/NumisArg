@@ -9,15 +9,15 @@
     <form action="insertar_moneda.php" method="post" enctype="multipart/form-data">
         <p>
             <label for="anv">Anverso:</label>
-            <input type="file" name="anv">
+            <input type="file" name="anv" required>
         </p>
         <p>
             <label for="rvo">Reverso:</label>
-            <input type="file" name="rvo">
+            <input type="file" name="rvo" required>
         </p>
         <p>
-            <select name="" id="">
-                <option value="" selected disabled>--Seleccione la divisa--</option>
+            <select name="divisa" id="" required>
+                <option selected disabled>--Seleccione la divisa--</option>
                 <?php 
                 include 'conexion.php';
 
@@ -31,8 +31,8 @@
             </select>
         </p>
         <p>
-            <select name="" id="">
-                <option value="" selected disabled>--Seleccione el valor nominal--</option>
+            <select name="v_n" id="" required>
+                <option selected disabled>--Seleccione el valor nominal--</option>
                 <?php 
                 $sql = "SELECT * FROM valor_nominal";
                 $res = mysqli_query($conectar, $sql);
@@ -44,8 +44,8 @@
             </select>
         </p>
         <p>
-            <select name="" id="">
-                <option value="" selected disabled>--Seleccione el tipo de canto--</option>
+            <select name="t_c" id="" required>
+                <option selected disabled>--Seleccione el tipo de canto--</option>
                 <?php 
                 $sql = "SELECT * FROM tipo_canto";
                 $res = mysqli_query($conectar, $sql);
@@ -61,67 +61,67 @@
         </p>
         <p>
             <p>
-                <select name="" id="">
+                <select name="lado" required>
                     <option value="" disabled selected>--Selecciona el lado--</option>
                     <option value="Anverso">Anverso</option>
                     <option value="Reverso">Reverso</option>
                 </select>
             </p>
             <p>
-                <label for="">Listel:</label>
-                <input type="text" name="" id="">
+                <label for="listel">Listel:</label>
+                <input type="text" name="listel" required>
             </p>
             <p>
-                <label for="">Efigie:</label>
-                <input type="text" name="" id="">
+                <label for="efigie">Efigie:</label>
+                <input type="text" name="efigie" required>
             </p>
             <p>
-                <label for="">Leyenda:</label>
-                <input type="text" name="" id="">
+                <label for="leyenda">Leyenda:</label>
+                <input type="text" name="leyenda" required>
             </p>
             <p>
-                <label for="">Exergo:</label>
-                <input type="text" name="" id="">
+                <label for="exergo">Exergo:</label>
+                <input type="text" name="exergo" required>
             </p>
             <p>
-                <label for="">Ley:</label>
-                <input type="text">
+                <label for="ley">Ley:</label>
+                <input type="text" name="ley" required>
             </p>
             <p>
-                <label for="">Grafilia:</label>
-                <input type="text" name="" id="">
+                <label for="grafilia">Grafilia:</label>
+                <input type="text" name="grafilia" required>
             </p>
         </p>
         <p>
-            <select name="" id="">
+            <select name="circulacion" id="" required>
                 <option value="" Selected disabled>--Circulación--</option>
                 <option value="0">Verdadero</option>
                 <option value="1">Falso</option>
             </select>
         </p>
         <p>
-            <label for="">Composición:</label>
-            <input type="text" name="" id="">
+            <label for="composicion">Composición:</label>
+            <input type="text" name="composicion" id="" required>
         </p>
         <p>
-            <label for="">Diametro:</label>
-            <input type="number" name="" id="">
+            <label for="diametro">Diametro:</label>
+            <input type="number" name="diametro" required>
         </p>
         <p>
-            <label for="">Espesor:</label>
-            <input type="number" name="" id="">
+            <label for="espesor">Espesor:</label>
+            <input type="number" name="espesor" required>
         </p>
         <p>
-            <label for="">Historia:</label>
-            <input type="text" name="" id="">
+            <label for="historia">Historia:</label>
+            <input type="text" name="historia" required>
         </p>
         <p>
-            <label for="">Inicio emisión:</label>
-            <input type="date" name="" id="">
+            <label for="ini_emi">Inicio emisión:</label>
+            <input type="date" name="ini_emi" required>
         </p>
         <p>
-            <label for="">Fin emisión:</label>
-            <input type="date" name="" id="">
+            <label for="fin_emi">Fin emisión:</label>
+            <input type="date" name="fin_emi" required>
         </p>
         <input type="submit" value="Guardar">
     </form>
