@@ -53,7 +53,9 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
                 $res = mysqli_query($conectar, $sql);
 
                 if($res){
-                    $sql = "INSERT INTO 'partes'(`id_imagen`, `id_moneda_atributos`, `lado`, `listel`, `efigie`, `leyenda`, `exergo`, `ley`, `grafilia`) VALUE ();";
+                    $sql = "INSERT INTO 'partes'(`id_imagen`, `id_moneda_atributos`, `lado`, `listel`, `efigie`, `leyenda`, 
+                    `exergo`, `ley`, `grafilia`)
+                     VALUE ();";
                 }
             }else{
                 echo "<script>alert('ERROR: No se pudo ingresar las imagenes de la moneda');</script>";
