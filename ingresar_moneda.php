@@ -77,7 +77,7 @@
         </p>
         <p>
             <label for="historia">Historia:</label>
-            <input type="text" name="historia" required>
+            <textarea rows="10" cols="50" name="historia" placeholder="Ingrese su historia (opcional)" style="width: 355px; height: 138px;"></textarea>
         </p>
         <p>
                 <label for="composicion">Composición:</label>
