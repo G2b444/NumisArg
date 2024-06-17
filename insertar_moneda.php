@@ -35,8 +35,8 @@ $dtlls_rever = $_POST['detalles_rever'];
 $ruta_indexphp = dirname(realpath(__FILE__));
 $anverso = $_FILES['anv']['tmp_name'];
 $reverso = $_FILES['rvo']['tmp_name'];
-$anverso_destino = $ruta_indexphp . '/imagenes/'. $_FILES['anv']['name'];
-$reverso_destino = $ruta_indexphp . '/imagenes/'. $_FILES['rvo']['name'];
+$anverso_destino ='imagenes/'. $_FILES['anv']['name'];
+$reverso_destino ='imagenes/'. $_FILES['rvo']['name'];
 
 
 $extensiones = array(0=>'image/jpg', 1=>'image/jpeg', 2=>'image/png');
