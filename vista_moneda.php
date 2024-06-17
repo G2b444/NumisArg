@@ -38,16 +38,16 @@
             <tbody>
                 <?php 
                 
-                $sql = "SELECT 
-                            MAX(CASE WHEN partes.lado = 'anverso' THEN imagen.direccion END) AS imagen_anverso,
-                            MAX(CASE WHEN partes.lado = 'reverso' THEN imagen.direccion END) AS imagen_reverso, 
-                            valor_nominal.valor, moneda_atributo.inicio_emision, 
-                            moneda_atributo.fin_emision
-                        FROM moneda, imagen, partes, moneda_atributo, divisa, valor_nominal 
-                        WHERE moneda_atributo.id_moneda_atributo = partes.id_moneda_atributo 
-                        AND moneda.id_moneda = moneda_atributo.id_moneda 
-                        AND partes.id_imagen = imagen.id_imagen 
-                        AND valor_nominal.id_valor_nominal = moneda_atributo.id_valor_nominal";
+                $sql = "SELECT MAX(CASE WHEN partes.lado = 'anverso' THEN imagen.direccion END) 
+                AS imagen_anverso, MAX(CASE WHEN partes.lado = 'reverso' THEN imagen.direccion END) 
+                AS imagen_reverso, valor_nominal.valor, moneda_atributo.inicio_emision, moneda_atributo.fin_emision, divisa.nombre 
+                AS divisa 
+                FROM moneda JOIN moneda_atributo ON moneda.id_moneda = moneda_atributo.id_moneda 
+                JOIN valor_nominal ON valor_nominal.id_valor_nominal = moneda_atributo.id_valor_nominal 
+                JOIN divisa ON divisa.id_divisa = moneda_atributo.id_divisa 
+                JOIN partes ON partes.id_moneda_atributo = moneda_atributo.id_moneda_atributo 
+                JOIN imagen ON partes.id_imagen = imagen.id_imagen 
+                GROUP BY valor_nominal.valor, moneda_atributo.inicio_emision, moneda_atributo.fin_emision, divisa.nombre";
                 include 'conexion.php';
                 $res = mysqli_query($conectar, $sql);
 
