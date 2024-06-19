@@ -6,15 +6,15 @@
     <title>Monedas</title>
     <style>
         .image-container {
-            display: flex; /* Enable flexbox layout */
-            justify-content: space-between; /* Distribute images evenly */
-            width: 100%; /* Span the full width of the columns */
+            display: flex;
+            justify-content: space-between; 
+            width: 100%; 
         }
 
         .image-container img {
-            width: 50%; /* Adjust image width as needed */
-            height: auto; /* Maintain aspect ratio */
-            object-fit: cover; /* Ensure images cover the entire space */
+            width: 50%; 
+            height: auto; 
+            object-fit: cover; 
         }
     </style>
 </head>
@@ -48,7 +48,7 @@
                 JOIN partes ON partes.id_moneda_atributo = moneda_atributo.id_moneda_atributo 
                 JOIN imagen ON partes.id_imagen = imagen.id_imagen 
                 GROUP BY valor_nominal.valor, moneda_atributo.inicio_emision, moneda_atributo.fin_emision, divisa.nombre";
-                include 'conexion.php';
+                include '../../inc/conexion.php';
                 $res = mysqli_query($conectar, $sql);
 
 

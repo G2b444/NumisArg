@@ -5,7 +5,7 @@ $divisa = $_POST['d'];
 $sql = "INSERT INTO `divisa`(`nombre`) VALUES ('$divisa')";
 
 
-include 'conexion.php';
+include '../../inc/conexion.php';
 
 $res = mysqli_query($conectar, $sql);
 mysqli_close($conectar);

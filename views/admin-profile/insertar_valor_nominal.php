@@ -8,7 +8,7 @@
 
     $sql = "INSERT INTO `valor_nominal`(`valor`) VALUES ('$vn')";
 
-    include 'conexion.php';
+    include '../../inc/conexion.php';
 
     $res = mysqli_query($conectar, $sql);
     mysqli_close($conectar);

@@ -8,7 +8,7 @@
 
     $sql = "INSERT INTO `tipo_canto`(`tipo`) VALUES ('$tdc')";
 
-    include 'conexion.php';
+    include '../../inc/conexion.php';
 
     $res = mysqli_query($conectar, $sql);
     mysqli_close($conectar);

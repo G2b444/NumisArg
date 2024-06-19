@@ -35,7 +35,7 @@ $dtlls_rever = $_POST['detalles_rever'];
 $ruta_indexphp = dirname(realpath(__FILE__));
 $anverso = $_FILES['anv']['tmp_name'];
 $reverso = $_FILES['rvo']['tmp_name'];
-$anverso_destino ='imagenes/'. $_FILES['anv']['name'];
+$anverso_destino ='assets/multimedia/img/'. $_FILES['anv']['name'];
 $reverso_destino ='imagenes/'. $_FILES['rvo']['name'];
 
 
@@ -47,7 +47,7 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
     if($_FILES['anv']['size']<$max_tamanio){
         echo "<script>alert('Pesa menos de 1 MB medio raro');</script>";
         if((move_uploaded_file($anverso, $anverso_destino)) && (move_uploaded_file($reverso, $reverso_destino))){
-            include 'conexion.php';
+            include '../../inc/conexion.php';
             $sql = "INSERT INTO `imagen`(`direccion`) VALUES ('$anverso_destino')";
             $res = mysqli_query($conectar, $sql);
             $id_img_anv = mysqli_insert_id($conectar);
