@@ -23,7 +23,8 @@
             <select name="tipo_moneda" id="">
                 <option selected disabled>--Seleccione el tipo de moneda--</option>
                 <?php 
-                include 'conexion.php';
+
+                include '../../inc/conexion.php';
 
                 $sql = "SELECT * FROM tipo_moneda";
                 $res = mysqli_query($conectar, $sql);
