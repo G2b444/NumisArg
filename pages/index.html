@@ -1,33 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/output.css">
     <title>NumisArg</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <section>
-        <h1>NumisArg</h1>
-        <p class="text-3xl font-bold">Coleccionando la patria</p>
-        <a href="catalogo.php">Ver monedas</a>
-    </section>
+<body class="bg-white font-sans">
+    <header class="flex items-center bg-dark-blue h-20">
+        <div class="container mx-auto flex justify-between items-center">
+            <img src="/pages/img/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2">
+            <nav class="space-x-4">
+                <a href="#" class="text-white">Catálogo</a>
+                <a href="#" class="text-white">Contáctanos</a>
+                <a href="#" class="bg-light-blue text-white px-4 py-2 rounded">Ingresar</a>
+            </nav>
+        </div>
+    </header>
 
-    <section>
-        <h2>¿De qué se trata?</h2>
-        <span>
-            <h3>Mira</h3>
-            <p>nuestro catálogo de monedas argentinas</p>
-        </span>
-        <span>
-            <h3>Registra</h3> 
-            <p>tus colecciones de monedas</p>
-        </span>
-        <span>
-            <h3>Administra</h3>
-            <p>facilmente los detalles de tus colecciones</p>
-        </span>
-        <button>Ingresar</button>
-    </section>
+    <main class="text-center">
+        <div class="w-screen h-screen flex justify-between items-center ">
+            <div class=""> <img src="/pages/img/imagen_2024-06-13_181445666-removebg 1.svg" alt="moneda1"></div>
+            <div>
+                <h1 class="text-4xl font-bold mb-10">NumisArg</h1>
+                <p class="text-xl mb-10">Coleccionando la patria</p>
+                <button class="bg-dark-blue text-white px-6 py-3 mt-4 rounded hover:scale-105">Ver Monedas</button>
+            </div>
+            <div class=""> <img src="/pages/img/imagen_2024-06-13_181445666-removebg 2.svg" alt="moneda2"></div>
+        </div>
+
+        <section class="w-screen h-screen flex items-start">
+            <div class="w-screen flex items-center flex-col">
+              <h2 class="text-4xl font-bold mb-28">¿De qué se trata?</h2>
+              <div class="w-screen flex justify-around">
+                  <div class="bg-dark-blue w-72 h-72 rounded-xl"> <p class="text-white text-center text-3xl">Mira nuestro catálogo de monedas</p></div>
+                  <div class="bg-dark-blue w-72 h-72 rounded-xl"> <p class="text-white text-center text-3xl">Registrá tus colecciones de monedas</p></div>
+                  <div class="bg-dark-blue w-72 h-72 rounded-xl"> <p class="text-white text-center text-3xl">Administra facilmente los detalles de tus colecciones</p></div>
+              </div>
+              <button class="bg-dark-blue text-white text-center text-2xl w-80 h-16 mt-28 rounded-xl">Ingresar</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark-blue py-4 ">
+        <div class="container mx-auto text-center text-white">
+            <p>NumisArg</p>
+            <nav class="space-x-4">
+                <a href="#" class="text-white">Contáctanos</a>
+                <a href="#" class="text-white">Catálogo</a>
+                <a href="#" class="text-white">Ingresar</a>
+            </nav>
+        </div>
+    </footer>
 </body>
 </html>
+
+<!-- Tailwind CSS Config -->
+<style>
+    .bg-dark-blue {
+        background-color: #1a202c;
+    }
+    .bg-light-blue {
+        background-color: #2b6cb0;
+    }
+</style>
