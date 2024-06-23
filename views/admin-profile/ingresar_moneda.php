@@ -39,7 +39,6 @@
             <select name="divisa" id="" required>
                 <option selected disabled>--Seleccione la divisa--</option>
                 <?php 
-                include 'conexion.php';
 
                 $sql = "SELECT * FROM divisa";
                 $res = mysqli_query($conectar, $sql);
