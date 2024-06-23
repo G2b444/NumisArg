@@ -7,8 +7,40 @@ INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda
 INNER JOIN partes ON moneda_atributo.id_moneda_atributo=partes.id_moneda_atributo
 INNER JOIN imagen ON partes.id_imagen=imagen.id_imagen";
 $general= mysqli_query($conectar,$sql);
+$campo=0;
 
+if($_GET){
+    $campo= $_GET['campo'];
+    $valor= $_GET['valor'];
+}
 
+switch($campo){
+    case 1:
+        $sql="SELECT moneda.nombre, inicio_emision, fin_emision, direccion 
+        FROM moneda 
+        INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda
+        INNER JOIN partes ON moneda_atributo.id_moneda_atributo=partes.id_moneda_atributo
+        INNER JOIN imagen ON partes.id_imagen=imagen.id_imagen
+        WHERE moneda.nombre='.$valor.'";
+        $general= mysqli_query($conectar,$sql);
+        echo $valor;
+    break;
+    case 2:
+        
+    break;
+    case 3:
+        
+    break;
+    case 4:
+        
+    break;
+    case 5:
+        
+    break;
+    case 6:
+        
+    break;
+}
 
 
 ?>
@@ -29,7 +61,14 @@ $general= mysqli_query($conectar,$sql);
             <form class="p-2 pt-4" action="catalogo.php" method="get">
                 <div class="inline px-1">
                     <p class="inline font-semibold">En </p>
-                    <input  required class="border-2 rounded-lg  border-blue-950"> <!-- Desplegable !-->
+                    <select name="campo" id="campo" class="border-2 rounded-lg  border-blue-950">
+                        <option value="1">Nombre</option>
+                        <option value="2">Valor</option>
+                        <option value="3">Divisa</option>
+                        <option value="4">Tipo de moneda</option>
+                        <option value="5">Inicio de emisión</option>
+                        <option value="6">Final de emisión</option>
+                    </select>
                 </div>
                 <div class="inline px-1">
                     <p class="inline font-semibold">buscar </p>
@@ -43,30 +82,23 @@ $general= mysqli_query($conectar,$sql);
         <?php
         if($general){
             while($registrogral=mysqli_fetch_assoc($general)){
+
                 $nombre= $registrogral['nombre'];
                 $inicioemision= (int) $registrogral['inicio_emision'];
-                $inicioe= date("Y",$inicioemision);
                 $finemision= (int) $registrogral['fin_emision'];
-                $fine= date("Y", $finemision);
                 $imagen= $registrogral['direccion'];
+
                 echo'
-                <div class="bg-white w-52 h-60 p-4 px-8 rounded-lg shadow-lg border border-blue-950	 mx-6 my-8">
-                <img src="'.$imagen.'" class="pb-3">
-                <p class="pt-2 border-t border-blue-950	">
-                <h5 class="text-center text-lg font-medium">'.$nombre.'</h5>
-                <h6 class="text-center text-sm">'.$inicioe.'-'.$fine.'</h6>
-                </p>
-                </div>';
+                    <div class="bg-white w-52  p-4 px-8 rounded-lg shadow-lg border border-blue-950	 mx-6 my-8 flex flex-col">
+                    <img src="'.$imagen.'" class="pb-3">
+                    <p class="pt-2 border-t border-blue-950	">
+                    <h5 class="text-center text-lg font-medium"><a href="">'.$nombre.'</a></h5>
+                    <h6 class="text-center text-sm">'.$inicioemision.'-'.$finemision.'</h6>
+                    </p>
+                    </div>';
                 }
             }
             ?>
-        <div class="bg-white w-52 h-60 p-4 px-8 rounded-lg shadow-lg border border-blue-950	 mx-6 my-8">
-            <img src="assets/img/10-Centavos.jpg" class="pb-3">
-            <p class="pt-2 border-t border-blue-950	">
-                <h5 class="text-center text-lg font-medium">100 pesosss</h5>
-                <h6 class="text-center text-sm">1888-1889</h6>
-            </p>
-        </div>
 
     </section>
 </body>
