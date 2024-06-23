@@ -6,6 +6,21 @@
     <title>Catálogo</title>
 </head>
 <body>
-    
+    <section>
+        <h1>Catálogo</h1>
+        <span>
+            <form action="catalogo.php" method="get">
+                <p>En ...</p>
+                <input  required> <!-- Desplegable !-->
+                <p>buscar ...</p>
+                <input type="text" name="valor" id="valor" maxlength="20"required>
+            </form>
+        </span>
+    </section>
+    <section>
+        <div>
+            
+        </div>
+    </section>
 </body>
 </html>
