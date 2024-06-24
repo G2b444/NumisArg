@@ -142,6 +142,17 @@
             </section>
         </section>
     </main>
+    <footer class="bg-gray-900 py-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold text-white">NumisArg</h1>
+            <p class="text-lg mt-2 text-white">Hecho por:</p>
+            <div class="flex justify-center space-x-8 mt-2 text-white">
+                <span>Vincenti Gania</span>
+                <span>Rodriguez Gabriel</span>
+                <span>Koncerewicz Kevin</span>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
 <style>
