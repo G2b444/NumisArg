@@ -22,16 +22,23 @@
         <div class="flex items-center flex-col">
             <h1 class="text-4xl mb-5 mt-12">Bienvenido, Administrador</h1>
             <p>¿Qué administrará hoy?</p>
-            <div class="grid grid-cols-2 mt-10 gap-5">
-                <div class="bg-light-blue text-white px-4 py-2 rounded w-fulpx-4 py-2"><h1>Monedas</h1></div>
-                <div class="bg-light-blue text-white px-4 py-2 rounded"><h1>Usuarios</h1></div>
-                <div class="bg-light-blue text-white px-4 py-2 rounded"><h1>Divisa</h1></div>
-                <div class="bg-light-blue text-white px-4 py-2 rounded"><h1>Personal</h1></div>
+            <div class="grid grid-cols-3 mt-10 gap-5">
+                <div onclick="redireccionar('vista_moneda.php');" class="bg-light-blue text-white px-10 py-7 rounded-xl text-center cursor-pointer"><h1>Monedas</h1></div>
+                <div class="bg-light-blue text-white px-10 py-7 rounded-xl text-center cursor-pointer"><h1>Usuarios</h1></div>
+                <div class="bg-light-blue text-white px-10 py-7 rounded-xl text-center cursor-pointer"><h1>Divisa</h1></div>
+                <div class="bg-light-blue text-white px-10 py-7 rounded-xl text-center cursor-pointer"><h1>Próximamente</h1></div>
+                <div class="bg-light-blue text-white px-10 py-7 rounded-xl text-center cursor-pointer"><h1>Próximamente</h1></div>
+                <div class="bg-light-blue text-white px-10 py-7 rounded-xl text-center cursor-pointer"><h1>Próximamente</h1></div>
             </div>
         </div>
     </main>
 </body>
 </html>
+<script>
+    function redireccionar(url) {
+    window.location.href = url;
+}
+</script>
 
 <!-- Tailwind CSS Config -->
 <style>
