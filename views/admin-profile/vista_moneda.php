@@ -60,10 +60,10 @@
                             <td class="border px-4 py-2">1111-1222</td>
                             <td class="border px-4 py-2">Corriente</td>
                             <td class="border px-4 py-2">
-                                <a href="">detalles</a>
+                                <a href="">Detalles</a>
                             </td>
                             <td class="border px-4 py-2">
-                                <a href="">ver</a>
+                                <a href="">Ver</a>
                             </td>
                             <td class="border px-4 py-2">
                                 <a href="">Agregar</a>
@@ -76,8 +76,8 @@
                 <table class="min-w-full bg-white">
                     <thead>
                         <tr>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left" colspan="3">Características Físicas</th>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left" colspan="7">Lados</th>
+                            <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="3">Características Físicas</th>
+                            <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="7">Lados</th>
                         </tr>
                         <tr>
                             <th class="py-2 px-4 bg-light-blue text-white">Canto</th>
