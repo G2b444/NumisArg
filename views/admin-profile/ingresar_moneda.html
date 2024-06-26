@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moneda</title>
+    <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white">
+    <header class="flex items-center bg-dark-blue h-20">
+        <div class="container mx-auto flex justify-between items-center">
+            <img src="../../assets/multimedia/img/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2">
+            <nav class="space-x-4">
+                <a href="#" class="text-white">Usuarios</a>
+                <a href="#" class="text-white">Monedas</a>
+                <a href="#" class="bg-light-blue text-white px-4 py-2 rounded">Ingresar</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="mb-6">
+            <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-2xl">
+                <h2 class="text-xl font-bold mb-4">Agregar moneda</h2>
+                <form>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700">General</label>
+                                <input type="text" placeholder="Nombre de la moneda" class="mt-2 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <div class="flex space-x-4 mt-2">
+                                    <input type="text" placeholder="Valor N." class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select class="w-1/2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option>Divisa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700">Emisión</label>
+                                <div class="flex space-x-4 mt-2">
+                                    <input type="text" placeholder="Inicio" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="text" placeholder="Final" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700">Características</label>
+                                <div class="grid grid-rows gap-4 mt-2">
+                                    <select class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option>Tipo</option>
+                                    </select>
+                                    <select class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option>Canto</option>
+                                    </select>
+                                    <select class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option>Composición</option>
+                                    </select>
+                                    <input type="text" placeholder="Diámetro" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="text" placeholder="Espesor" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Historia</label>
+                        <textarea class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-900 py-4 w-full">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold text-white">NumisArg</h1>
+            <p class="text-lg mt-2 text-white">Hecho por:</p>
+            <div class="flex justify-center space-x-8 mt-2 text-white">
+                <span>Vincenti Gania</span>
+                <span>Rodriguez Gabriel</span>
+                <span>Koncerewicz Kevin</span>
+            </div>
+        </div>
+    </footer>
+        <!--
+        <div>
+            <section class="flex flex-row">
+                <h1>Lados</h1>
+                <div>
+                    <label for="">Anverso</label>
+                    <input type="file" name="" id="">
+                    <p>
+                        <input type="text" name="" id="" placeholder="Listel">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Efigie">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Leyenda">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Exergo">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Ley">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Grafilia">
+                    </p>
+                </div>
+                <div>
+                    <label for="">Reverso</label>
+                    <input type="file" name="" id="">
+                    <p>
+                        <input type="text" name="" id="" placeholder="Listel">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Efigie">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Leyenda">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Exergo">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Ley">
+                    </p>
+                    <p>
+                        <input type="text" name="" id="" placeholder="Grafilia">
+                    </p>
+                </div>
+            </section>
+        </div>-->
+    </div>
+</body>
+</html>
+<!-- Tailwind CSS Config -->
+<style>
+    .bg-dark-blue {
+        background-color: #021526;
+    }
+    .bg-light-blue {
+        background-color: #0D3559;
+    }
+    .bg-white {
+        background-color: #FCFFFF;
+    }
+    .bg-black {
+        background-color:  #000911;
+    }
+
+    body {
+            font-family: 'Radio Canada', sans-serif;
+        }
+        h1, h2 {
+            font-family: 'Patua One', cursive;
+        }
+   
+</style>
