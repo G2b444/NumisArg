@@ -23,13 +23,14 @@
         <div class="mb-6">
             <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-2xl">
                 <h2 class="text-xl font-bold mb-4">Agregar moneda</h2>
-                <form action="" method="post">
+                <form action="" method="post" class="lados" id="lados">
                     <div class="flex flex-col justify-center items-center text-center mb-6">
                         <h1 class="text-2xl">Lados</h1>
-                        <h2 class="text-xl">Anverso</h2>
+                        <h2 class="text-xl" id="Anverso">Anverso</h2>
+                        <h2 class="text-xl" id="Reverso">Reverso</h2>
                         <label class="text-sm text-gray-400 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"><div class="w-32 h-32 my-3 bg-dark-blue rounded-full"></div></label>
                         <div class="grid w-full max-w-xs items-center gap-1.5">
-                            <input name="anv" type="file" class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
+                            <input name="img" id="img" type="file" class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
                         </div>
                         <input type="text" name="lstl_anv" placeholder="Listel" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-center">
                         <input type="text" name="fg_anv" placeholder="Efigie" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -39,11 +40,10 @@
                         <input type="text" name="grfl_anv" placeholder="Grafilia" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div class="text-right">
-                        <button type="submit" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+                        <button type="button" id="siguienteLados" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </form>
-            <!--
-                <form>
+                <form id="general" class="general">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <div class="mb-4">
@@ -88,10 +88,9 @@
                         <textarea class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                     </div>
                     <div class="text-right">
-                        <button type="submit" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+                        <button type="button" id="siguienteGeneral" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </form>
-            -->
             </div>
         </div>
     </main>
@@ -106,60 +105,32 @@
             </div>
         </div>
     </footer>
-        <!--
-        <div>
-            <section class="flex flex-row">
-                <h1>Lados</h1>
-                <div>
-                    <label for="">Anverso</label>
-                    <input type="file" name="" id="">
-                    <p>
-                        <input type="text" name="" id="" placeholder="Listel">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Efigie">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Leyenda">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Exergo">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Ley">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Grafilia">
-                    </p>
-                </div>
-                <div>
-                    <label for="">Reverso</label>
-                    <input type="file" name="" id="">
-                    <p>
-                        <input type="text" name="" id="" placeholder="Listel">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Efigie">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Leyenda">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Exergo">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Ley">
-                    </p>
-                    <p>
-                        <input type="text" name="" id="" placeholder="Grafilia">
-                    </p>
-                </div>
-            </section>
-        </div>-->
-    </div>
 </body>
 </html>
-<!-- Tailwind CSS Config -->
+<script>
+    const buttonLados = document.getElementById('siguienteLados');
+    const buttonGeneral = document.getElementById('siguienteGeneral');
+
+    buttonLados.addEventListener('click', function() {
+        document.getElementById('Anverso').style.display = 'none';
+        document.getElementById('Reverso').style.display = 'block';
+        document.getElementById('img').value = '';
+    });
+
+    buttonGeneral.addEventListener('click', function() {
+        document.getElementById('general').style.display = 'none';
+        document.getElementById('lados').style.display = 'block';
+        document.getElementById('Reverso').style.display = 'none';
+    });
+</script>
+<style>
+    .lados {
+        display: none;
+    }
+    .general {
+        display: block;
+    }
+</style>
 <style>
     .bg-dark-blue {
         background-color: #021526;
@@ -180,5 +151,4 @@
         h1, h2 {
             font-family: 'Patua One', cursive;
         }
-   
 </style>
