@@ -48,28 +48,19 @@
                         <div>
                             <div class="mb-4">
                                 <label class="block text-gray-700">General</label>
-                                <input type="text" placeholder="Nombre de la moneda" name="nombre_moneda" class="mt-2 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="text" placeholder="Nombre de la moneda" name="nombre" class="mt-2 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <div class="flex space-x-4 mt-2">
-                                    <input type="number" placeholder="Valor N." name="v_n" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="text" placeholder="Valor N." name="valor" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     <select name="divisa" class="w-1/2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option>Divisa</option>
-                                        <?php 
-                                            $sql = "SELECT * FROM divisa";
-                                            include '../../inc/conexion.php';
-                                            $res = mysqli_query($conectar, $sql);
-
-                                            foreach($res as $filas){
-                                                echo "<option value='".$filas['id_divisa']."'>".$filas['nombre']."</option>";
-                                            }
-                                        ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700">Emisión</label>
                                 <div class="flex space-x-4 mt-2">
-                                    <input type="number" placeholder="Inicio" name="ini_emi" min="1" max="2024" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <input type="number" placeholder="Final" name="fin_emi" min="1" max="2024" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="text" placeholder="Inicio" name="inicio" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="text" placeholder="Final" name="final" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
                             </div>
                         </div>
@@ -77,29 +68,15 @@
                             <div class="mb-4">
                                 <label class="block text-gray-700">Características</label>
                                 <div class="grid grid-rows gap-4 mt-2">
-                                    <select name="tipo_moneda" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select name="tipo" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option>Tipo</option>
-                                        <?php
-                                            $sql = "SELECT * FROM tipo_moneda";
-                                            $res = mysqli_query($conectar, $sql);
-
-                                            foreach($res as $filas){
-                                                echo "<option value='".$filas['id_tipo_moneda']."'>".$filas['tipo_moneda']."</option>";
-                                            }
-                                        ?>
                                     </select>
-                                    <select name="t_c" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select name="canto" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option>Canto</option>
-                                        <?php
-                                            $sql = "SELECT * FROM tipo_canto";
-                                            $res = mysqli_query($conectar, $sql);
-
-                                            foreach($res as $filas){
-                                                echo "<option value='".$filas['id_tipo_canto']."'>".$filas['tipo']."</option>";
-                                            }
-                                        ?>
                                     </select>
-                                    <input type="text" placeholder="Composición" name="composicion" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select name="composicion" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option>Composición</option>
+                                    </select>
                                     <input type="text" placeholder="Diámetro" name="diametro" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     <input type="text" placeholder="Espesor" name="espesor" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
@@ -134,46 +111,55 @@
     let i = 0;
     let accumulatedData = {};
 
-    function renameArrayData(formData, oldKey, newKey) {
-        if (formData.has(oldKey)) {
-            const value = formData.get(oldKey);
-            formData.delete(oldKey);
-            formData.append(newKey, value);
+    function renameArrayData(formData, mappings) {
+        for (const [oldKey, newKey] of Object.entries(mappings)) {
+            if (formData.has(oldKey)) {
+                const value = formData.get(oldKey);
+                formData.delete(oldKey);
+                formData.append(newKey, value);
+            }
         }
     }
-
 
     document.getElementById('lados').addEventListener('submit', function(event) {
         event.preventDefault();
         i += 1;
 
+        let formData = new FormData(this);
+        document.getElementById('img').value = '';
+
         if (i == 1) {
             alert(i);
             document.getElementById('Anverso').style.display = 'none';
             document.getElementById('Reverso').style.display = 'block';
-            let formData = new FormData(this);
-            document.getElementById('img').value = '';
-            renameArrayData(formData, 'img', 'anv');
-            renameArrayData(formData, 'listel', 'listel_anver');
-            renameArrayData(formData, 'efigie', 'efigie_anver');
-            renameArrayData(formData, 'leyenda', 'leyenda_anver');
-            renameArrayData(formData, 'exergo', 'exergo_anver');
-            renameArrayData(formData, 'ley', 'ley_anver');
-            renameArrayData(formData, 'grafilia', 'grafilia_anver');
+            
+            const mappings = {
+                'img': 'anv',
+                'listel': 'listel_anver',
+                'efigie': 'efigie_anver',
+                'leyenda': 'leyenda_anver',
+                'exergo': 'exergo_anver',
+                'ley': 'ley_anver',
+                'grafilia': 'grafilia_anver'
+            };
 
+            renameArrayData(formData, mappings);
             appendFormDataToAccumulatedData(formData);
         } else {
-            alert('Enviando datos...');
-            let formData = new FormData(this);
-            renameArrayData(formData, 'img', 'rvo');
-            renameArrayData(formData, 'listel', 'listel_rever');
-            renameArrayData(formData, 'efigie', 'efigie_rever');
-            renameArrayData(formData, 'leyenda', 'leyenda_rever');
-            renameArrayData(formData, 'exergo', 'exergo_rever');
-            renameArrayData(formData, 'ley', 'ley_rever');
-            renameArrayData(formData, 'grafilia', 'grafilia_rever');
+            const mappings = {
+                'img': 'rvo',
+                'listel': 'listel_rever',
+                'efigie': 'efigie_rever',
+                'leyenda': 'leyenda_rever',
+                'exergo': 'exergo_rever',
+                'ley': 'ley_rever',
+                'grafilia': 'grafilia_rever'
+            };
+
+            renameArrayData(formData, mappings);
             appendFormDataToAccumulatedData(formData);
             sendAccumulatedData();
+            alert('Enviando datos...');
         }
     });
 
@@ -183,6 +169,7 @@
         document.getElementById('general').style.display = 'none';
         document.getElementById('lados').style.display = 'block';
         document.getElementById('Reverso').style.display = 'none';
+        
         let formData = new FormData(this);
         appendFormDataToAccumulatedData(formData);
     });
@@ -200,25 +187,24 @@
         }
 
         //Inicio del test
+        /*
         console.log('FormData entries:');
-            for (const [key, value] of formData.entries()) {
-                console.log(key, ':', value);
-            }
+        for (const [key, value] of formData.entries()) {
+            console.log(key, ':', value);
+        }
+        */
         //fin del test
         
         fetch('insertar_moneda.php', {
             method: 'POST',
             body: formData
-        }).then(response => response.text())
-        .then(data => {
-                document.open();
-                document.write(data);
-                document.close();
-            })
-          .catch(error => console.error('Error:', error));
-          
+        })
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
     }
 </script>
+
 <style>
     .lados {
         display: none;

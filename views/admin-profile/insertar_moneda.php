@@ -22,7 +22,7 @@ $lynd_anver = $_POST['leyenda_anver'];
 $exergo_anver = $_POST['exergo_anver'];
 $ly_anver = $_POST['ley_anver'];
 $grfl_anver = $_POST['grafilia_anver'];
-$dtlls_anver = $_POST['detalles_anver'];
+//$dtlls_anver = $_POST['detalles_anver'];
 
 $lstl_rever = $_POST['listel_rever'];
 $fg_rever = $_POST['efigie_rever'];
@@ -30,7 +30,7 @@ $lynd_rever = $_POST['leyenda_rever'];
 $exergo_rever = $_POST['exergo_rever'];
 $ly_rever = $_POST['ley_rever'];
 $grfl_rever = $_POST['grafilia_rever'];
-$dtlls_rever = $_POST['detalles_rever'];
+//$dtlls_rever = $_POST['detalles_rever'];
 
 $ruta_indexphp = dirname(realpath(__FILE__));
 $anverso = $_FILES['anv']['tmp_name'];
@@ -61,46 +61,76 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
                 $id_act = mysqli_insert_id($conectar);
 
                 if($res){
-                    $sql = "INSERT INTO `moneda_atributo`(`id_moneda`, `id_divisa`, `id_valor_nominal`, `id_tipo_canto`, 
-                    `id_tipo_moneda`, `composicion`, `diametro`, `espesor`, `historia`, `inicio_emision`, `fin_emision`) 
-                    VALUES ($id_act , $dvs, $v_n, $t_c, $t_m,'$cmpscn','$dmtr','$spsr','$hstr','$nc_msm','$fn_msm')";
+                    $sql = "INSERT INTO `moneda_atributo` (
+                            `id_moneda`, 
+                            `id_divisa`, 
+                            `id_valor_nominal`, 
+                            `id_tipo_canto`, 
+                            `id_tipo_moneda`, 
+                            `composicion`, 
+                            `diametro`, 
+                            `espesor`, 
+                            `historia`, 
+                            `inicio_emision`, 
+                            `fin_emision`
+                        ) 
+                        VALUES (
+                            $id_act, 
+                            $dvs, 
+                            $v_n, 
+                            $t_c, 
+                            $t_m, 
+                            '$cmpscn', 
+                            '$dmtr', 
+                            '$spsr', 
+                            '$hstr', 
+                            '".$nc_msm."-01-01',
+                            '".$fn_msm."-01-01'
+                        )";
+                    echo "<script>alert('$sql');</script>";
                     $res = mysqli_query($conectar, $sql);
                     $id_act = mysqli_insert_id($conectar);
 
                     if($res){
                         $sql = "INSERT INTO `partes`(`id_imagen`, `id_moneda_atributo`, `lado`, `listel`, `efigie`, 
-                        `leyenda`, `exergo`, `ley`, `grafilia`, `detalles`) 
+                        `leyenda`, `exergo`, `ley`, `grafilia`) 
                         VALUES ($id_img_anv,$id_act,'anverso','$lstl_anver','$fg_anver','$lynd_anver','$exergo_anver'
-                        ,'$ly_anver','$grfl_anver','$dtlls_anver')";
+                        ,'$ly_anver','$grfl_anver')";
                         $res = mysqli_query($conectar, $sql);
                         var_dump($sql);
 
                         if($res){
                             $sql = "INSERT INTO `partes`(`id_imagen`, `id_moneda_atributo`, `lado`, `listel`, `efigie`, 
-                            `leyenda`, `exergo`, `ley`, `grafilia`, `detalles`) 
+                            `leyenda`, `exergo`, `ley`, `grafilia`) 
                             VALUES ($id_img_rev,$id_act,'reverso','$lstl_rever','$fg_rever','$lynd_rever','$exergo_rever'
-                            ,'$ly_rever','$grfl_rever','$dtlls_rever')";
+                            ,'$ly_rever','$grfl_rever')";
                             $res = mysqli_query($conectar, $sql);
                             var_dump($sql);
 
                             if($res){
                                 echo "<script>alert('La moneda se ingresó con éxito.');</script>";
+                                echo "<script>window.location='vista_moneda.php';</script>";
                             }else{
                                 echo "<script>alert('ERROR: La moneda no se pudo ingresar.');</script>";
+                                echo "<script>location.reload();</script>";
                             }
 
                         }else{
                             echo "<script>alert('ERROR: No se pudo insertar el anverso de la moneda');</script>";
+                            echo "<script>location.reload();</script>";
                         }
                     }else{
                         var_dump($sql);
                         echo "<script>alert('ERROR: No se pudo insertar los atrbutos de la moneda');</script>";
+                        echo "<script>location.reload();</script>";
                     }
                 }else{
                     echo "<script>alert('ERROR: No se pudo insertar el nombre de la moneda');</script>";
+                    echo "<script>location.reload();</script>";
                 }
             }else{
                 echo "<script>alert('ERROR: No se pudo ingresar las imagenes de la moneda');</script>";
+                echo "<script>location.reload();</script>";
             }
             }
     }
