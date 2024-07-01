@@ -33,7 +33,7 @@
                     </select>
                     <input type="text" id="search-input" class="p-2 border border-gray-300 rounded" placeholder="Buscar...">
                     <button type="submit" class="bg-dark-blue text-white px-4 py-2 rounded"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
-                    <button type="button" class="bg-dark-blue text-white px-4 py-2 rounded"><i class="fa-solid fa-plus"></i> Agregar</button>
+                    <button type="button" class="bg-dark-blue text-white px-4 py-2 rounded"><a href="ingresar_moneda.php"><i class="fa-solid fa-plus"></i> Agregar </a></button>
                 </div>
             </section>
             <section class="mb-6">
