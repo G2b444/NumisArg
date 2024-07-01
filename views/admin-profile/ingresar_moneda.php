@@ -53,14 +53,23 @@
                                     <input type="text" placeholder="Valor N." name="valor" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     <select name="divisa" class="w-1/2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option>Divisa</option>
+                                        <?php 
+                                            $sql = "SELECT * FROM divisa";
+                                            include '../../inc/conexion.php';
+                                            $res = mysqli_query($conectar, $sql);
+
+                                            foreach($res as $filas){
+                                                echo "<option value='".$filas['id_divisa']."'>".$filas['nombre']."</option>";
+                                            }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700">Emisión</label>
                                 <div class="flex space-x-4 mt-2">
-                                    <input type="text" placeholder="Inicio" name="inicio" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <input type="text" placeholder="Final" name="final" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="number" placeholder="Inicio" name="inicio" min="1" max="2024" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="number" placeholder="Final" name="final" min="1" max="2024" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
                             </div>
                         </div>
@@ -70,13 +79,27 @@
                                 <div class="grid grid-rows gap-4 mt-2">
                                     <select name="tipo" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option>Tipo</option>
+                                        <?php
+                                            $sql = "SELECT * FROM tipo_moneda";
+                                            $res = mysqli_query($conectar, $sql);
+
+                                            foreach($res as $filas){
+                                                echo "<option value='".$filas['id_tipo_moneda']."'>".$filas['tipo_moneda']."</option>";
+                                            }
+                                        ?>
                                     </select>
                                     <select name="canto" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option>Canto</option>
+                                        <?php
+                                            $sql = "SELECT * FROM tipo_canto";
+                                            $res = mysqli_query($conectar, $sql);
+
+                                            foreach($res as $filas){
+                                                echo "<option value='".$filas['id_tipo_canto']."'>".$filas['tipo']."</option>";
+                                            }
+                                        ?>
                                     </select>
-                                    <select name="composicion" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <option>Composición</option>
-                                    </select>
+                                    <input type="text" placeholder="Composición" name="composicion" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     <input type="text" placeholder="Diámetro" name="diametro" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     <input type="text" placeholder="Espesor" name="espesor" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
