@@ -1,3 +1,52 @@
+<?php 
+
+$sql= "
+        SELECT 
+            MAX(CASE WHEN partes.lado = 'anverso' THEN imagen.direccion END) AS imagen_anverso,
+            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.listel END) AS listel_anverso,
+            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.efigie END) AS efigie_anverso,
+            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.leyenda END) AS leyenda_anverso,
+            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.ley END) AS ley_anverso,
+            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.grafilia END) AS grafilia_anverso,
+            MAX(CASE WHEN partes.lado = 'reverso' THEN imagen.direccion END) AS imagen_reverso,
+            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.listel END) AS listel_reverso,
+            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.efigie END) AS efigie_reverso,
+            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.leyenda END) AS leyenda_reverso,
+            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.ley END) AS ley_reverso,
+            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.grafilia END) AS grafilia_reverso,
+            valor_nominal.valor,
+            YEAR (moneda_atributo.inicio_emision) AS año_inicio,
+            YEAR (moneda_atributo.fin_emision) AS año_fin,
+            divisa.nombre AS divisa,
+            tipo_moneda,
+            tipo_canto.tipo,
+            moneda_atributo.composicion,
+            moneda_atributo.diametro,
+            moneda_atributo.espesor,
+            moneda_atributo.historia
+        FROM moneda 
+        JOIN moneda_atributo ON moneda.id_moneda = moneda_atributo.id_moneda 
+        JOIN valor_nominal ON valor_nominal.id_valor_nominal = moneda_atributo.id_valor_nominal 
+        JOIN divisa ON divisa.id_divisa = moneda_atributo.id_divisa 
+        JOIN partes ON partes.id_moneda_atributo = moneda_atributo.id_moneda_atributo 
+        JOIN imagen ON partes.id_imagen = imagen.id_imagen
+        JOIN tipo_canto ON tipo_canto.id_tipo_canto = moneda_atributo.id_tipo_canto
+        JOIN tipo_moneda ON tipo_moneda.id_tipo_moneda = moneda_atributo.id_tipo_moneda
+        GROUP BY 
+            valor_nominal.valor,
+            moneda_atributo.inicio_emision,
+            moneda_atributo.fin_emision,
+            divisa.nombre,
+            tipo_canto.tipo,
+            moneda_atributo.composicion,
+            moneda_atributo.diametro,
+            moneda_atributo.espesor,
+            moneda_atributo.historia;
+    ";
+include '../../inc/conexion.php';
+$res = mysqli_query($conectar, $sql);
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -52,10 +101,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-gray-100">
-                            <td class="border px-4 py-2"><img src="../../assets/multimedia/img/738-original.jpg" alt="" class="w-16 h-16 object-cover rounded-full"></td>
-                            <td class="border px-4 py-2"><img src="../../assets/multimedia/img/739-original.jpg" alt="" class="w-16 h-16 object-cover rounded-full"></td>
-                            <td class="border px-4 py-2">100</td>
+                            <?php 
+                            
+                            foreach($res as $filas){
+                                echo "<tr class='bg-gray-100'>";
+                                echo "<td class='border px-4 py-2'><img src='".$filas['imagen_anverso']."' alt='' class='w-16 h-16 object-cover rounded-full'></td>";
+                                echo "<td class='border px-4 py-2'><img src='".$filas['imagen_reverso']."' alt='' class='w-16 h-16 object-cover rounded-full'></td>";
+                                echo "<td class='border px-4 py-2'>".$filas['valor']."</td>";
+                                echo "<td class='border px-4 py-2'>".$filas['divisa']."</td>";
+                                echo "<td class='border px-4 py-2'>".$filas['año_inicio']."-".$filas['año_fin']."</td>";
+                                echo "<td class='border px-4 py-2'>".$filas['tipo_moneda']."</td>";
+                                echo "<td class='border px-4 py-2'>";
+                                echo "<a href=''>Detalles</a>";
+                                echo "</td>";
+                                echo "<td class='border px-4 py-2'>";
+                                echo "<a href=''>Ver</a>";
+                                echo "</td>";
+                                echo "<td class='border px-4 py-2'>";
+                                echo "<a href=''>Agregar</a>";
+                                echo "</td>";
+                                echo "<td class='border px-4 py-2 cursor-pointer'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></td>
+                                    <td class='border px-4 py-2 cursor-pointer'><i class='fa-solid fa-pen' style='font-size: x-large;'></i></td>";
+                                echo "</tr>";
+                            }
+                            
+                            ?>
+                            <!--<td class="border px-4 py-2">100</td>
                             <td class="border px-4 py-2">Peso</td>
                             <td class="border px-4 py-2">1111-1222</td>
                             <td class="border px-4 py-2">Corriente</td>
@@ -69,10 +140,11 @@
                                 <a href="">Agregar</a>
                             </td>
                             <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></td>
-                            <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></td>
-                        </tr>
+                            <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></td>-->
+                        
                     </tbody>
                 </table>
+                <!--
                 <table class="min-w-full bg-white">
                     <thead>
                         <tr>
@@ -138,7 +210,7 @@
                         <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></td>
                         <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></td>
                     </tbody>
-                </table>
+                </table>-->
             </section>
         </section>
     </main>
