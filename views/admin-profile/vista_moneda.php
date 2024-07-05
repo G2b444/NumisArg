@@ -6,12 +6,14 @@ $sql= "
             MAX(CASE WHEN partes.lado = 'anverso' THEN partes.listel END) AS listel_anverso,
             MAX(CASE WHEN partes.lado = 'anverso' THEN partes.efigie END) AS efigie_anverso,
             MAX(CASE WHEN partes.lado = 'anverso' THEN partes.leyenda END) AS leyenda_anverso,
+            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.exergo END) AS exergo_anverso,
             MAX(CASE WHEN partes.lado = 'anverso' THEN partes.ley END) AS ley_anverso,
             MAX(CASE WHEN partes.lado = 'anverso' THEN partes.grafilia END) AS grafilia_anverso,
             MAX(CASE WHEN partes.lado = 'reverso' THEN imagen.direccion END) AS imagen_reverso,
             MAX(CASE WHEN partes.lado = 'reverso' THEN partes.listel END) AS listel_reverso,
             MAX(CASE WHEN partes.lado = 'reverso' THEN partes.efigie END) AS efigie_reverso,
             MAX(CASE WHEN partes.lado = 'reverso' THEN partes.leyenda END) AS leyenda_reverso,
+            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.exergo END) AS exergo_reverso,
             MAX(CASE WHEN partes.lado = 'reverso' THEN partes.ley END) AS ley_reverso,
             MAX(CASE WHEN partes.lado = 'reverso' THEN partes.grafilia END) AS grafilia_reverso,
             valor_nominal.valor,
@@ -96,122 +98,144 @@ $res = mysqli_query($conectar, $sql);
                             <th class="py-2 px-4 bg-dark-blue text-white">Divisa</th>
                             <th class="py-2 px-4 bg-dark-blue text-white">Emisión</th>
                             <th class="py-2 px-4 bg-dark-blue text-white">Tipo</th>
-                            <th class="py-2 px-4 bg-dark-blue text-white">Características</th>
+                            <th class="py-2 px-4 bg-dark-blue text-white w-48">Características</th>
                             <th class="py-2 px-4 bg-dark-blue text-white" colspan="2">Anomalías</th>
                             <th class="py-2 px-4 bg-dark-blue text-white" colspan="2"></th>
                         </tr>
                     </thead>
                     <tbody>
-                            <?php 
-                            
-                            foreach($res as $filas){
-                                echo "<tr class='bg-gray-100'>";
-                                echo "<td class='border px-4 py-2'><img src='".$filas['imagen_anverso']."' alt='' class='w-16 h-16 object-cover rounded-full'></td>";
-                                echo "<td class='border px-4 py-2'><img src='".$filas['imagen_reverso']."' alt='' class='w-16 h-16 object-cover rounded-full'></td>";
-                                echo "<td class='border px-4 py-2'>".$filas['valor']."</td>";
-                                echo "<td class='border px-4 py-2'>".$filas['divisa']."</td>";
-                                echo "<td class='border px-4 py-2'>".$filas['año_inicio']."-".$filas['año_fin']."</td>";
-                                echo "<td class='border px-4 py-2'>".$filas['tipo_moneda']."</td>";
-                                echo "<td class='border px-4 py-2'>";
-                                echo "<a href=''>Detalles</a>";
-                                echo "</td>";
-                                echo "<td class='border px-4 py-2'>";
-                                echo "<a href=''>Ver</a>";
-                                echo "</td>";
-                                echo "<td class='border px-4 py-2'>";
-                                echo "<a href='agregar_anomalia.php?v=".$filas['id_moneda']."'>Agregar</a>";
-                                echo "</td>";
-                                echo "<td class='border px-4 py-2 cursor-pointer'><a href='eliminar_moneda.php?v=".$filas['id_moneda']."'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></a></td>
-                                    <td class='border px-4 py-2 cursor-pointer'><a href='".$filas['id_moneda']."'><i class='fa-solid fa-pen' style='font-size: x-large;'></i></a></td>";
-                                echo "</tr>";
-                            }
-                            
-                            ?>
-                            <!--<td class="border px-4 py-2">100</td>
-                            <td class="border px-4 py-2">Peso</td>
-                            <td class="border px-4 py-2">1111-1222</td>
-                            <td class="border px-4 py-2">Corriente</td>
-                            <td class="border px-4 py-2">
-                                <a href="">Detalles</a>
-                            </td>
-                            <td class="border px-4 py-2">
-                                <a href="">Ver</a>
-                            </td>
-                            <td class="border px-4 py-2">
-                                <a href="">Agregar</a>
-                            </td>
-                            <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></td>
-                            <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></td>-->
-                        
-                    </tbody>
-                </table>
-                <!--
-                <table class="min-w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="3">Características Físicas</th>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="7">Lados</th>
-                        </tr>
-                        <tr>
-                            <th class="py-2 px-4 bg-light-blue text-white">Canto</th>
-                            <th class="py-2 px-4 bg-light-blue text-white">Composición</th>
-                            <th class="py-2 px-4 bg-light-blue text-white">Diámetro</th>
-                            <th class="py-2 px-4 bg-light-blue text-white"></th>
-                            <th class="py-2 px-4 bg-light-blue text-white">Listel</th>
-                            <th class="py-2 px-4 bg-light-blue text-white">Efigie</th>
-                            <th class="py-2 px-4 bg-light-blue text-white">Leyenda</th>
-                            <th class="py-2 px-4 bg-light-blue text-white">Exergo</th>
-                            <th class="py-2 px-4 bg-light-blue text-white">Ley</th>
-                            <th class="py-2 px-4 bg-light-blue text-white">Grafilia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <td class="border px-4 py-2">Chato</td>
-                            <td class="border px-4 py-2">99% plata</td>
-                            <td class="border px-4 py-2">3 milimetro</td>
-                            <td class="border px-4 py-2">Anverso</td>
-                            <td class="border px-4 py-2">aaaaaaa</td>
-                            <td class="border px-4 py-2">aaaaaaa</td>
-                            <td class="border px-4 py-2">aaaaaaa</td>
-                            <td class="border px-4 py-2">aaaaaaa</td>
-                            <td class="border px-4 py-2">aaaaaaa</td>
-                            <td class="border px-4 py-2">aaaaaaa</td>
-                            <tr>
-                                <td class="border px-4 py-2"></td>
-                                <td class="border px-4 py-2"></td>
-                                <td class="border px-4 py-2"></td>
-                                <td class="border px-4 py-2">Reverso</td>
-                                <td class="border px-4 py-2">aaaaaaa</td>
-                                <td class="border px-4 py-2">aaaaaaa</td>
-                                <td class="border px-4 py-2">aaaaaaa</td>
-                                <td class="border px-4 py-2">aaaaaaa</td>
-                                <td class="border px-4 py-2">aaaaaaa</td>
-                                <td class="border px-4 py-2">aaaaaaa</td>
+                        <?php foreach ($res as $index => $filas): ?>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2"><img src="<?= $filas['imagen_anverso'] ?>" alt="" class="w-16 h-16 object-cover rounded-full"></td>
+                                <td class="border px-4 py-2"><img src="<?= $filas['imagen_reverso'] ?>" alt="" class="w-16 h-16 object-cover rounded-full"></td>
+                                <td class="border px-4 py-2 truncated"><?= $filas['valor'] ?></td>
+                                <td class="border px-4 py-2 truncated"><?= $filas['divisa'] ?></td>
+                                <td class="border px-4 py-2 truncated"><?= $filas['año_inicio'] ?>-<?= $filas['año_fin'] ?></td>
+                                <td class="border px-4 py-2 truncated"><?= $filas['tipo_moneda'] ?></td>
+                                <td class="border px-4 py-2"><a href="javascript:void(0);" onclick="toggleDetails('caracteristicas-<?= $index ?>', this, 'Ocultar', 'Mostrar')">Mostrar</a></td>
+                                <td class="border px-4 py-2 w-24"><a href="javascript:void(0);" onclick="toggleDetails('anomalias-<?= $index ?>', this, 'Ocultar', 'Ver')">Ver</a></td>
+                                <td class="border px-4 py-2"><a href="agregar_anomalia.php?v=<?= $filas['id_moneda'] ?>">Agregar</a></td>
+                                <td class="border px-4 py-2 cursor-pointer"><a href="eliminar_moneda.php?v=<?= $filas['id_moneda'] ?>"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></a></td>
+                                <td class="border px-4 py-2 cursor-pointer"><a href="<?= $filas['id_moneda'] ?>"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
                             </tr>
+                            <tr>
+                                <td colspan="11">
+                                    <table class="min-w-full bg-white" id="caracteristicas-<?= $index ?>" style="display:none;">
+                                        <thead>
+                                            <tr>
+                                                <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="3">Características Físicas</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="7">Lados</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Canto</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Composición</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Diámetro</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white"></th>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Listel</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Efigie</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Leyenda</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Exergo</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Ley</th>
+                                                <th class="py-2 px-4 bg-light-blue text-white">Grafilia</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border px-4 py-2"><?= $filas['tipo'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['composicion'] ?>'><?= $filas['composicion'] ?></td>
+                                                <td class="border px-4 py-2"><?= $filas['diametro'] ?> milímetros</td>
+                                                <td class="border px-4 py-2">Anverso</td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['listel_anverso'] ?>'><?= $filas['listel_anverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['efigie_anverso'] ?>'><?= $filas['efigie_anverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['leyenda_anverso'] ?>'><?= $filas['leyenda_anverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['exergo_anverso'] ?>'><?= $filas['exergo_anverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['ley_anverso'] ?>'><?= $filas['ley_anverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['grafilia_anverso'] ?>'><?= $filas['grafilia_anverso'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border px-4 py-2"></td>
+                                                <td class="border px-4 py-2"></td>
+                                                <td class="border px-4 py-2"></td>
+                                                <td class="border px-4 py-2">Reverso</td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['listel_reverso'] ?>'><?= $filas['listel_reverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['efigie_reverso'] ?>'><?= $filas['efigie_reverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['leyenda_reverso'] ?>'><?= $filas['leyenda_reverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['exergo_reverso'] ?>'><?= $filas['exergo_reverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['ley_reverso'] ?>'><?= $filas['ley_reverso'] ?></td>
+                                                <td class="border px-4 py-2 truncated" title='<?= $filas['grafilia_reverso'] ?>'><?= $filas['grafilia_reverso'] ?></td>
+                                            </tr>
+                                        </tbody>
+                                        <td colspan="11"class='w-96 break-keep'>
+                                            <h2 class='py-2 px-4 bg-light-blue text-white text-xl'>Historia</h2>
+                                            <p class='bg-white p-4 border border-gray-300'><?= $filas['historia'] ?></p>
+                                        </td>
+                                    </table>
+                                    <div class="min-w-full" id='anomalias-<?= $index ?>' style="display:none;">
+                                        
+                                        <?php
+                                            $sql = "SELECT 
+                                                    MAX(CASE WHEN lado.lado = 'anverso' THEN imagen.direccion END) AS imagen_anverso,
+                                                    MAX(CASE WHEN lado.lado = 'reverso' THEN imagen.direccion END) AS imagen_reverso,
+                                                    anomalia.detalle, anomalia.id_anomalia
+                                                    FROM anomalia
+                                                    LEFT JOIN lado ON anomalia.id_anomalia = lado.id_anomalia
+                                                    LEFT JOIN imagen ON lado.id_imagen = imagen.id_imagen
+                                                    WHERE anomalia.id_moneda = ".$filas['id_moneda']."
+                                                    GROUP BY anomalia.detalle";
+                                            
+                                            $res_an = mysqli_query($conectar, $sql);
+                                            
+                                            
+                                            $anomalies = [];
+                                            while ($row = mysqli_fetch_assoc($res_an)) {
+                                                if ($row['imagen_anverso'] || $row['imagen_reverso'] || $row['detalle']) {
+                                                    $anomalies[] = $row;
+                                                }
+                                            }
+                                            
+                                            if (count($anomalies) > 0) {
+                                                echo "
+                                                        <table class='min-w-full bg-white'>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class='py-2 px-4 bg-light-blue text-white text-left text-xl' colspan='5'>Anomalía</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class='py-2 px-4 bg-light-blue text-white text-left'>Detalle</th>
+                                                                    <th class='py-2 px-4 bg-light-blue text-white text-left'>Anverso</th>
+                                                                    <th class='py-2 px-4 bg-light-blue text-white text-left'>Reverso</th>
+                                                                    <th class='py-2 px-4 bg-light-blue text-white text-left' colspan='2'></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>";
+                                            
+                                                foreach ($anomalies as $fila) {
+                                                    echo "<tr>
+                                                            <td class='border px-4 py-2 text-left'>{$fila['detalle']}</td>
+                                                            <td class='border px-4 py-2'><img src='{$fila['imagen_anverso']}' alt='' class='w-16 h-16 object-cover rounded-full'></td>
+                                                            <td class='border px-4 py-2'><img src='{$fila['imagen_reverso']}' alt='' class='w-16 h-16 object-cover rounded-full'></td>
+                                                            <td class='border px-4 py-2 cursor-pointer'><a href='eliminar_anomalia.php?v={$fila['id_anomalia']}'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></a></td>
+                                                            <td class='border px-4 py-2 cursor-pointer'><a href='editar_anomalia.php?v={$fila['id_anomalia']}'><i class='fa-solid fa-pen' style='font-size: x-large;'></i></a></td>
+                                                        </tr>";
+                                                }
+                                            
+                                                echo "</tbody></table>";
+                                            } else {
+                                                echo "<div class='p-10'>";
+                                                echo "<h1>No hay anomalias registradas</h1>";
+                                                echo "</div>";
+                                            }
+                                        ?>
+                                            
+                                                    
+                                                    
+                                                
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
-                <h2 class="py-2 px-4 bg-light-blue text-white text-xl">Historia</h2>
-                <p class="bg-white p-4 border border-gray-300 rounded">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                <table class="min-w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="5">Anomalía</th>
-                        </tr>
-                        <tr>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left">Detalle</th>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left">Anverso</th>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left">Reverso</th>
-                            <th class="py-2 px-4 bg-light-blue text-white text-left" colspan="2"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <td class="border px-4 py-2 text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</td>
-                        <td class="border px-4 py-2"><img src="../../assets/multimedia/img/738-original.jpg" alt="" class="w-16 h-16 object-cover rounded-full"></td>
-                        <td class="border px-4 py-2"><img src="../../assets/multimedia/img/739-original.jpg" alt="" class="w-16 h-16 object-cover rounded-full"></td>
-                        <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></td>
-                        <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></td>
-                    </tbody>
-                </table>-->
             </section>
         </section>
     </main>
@@ -229,6 +253,27 @@ $res = mysqli_query($conectar, $sql);
 </body>
 </html>
 <style>
+
+    .truncated {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 150px; /* Ajusta el tamaño según tus necesidades */
+        position: relative;
+    }
+    .truncated:hover::after {
+        content: attr(title);
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        white-space: normal;
+        z-index: 10;
+        left: 0;
+        top: 100%;
+    }
+
     .bg-dark-blue {
         background-color: #021526;
     }
@@ -250,3 +295,15 @@ $res = mysqli_query($conectar, $sql);
         }
    
 </style>
+<script>
+function toggleDetails(id, link, open, close) {
+    var table = document.getElementById(id);
+    if (table.style.display === "none") {
+        table.style.display = "table";
+        link.textContent = open;
+    } else {
+        table.style.display = "none";
+        link.textContent = close;
+    }
+}
+</script>
