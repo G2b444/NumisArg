@@ -119,7 +119,7 @@ $res = mysqli_query($conectar, $sql);
                                 echo "<a href=''>Ver</a>";
                                 echo "</td>";
                                 echo "<td class='border px-4 py-2'>";
-                                echo "<a href=''>Agregar</a>";
+                                echo "<a href='agregar_anomalia.php?v=".$filas['id_moneda']."'>Agregar</a>";
                                 echo "</td>";
                                 echo "<td class='border px-4 py-2 cursor-pointer'><a href='eliminar_moneda.php?v=".$filas['id_moneda']."'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></a></td>
                                     <td class='border px-4 py-2 cursor-pointer'><a href='".$filas['id_moneda']."'><i class='fa-solid fa-pen' style='font-size: x-large;'></i></a></td>";
