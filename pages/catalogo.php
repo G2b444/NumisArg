@@ -1,11 +1,9 @@
 <?php
 include 'conexion.php';
 
-$sql="SELECT moneda.nombre, inicio_emision, fin_emision, direccion 
-FROM moneda 
-INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda
-INNER JOIN partes ON moneda_atributo.id_moneda_atributo=partes.id_moneda_atributo
-INNER JOIN imagen ON partes.id_imagen=imagen.id_imagen";
+$sql="SELECT nombre, inicio_emision, fin_emision 
+    FROM  moneda
+    INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda";
 $general= mysqli_query($conectar,$sql);
 $campo=0;
 
@@ -13,7 +11,7 @@ if($_GET){
     $campo= $_GET['campo'];
     $valor= $_GET['valor'];
 }
-
+/*
 switch($campo){
     case 1:
         $sql="SELECT moneda.nombre, inicio_emision, fin_emision, direccion 
@@ -41,7 +39,7 @@ switch($campo){
         
     break;
 }
-
+*/
 
 ?>
 <!DOCTYPE html>
@@ -86,20 +84,32 @@ switch($campo){
                 $nombre= $registrogral['nombre'];
                 $inicioemision= (int) $registrogral['inicio_emision'];
                 $finemision= (int) $registrogral['fin_emision'];
-                $imagen= $registrogral['direccion'];
-
+                
+                $sql="SELECT  direccion
+                    FROM imagen 
+                    INNER JOIN partes ON partes.id_imagen=imagen.id_imagen
+                    WHERE partes.id_moneda_atributo=2 
+                    AND lado='anverso'";
+                $anverso=mysqli_query($conectar,$sql);
+                if($anverso){
+                    $imagena=mysqli_fetch_assoc($anverso);
+                    $imagen1= $imagena['direccion'];
                 echo'
-                    <div class="bg-white w-52  p-4 px-8 rounded-lg shadow-lg border border-blue-950	 mx-6 my-8 flex flex-col">
-                    <img src="'.$imagen.'" class="pb-3">
-                    <p class="pt-2 border-t border-blue-950	">
-                    <h5 class="text-center text-lg font-medium"><a href="">'.$nombre.'</a></h5>
-                    <h6 class="text-center text-sm">'.$inicioemision.'-'.$finemision.'</h6>
-                    </p>
-                    </div>';
+                    <a href="moneda.html">
+                        <div class="bg-white w-64  rounded-lg shadow-lg border border-blue-950 relative mx-6 my-8 flex flex-col">
+                            <img src="'.$imagen1.'" class="pb-3 p-6 hover:opacity-5 absolute transition-opacity z-10">
+                            <img src="'.$imagen1.'" class="pb-3 p-6 z-0 absolute bottom-16">
+
+                            <p class="pt-2 border-t border-blue-950	">
+                            <h5 class="text-center text-lg font-medium"><a href="">'.$nombre.'</a></h5>
+                            <h6 class="text-center text-sm pb-4">'.$inicioemision.'-'.$finemision.'</h6>
+                            </p>
+                        </div>
+                    </a>';
                 }
             }
+        }
             ?>
 
     </section>
 </body>
-</html>

@@ -2,7 +2,8 @@
 module.exports = {
   content: [
     "./*.html",
-    "./*.php"
+    "./*.php",
+    "./src/**/*.{html,js}"
   ],
   theme: {
     extend: {
@@ -18,6 +19,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animated')],
+  darkMode: "class",
 }
 
