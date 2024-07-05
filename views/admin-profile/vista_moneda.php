@@ -23,7 +23,8 @@ $sql= "
             moneda_atributo.composicion,
             moneda_atributo.diametro,
             moneda_atributo.espesor,
-            moneda_atributo.historia
+            moneda_atributo.historia,
+            moneda_atributo.id_moneda
         FROM moneda 
         JOIN moneda_atributo ON moneda.id_moneda = moneda_atributo.id_moneda 
         JOIN valor_nominal ON valor_nominal.id_valor_nominal = moneda_atributo.id_valor_nominal 
@@ -120,8 +121,8 @@ $res = mysqli_query($conectar, $sql);
                                 echo "<td class='border px-4 py-2'>";
                                 echo "<a href=''>Agregar</a>";
                                 echo "</td>";
-                                echo "<td class='border px-4 py-2 cursor-pointer'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></td>
-                                    <td class='border px-4 py-2 cursor-pointer'><i class='fa-solid fa-pen' style='font-size: x-large;'></i></td>";
+                                echo "<td class='border px-4 py-2 cursor-pointer'><a href='eliminar_moneda.php?v=".$filas['id_moneda']."'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></a></td>
+                                    <td class='border px-4 py-2 cursor-pointer'><a href='".$filas['id_moneda']."'><i class='fa-solid fa-pen' style='font-size: x-large;'></i></a></td>";
                                 echo "</tr>";
                             }
                             
