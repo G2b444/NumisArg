@@ -1,7 +1,7 @@
 <?php
 include 'conexion.php';
 
-$sql="SELECT nombre, inicio_emision, fin_emision 
+$sql="SELECT nombre, inicio_emision, fin_emision, moneda.id_moneda 
     FROM  moneda
     INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda";
 $general= mysqli_query($conectar,$sql);
@@ -56,7 +56,7 @@ switch($campo){
 <body>
     <section class="w-full h-fit p-5 px-16">
         <h1 class="text-5xl p-2 font-semibold">Catálogo</h1>
-            <form class="p-2 pt-4" action="catalogo.php" method="get">
+            <!-- <form class="p-2 pt-4" action="catalogo.php" method="get">
                 <div class="inline px-1">
                     <p class="inline font-semibold">En </p>
                     <select name="campo" id="campo" class="border-2 rounded-lg  border-blue-950">
@@ -74,31 +74,48 @@ switch($campo){
                 </div>
                 
                 <input type="submit" class="px-3 mx-2 rounded-md bg-blue-950 font-semibold">
-            </form>
+            </form> !-->
     </section>
     <section class="p-5 w-full h-fit flex flex-row flex-wrap justify-evenly">
         <?php
         if($general){
             while($registrogral=mysqli_fetch_assoc($general)){
 
-                $nombre= $registrogral['nombre'];
+                $nombre= wordwrap(utf8_encode($registrogral['nombre']));
                 $inicioemision= (int) $registrogral['inicio_emision'];
                 $finemision= (int) $registrogral['fin_emision'];
+                $id= $registrogral['id_moneda'];
                 
                 $sql="SELECT  direccion
                     FROM imagen 
                     INNER JOIN partes ON partes.id_imagen=imagen.id_imagen
-                    WHERE partes.id_moneda_atributo=2 
+                    WHERE partes.id_moneda_atributo='$id' 
                     AND lado='anverso'";
-                $anverso=mysqli_query($conectar,$sql);
-                if($anverso){
-                    $imagena=mysqli_fetch_assoc($anverso);
-                    $imagen1= $imagena['direccion'];
+                    $anverso=mysqli_query($conectar,$sql);
+                        $imagena=mysqli_fetch_assoc($anverso);
+                    if(isset($imagena['direccion'])){
+                        $imagen1= wordwrap(utf8_encode($imagena['direccion']));
+                    }else{
+                        $imagen1='assets/img/usd-circle.svg';
+                    }
+                
+                $sql="SELECT  direccion
+                    FROM imagen 
+                    INNER JOIN partes ON partes.id_imagen=imagen.id_imagen
+                    WHERE partes.id_moneda_atributo='$id' 
+                    AND lado='reverso'";
+                    $reverso=mysqli_query($conectar,$sql);
+                    $imagenr=mysqli_fetch_assoc($reverso);
+                    if(isset($imagenr['direccion'])){
+                        $imagen2= wordwrap(utf8_encode($imagenr['direccion']));
+                    }else{
+                        $imagen2='assets/img/usd-circle.svg';
+                    }
                 echo'
-                    <a href="moneda.html">
+                    <a href="moneda.html?moneda='.$id.'">
                         <div class="bg-white w-64  rounded-lg shadow-lg border border-blue-950 relative mx-6 my-8 flex flex-col">
-                            <img src="'.$imagen1.'" class="pb-3 p-6 hover:opacity-5 absolute transition-opacity z-10">
-                            <img src="'.$imagen1.'" class="pb-3 p-6 z-0 absolute bottom-16">
+                            <img src="'.$imagen2.'" class="pb-4 p-6 z-10">
+                            <img src="'.$imagen1.'" class="pb-3 p-6 hover:opacity-5 absolute bottom-20">
 
                             <p class="pt-2 border-t border-blue-950	">
                             <h5 class="text-center text-lg font-medium"><a href="">'.$nombre.'</a></h5>
@@ -106,7 +123,7 @@ switch($campo){
                             </p>
                         </div>
                     </a>';
-                }
+                
             }
         }
             ?>
