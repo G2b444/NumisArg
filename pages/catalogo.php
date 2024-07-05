@@ -112,7 +112,7 @@ switch($campo){
                         $imagen2='assets/img/usd-circle.svg';
                     }
                 echo'
-                    <a href="moneda.html?moneda='.$id.'">
+                    <a href="moneda.php?moneda='.$id.'">
                         <div class="bg-white w-64  rounded-lg shadow-lg border border-blue-950 relative mx-6 my-8 flex flex-col">
                             <img src="'.$imagen2.'" class="pb-4 p-6 z-10">
                             <img src="'.$imagen1.'" class="pb-3 p-6 hover:opacity-5 absolute bottom-20">
