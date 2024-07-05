@@ -26,7 +26,7 @@ if(isset($_POST['agregar'])){
         }
     }
 }else{
-    echo "<script>history.go(-1);</script>";
+    echo "<script>window.location='tabla_usuario.php';</script>";
 }
 
 ?>
