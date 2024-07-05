@@ -1,3 +1,12 @@
+<?php 
+$sql = "SELECT tipo_usuario.nombre AS tipo_usuario,
+                usuario.nombre AS nombre,
+                correo
+        FROM usuario, tipo_usuario 
+        WHERE usuario.id_tipo_usuario = tipo_usuario.id_tipo_usuario";
+include '../../inc/conexion.php';
+$res = mysqli_query($conectar, $sql);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -48,28 +57,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($res as $index => $filas): ?>
                         <tr class="bg-gray-100">
-                            <td class="border px-4 py-2">Admin</td>
-                            <td class="border px-4 py-2">Gabriel</td>
-                            <td class="border px-4 py-2">gabriel42172332@gmail.com</td>
+                            <td class="border px-4 py-2"><?= $filas['tipo_usuario']?></td>
+                            <td class="border px-4 py-2"><?= $filas['nombre']?></td>
+                            <td class="border px-4 py-2"><?= $filas['correo']?></td>
                             <td class="border px-4 py-2">**************</td>
                             <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></td>
                             <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></td>
                         </tr>
-                        <tr class="bg-gray-100">
-                            <td class="border px-4 py-2">Admin</td>
-                            <td class="border px-4 py-2">Gabriel</td>
-                            <td class="border px-4 py-2">gabriel42172332@gmail.com</td>
-                            <td class="border px-4 py-2">**************</td>
-                            <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></td>
-                            <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></td>
-                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </section>
         </section>
     </main>
-    <footer class="bg-gray-900 py-4 fixed bottom-0 w-full">
+    <footer class="bg-gray-900 py-4">
         <div class="container mx-auto text-center">
             <h1 class="text-3xl font-bold text-white">NumisArg</h1>
             <p class="text-lg mt-2 text-white">Hecho por:</p>
