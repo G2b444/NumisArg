@@ -2,9 +2,31 @@
 $sql = "SELECT tipo_usuario.nombre AS tipo_usuario,
                 usuario.nombre AS nombre,
                 correo
-        FROM usuario, tipo_usuario 
-        WHERE usuario.id_tipo_usuario = tipo_usuario.id_tipo_usuario";
+        FROM usuario
+        JOIN tipo_usuario ON usuario.id_tipo_usuario = tipo_usuario.id_tipo_usuario";
+
 include '../../inc/conexion.php';
+
+if (isset($_POST['buscar'])) {
+    $dato = trim($_POST['search']);
+    
+    if (!empty($dato)) {
+        $filtro = $_POST['filtro'];
+        
+        switch ($filtro) {
+            case 'correo':
+                $sql .= " WHERE usuario.correo LIKE '%$dato%'";
+                break;
+            case 'tipo':
+                $sql .= " WHERE tipo_usuario.nombre LIKE '%$dato%'";
+                break;
+            case 'nombre':
+                $sql .= " WHERE usuario.nombre LIKE '%$dato%'";
+                break;
+        }
+    }
+}
+
 $res = mysqli_query($conectar, $sql);
 ?>
 <!DOCTYPE html>
@@ -33,16 +55,18 @@ $res = mysqli_query($conectar, $sql);
             <section class="mb-6" >
                 <h1 class="text-4xl mb-5 mt-12">Usuarios</h1>
                 <div class="flex space-x-4 items-center">
-                    <label for="search-category" class="font-bold">En ...</label>
-                    <select id="search-category" class="p-2 border border-gray-300 rounded">
-                        <option value="valor" selected disabled>Atributo</option>
-                        <option value="divisa">Tipo</option>
-                        <option value="emision">Nombre</option>
-                        <option value="tipo">Correo</option>
-                    </select>
-                    <input type="text" id="search-input" class="p-2 border border-gray-300 rounded" placeholder="Buscar...">
-                    <button type="submit" class="bg-dark-blue text-white px-4 py-2 rounded"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
-                    <button type="button" class="bg-dark-blue text-white px-4 py-2 rounded"><a href="agregar_usuario.html"><i class="fa-solid fa-plus"></i> Agregar</a></button>
+                    <form action="" method="post">
+                        <label for="search-category" class="font-bold">En ...</label>
+                        <select id="search-category" name="filtro" class="p-2 border border-gray-300 rounded">
+                            <option value="valor" selected disabled>Atributo</option>
+                            <option value="tipo">Tipo</option>
+                            <option value="nombre">Nombre</option>
+                            <option value="correo">Correo</option>
+                        </select>
+                        <input type="text" name="search" id="search-input" class="p-2 border border-gray-300 rounded" placeholder="Buscar...">
+                        <button type="submit" name="buscar" class="bg-dark-blue text-white px-4 py-2 rounded"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+                        <button type="button" class="bg-dark-blue text-white px-4 py-2 rounded"><a href="agregar_usuario.html"><i class="fa-solid fa-plus"></i> Agregar</a></button>
+                    </form>
                 </div>
             </section>
             <section class="mb-6">
