@@ -49,17 +49,17 @@ if($gral){
         if($detalle){
             while($det=mysqli_fetch_assoc($detalle)){
                 //variables
-                $nombre= wordwrap(utf8_encode($general['nombre']));
+                $nombre= mb_convert_encoding($general['nombre'], "UTF-8", mb_detect_encoding($general['nombre']));
                 $emisioni= (int) $general['inicio_emision'];
                 $emisionf= (int) $general['fin_emision'];
                 $valor= $det['valor']; 
-                $divisa= wordwrap(utf8_encode($det['nombre']));
+                $divisa= mb_convert_encoding($det['nombre'], "UTF-8", mb_detect_encoding($det['nombre']));
                 $canto= $det['tipo'];
                 $tipomoneda= $det['tipo_moneda'];
-                $composicion= wordwrap(utf8_encode($det['composicion']));
+                $composicion= mb_convert_encoding($det['composicion'], "UTF-8", mb_detect_encoding($det['composicion']));
                 $diametro= $det['diametro'];
                 $espesor= $det['espesor'];
-                $historia= wordwrap(utf8_encode($det['historia']));
+                $historia= mb_convert_encoding($det['historia'], "UTF-8", mb_detect_encoding($det['historia']));
                 echo'
                 <body>
                 <section class="grid grid-cols-4 grid-rows-6 p-5">
@@ -84,7 +84,7 @@ if($gral){
                             $nombrelado=$lado['lado'];
                             $listel=$lado['listel'];
                             $efigie=$lado['efigie'];
-                            $leyenda= wordwrap(utf8_encode($lado['leyenda']));
+                            $leyenda= mb_convert_encoding($lado['leyenda'], "UTF-8", mb_detect_encoding($lado['leyenda']));
                             $exergo=$lado['exergo'];
                             $ley=$lado['ley'];
                             $grafilia=$lado['grafilia'];
@@ -99,7 +99,7 @@ if($gral){
                             $img=mysqli_query($conectar,$sql);
                             $imagen=mysqli_fetch_assoc($img);
                             if(isset($imagen['direccion'])){
-                                $imagenlado= wordwrap(utf8_encode($imagen['direccion']));
+                                $imagenlado= mb_convert_encoding($imagen['direccion'], "UTF-8", mb_detect_encoding($imagen['direccion']));
                             }else{
                             $imagenlado='assets/img/usd-circle.svg';
                             }
@@ -135,6 +135,56 @@ if($gral){
 }
         ?>
    
+   
+<div class="max-w-2xl mx-auto">
+
+<div id="default-carousel" class="relative" data-carousel="static">
+ 
+    <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+       
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="block absolute  w-full h-full -translate-x-1/2 -translate-y-1/2 bg-black">
+                <p class="text-white">primera slideeeee</p>
+            </div>
+        </div>
+       
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="block absolute  w-full h-full -translate-x-1/2 -translate-y-1/2 bg-black">
+                <p class="text-white">primera slideeeee</p>
+            </div>
+        </div>
+
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="block absolute  w-full h-full -translate-x-1/2 -translate-y-1/2 bg-black">
+                <p class="text-white">primera slideeeee</p>
+            </div>
+        </div>
+        
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="block absolute  w-full h-full -translate-x-1/2 -translate-y-1/2 bg-black">
+                <p class="text-white">primera slideeeee</p>
+            </div>
+        </div>
+   
+    <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30  group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
+            <svg class="w-5 h-5 text-black sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="hidden">Anterior</span>
+        </span>
+    </button>
+    <button type="button" class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 0 group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
+            <svg class="w-5 h-5 text-black sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <span class="hidden">Siguiente</span>
+        </span>
+    </button>
+</div>
+
+<p class="mt-5">Este slide carousel se ha hecho con Tailwindcss
+</p>
+<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+</div>
+
 </body>
 </html>
 

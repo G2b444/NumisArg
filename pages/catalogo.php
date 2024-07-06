@@ -81,7 +81,7 @@ switch($campo){
         if($general){
             while($registrogral=mysqli_fetch_assoc($general)){
 
-                $nombre= wordwrap(utf8_encode($registrogral['nombre']));
+                $nombre= mb_convert_encoding($registrogral['nombre'], "UTF-8", mb_detect_encoding($registrogral['nombre']));
                 $inicioemision= (int) $registrogral['inicio_emision'];
                 $finemision= (int) $registrogral['fin_emision'];
                 $id= $registrogral['id_moneda'];
@@ -94,7 +94,7 @@ switch($campo){
                     $anverso=mysqli_query($conectar,$sql);
                         $imagena=mysqli_fetch_assoc($anverso);
                     if(isset($imagena['direccion'])){
-                        $imagen1= wordwrap(utf8_encode($imagena['direccion']));
+                        $imagen1= mb_convert_encoding($imagena['direccion'], "UTF-8", mb_detect_encoding($imagena['direccion']));
                     }else{
                         $imagen1='assets/img/usd-circle.svg';
                     }
@@ -107,7 +107,7 @@ switch($campo){
                     $reverso=mysqli_query($conectar,$sql);
                     $imagenr=mysqli_fetch_assoc($reverso);
                     if(isset($imagenr['direccion'])){
-                        $imagen2= wordwrap(utf8_encode($imagenr['direccion']));
+                        $imagen2= mb_convert_encoding($imagenr['direccion'], "UTF-8", mb_detect_encoding($imagenr['direccion']));
                     }else{
                         $imagen2='assets/img/usd-circle.svg';
                     }
