@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function mostrarContraseña(fieldId) {
+            var x = document.getElementById(fieldId);
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        </script>
+        
+    <title>Cambio de contraseña</title>
+</head>
+<body>
+    <form action="../libreria/delsession.php" method="post"><button name="volver">Volver</button></form>
+    <form action="../php/cambio.php" method="post">
+
+        <input type="password" name="ps" id="passwordField1" placeholder="Contraseña" required>
+        <input type="checkbox" onclick="mostrarContraseña('passwordField1')"> Mostrar contraseña
+        
+        <br><br>
+        
+        <input type="password" name="ps2" id="passwordField2" placeholder="Repetir Contraseña" required>
+        <input type="checkbox" onclick="mostrarContraseña('passwordField2')"> Mostrar contraseña
+        
+
+    <input type="number" name="n" placeholder="Código de verificación">
+    <input type="submit" name="submit" value="Cambiar">
+
+    </form>
+
+</body>
+</html>
