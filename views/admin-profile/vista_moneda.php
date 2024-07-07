@@ -26,7 +26,8 @@ $sql= "
             moneda_atributo.diametro,
             moneda_atributo.espesor,
             moneda_atributo.historia,
-            moneda_atributo.id_moneda
+            moneda_atributo.id_moneda,
+            moneda.nombre AS nombre_moneda
         FROM moneda 
         JOIN moneda_atributo ON moneda.id_moneda = moneda_atributo.id_moneda 
         JOIN valor_nominal ON valor_nominal.id_valor_nominal = moneda_atributo.id_valor_nominal 
@@ -35,6 +36,31 @@ $sql= "
         JOIN imagen ON partes.id_imagen = imagen.id_imagen
         JOIN tipo_canto ON tipo_canto.id_tipo_canto = moneda_atributo.id_tipo_canto
         JOIN tipo_moneda ON tipo_moneda.id_tipo_moneda = moneda_atributo.id_tipo_moneda
+    ";
+
+    if (isset($_POST['buscar'])) {
+        $dato = trim($_POST['search']);
+        
+        if (!empty($dato)) {
+            $filtro = $_POST['filtro'];
+            
+            switch ($filtro) {
+                case 'divisa':
+                    $sql .= " WHERE divisa.nombre LIKE '%$dato%'";
+                    break;
+                case 'tipo':
+                    $sql .= " WHERE tipo_moneda.tipo_moneda LIKE '%$dato%'";
+                    break;
+                case 'nombre':
+                    $sql .= " WHERE moneda.nombre LIKE '%$dato%'";
+                    break;
+                    
+            }
+        }
+    }
+include '../../inc/conexion.php';
+
+$sql .= "
         GROUP BY 
             valor_nominal.valor,
             moneda_atributo.inicio_emision,
@@ -44,9 +70,9 @@ $sql= "
             moneda_atributo.composicion,
             moneda_atributo.diametro,
             moneda_atributo.espesor,
-            moneda_atributo.historia;
-    ";
-include '../../inc/conexion.php';
+            moneda_atributo.historia;";
+
+echo "<h1>$sql</h1>";
 $res = mysqli_query($conectar, $sql);
 
 ?>
@@ -106,16 +132,18 @@ $res = mysqli_query($conectar, $sql);
             <section class="mb-6" >
                 <h1 class="text-4xl mb-5 mt-12">Monedas</h1>
                 <div class="flex space-x-4 items-center">
-                    <label for="search-category" class="font-bold">En ...</label>
-                    <select id="search-category" class="p-2 border border-gray-300 rounded">
-                        <option value="valor" selected disabled>Atributo</option>
-                        <option value="divisa">Divisa</option>
-                        <option value="emision">Emisión</option>
-                        <option value="tipo">Tipo</option>
-                    </select>
-                    <input type="text" id="search-input" class="p-2 border border-gray-300 rounded" placeholder="Buscar...">
-                    <button type="submit" class="bg-dark-blue text-white px-4 py-2 rounded"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
-                    <button type="button" class="bg-dark-blue text-white px-4 py-2 rounded"><a href="ingresar_moneda.php"><i class="fa-solid fa-plus"></i> Agregar </a></button>
+                    <form action="" method="post">
+                        <label for="search-category" class="font-bold">En ...</label>
+                        <select name="filtro" id="search-category" class="p-2 border border-gray-300 rounded">
+                            <option value="valor" selected disabled>Atributo</option>
+                            <option value="divisa">Divisa</option>
+                            <option value="tipo">Tipo</option>
+                            <option value="nombre">Nombre</option>
+                        </select>
+                        <input type="text" name="search" id="search-input" class="p-2 border border-gray-300 rounded" placeholder="Buscar...">
+                        <button type="submit" name="buscar" class="bg-dark-blue text-white px-4 py-2 rounded"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+                        <button type="button" class="bg-dark-blue text-white px-4 py-2 rounded"><a href="ingresar_moneda.php"><i class="fa-solid fa-plus"></i> Agregar </a></button>
+                    </form>
                 </div>
             </section>
             <section class="mb-6">
