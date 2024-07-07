@@ -38,6 +38,36 @@ $res = mysqli_query($conectar, $sql);
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
+    <style>
+        .bg-dark-blue {
+            background-color: #021526;
+        }
+        .bg-light-blue {
+            background-color: #0D3559;
+        }
+        .bg-white {
+            background-color: #FCFFFF;
+        }
+        .bg-black {
+            background-color:  #000911;
+        }
+
+        body {
+            font-family: 'Radio Canada', sans-serif;
+        }
+        h1, h2 {
+            font-family: 'Patua One', cursive;
+        }
+       
+        
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 80px);
+        }
+        
+    </style>
 </head>
 <body class="bg-gray-100">
     <header class="flex items-center bg-dark-blue h-20">
@@ -109,25 +139,3 @@ $res = mysqli_query($conectar, $sql);
     </footer>
 </body>
 </html>
-<style>
-    .bg-dark-blue {
-        background-color: #021526;
-    }
-    .bg-light-blue {
-        background-color: #0D3559;
-    }
-    .bg-white {
-        background-color: #FCFFFF;
-    }
-    .bg-black {
-        background-color:  #000911;
-    }
-
-    body {
-            font-family: 'Radio Canada', sans-serif;
-        }
-        h1, h2 {
-            font-family: 'Patua One', cursive;
-        }
-   
-</style>
