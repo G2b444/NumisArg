@@ -113,7 +113,15 @@ $res = mysqli_query($conectar, $sql);
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($res as $index => $filas): ?>
+                    <?php
+                    
+                    if(mysqli_num_rows($res)==0){
+                        echo "<td colspan='6' class='p-8'><h1>No hay ningun registro<h1><td>";
+                    }
+                    
+                    foreach ($res as $index => $filas): 
+                    
+                    ?>
                         <tr class="bg-gray-100">
                             <td class="border px-4 py-2"><?= $filas['tipo_usuario']?></td>
                             <td class="border px-4 py-2"><?= $filas['nombre']?></td>
