@@ -43,7 +43,7 @@ $sql= "
         
         if (!empty($dato)) {
             $filtro = $_POST['filtro'];
-            
+
             switch ($filtro) {
                 case 'divisa':
                     $sql .= " WHERE divisa.nombre LIKE '%$dato%'";
@@ -72,7 +72,6 @@ $sql .= "
             moneda_atributo.espesor,
             moneda_atributo.historia;";
 
-echo "<h1>$sql</h1>";
 $res = mysqli_query($conectar, $sql);
 
 ?>
