@@ -75,7 +75,7 @@ if($gral){
                             }
                             echo '
                             <div class="inline-block  row-span-6 p-4 ">
-                                <img src="'.$imagenlado.'" class="w-52 mx-6">
+                                <img src="'.$imagenlado.'" class="w-52 mx-6 rounded-full">
                                 <h3 class="font-semibold">'.$nombrelado.'</h3>
                                 <p class="text-sm">
                                     '.$leyenda.'
@@ -110,26 +110,55 @@ if($gral){
     <div class="relative  rounded-xl sm:h-64 xl:h-80 4xl:h-96">
         <!-- Contenido del carrusel -->
         <div class="carousel-inner">
-                <!-- Tarjeta 3 -->
-                <div class="carousel-item">
-                    <div class="flex justify-center absolute w-full 2xl:h-96 -translate-x-1/2 -translate-y-1/2">
-                        <div class="w-1/2 h-full flex flex-col flex-wrap justify-between rounded-xl py-10 bg-light-blue">
-                            <span class="flex flex-row justify-evenly">
-                                <img src="./assets/img/10-centavos.jpg" class="w-52 ">
-                                <img src="./assets/img/10-centavos.jpg" class="w-52">
-                            </span>
-                            <p class="text-xl pt-5 px-10 ">Tarjetdsadsadsadasa 3</p>   
+            <?php
+            if ($anomalia){
+                while($anom=mysqli_fetch_assoc($anomalia)){
+                            $det=$anom['detalle'];
+                            $anomaliaid=$anom['id_anomalia'];
+
+                            $sql="SELECT `direccion` 
+                                FROM `imagen`
+                                INNER JOIN lado ON imagen.id_imagen=lado.id_imagen
+                                WHERE id_anomalia='$anomaliaid' 
+                                AND lado='reverso'";
+
+                            $res=mysqli_query($conectar,$sql);
+                            $anomaliaReverso=mysqli_fetch_assoc($res);
+                            if(isset($anomaliaReverso['direccion'])){
+                                $aReverso= mb_convert_encoding($anomaliaReverso['direccion'], "UTF-8", mb_detect_encoding($anomaliaReverso['direccion']));
+                            }
+
+                            $sql="SELECT `direccion` 
+                                FROM `imagen`
+                                INNER JOIN lado ON imagen.id_imagen=lado.id_imagen
+                                WHERE id_anomalia='$anomaliaid' 
+                                AND lado='anverso'";
+
+                            $res=mysqli_query($conectar,$sql);
+                            $anomaliaAnverso=mysqli_fetch_assoc($res);
+                            if(isset($anomaliaAnverso['direccion'])){
+                                $aAnverso= mb_convert_encoding($anomaliaAnverso['direccion'], "UTF-8", mb_detect_encoding($anomaliaAnverso['direccion']));
+                            }
+
+                    echo '
+                    <!-- Tarjeta 3 -->
+                    <div class="carousel-item">
+                        <div class="flex justify-center absolute w-full 2xl:h-96 -translate-x-1/2 -translate-y-1/2">
+                            <div class="w-1/2 h-full shadow-lg flex flex-col flex-wrap justify-between rounded-xl py-10 bg-light-blue">
+                                <span class="flex flex-row justify-evenly">
+                                    <img src="'.$aAnverso.'" class="w-52 rounded-full">
+                                    <img src="'.$aReverso.'" class="w-52 rounded-full">
+                                </span>
+                                <p class="text-xl pt-5 px-10 text-white">'.$det.'</p>   
+                            </div>
                         </div>
                     </div>
-                </div>
+                    ';
 
-                <!-- Tarjeta 2 -->
-                <div class="carousel-item">
-                    <div class="block  rounded-xl w-2/4 h-96 -translate-x-1/2 -translate-y-1/2 bg-light-blue">
-                    <p class="text-white">Tarjesdsdasdasda  ta 2</p>
-                    </div>
-                   
-                </div>
+                }
+            }
+            echo '<p class="text-2xl p-20 text-center">No se han registrado anomalias para esta moneda</p>';
+            ?>
         <!-- ... -->
         </div>
         <!-- Botones de navegación -->
