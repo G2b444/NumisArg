@@ -104,61 +104,88 @@ if($gral){
     }        
 }
         ?>
-   
-   
-<div class="w-screen h-screen px-20 py-16 mx-auto">
-    <h1 class="text-center text-3xl">Anomalias encontradas</h1>
-    <div id="default-carousel" class="relative py-10" data-carousel="static">
-    
-        <div class="overflow-hidden relative rounded-xl sm:h-64 xl:h-80 2xl:h-96">
 
-            <?php
-            if($anomalia){
-                while($anom=mysqli_fetch_assoc($anomalia)){
-                    echo '
-                        <div class="hidden duration-700 ease-in-out w-1/2 justify-self-center" data-carousel-item>
-                            <div class="block absolute rounded-xl  w-full h-96 -translate-x-1/2 -translate-y-1/2 bg-light-blue">
-                                <p class="text-white">primera slideeeee</p>
-                            </div>
+<div class="relative py-10 pb-20">
+    <h1 class="text-center text-3xl mb-10">Anomalias registradas</h1>
+    <div class="relative  rounded-xl sm:h-64 xl:h-80 4xl:h-96">
+        <!-- Contenido del carrusel -->
+        <div class="carousel-inner">
+                <!-- Tarjeta 3 -->
+                <div class="carousel-item">
+                    <div class="flex justify-center absolute w-full 2xl:h-96 -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-1/2 h-full flex flex-col flex-wrap justify-between rounded-xl py-10 bg-light-blue">
+                            <span class="flex flex-row justify-evenly">
+                                <img src="./assets/img/10-centavos.jpg" class="w-52 ">
+                                <img src="./assets/img/10-centavos.jpg" class="w-52">
+                            </span>
+                            <p class="text-xl pt-5 px-10 ">Tarjetdsadsadsadasa 3</p>   
                         </div>
-                    ';
-                }
-            }else{
-                echo '
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <div class="block absolute  w-full h-full -translate-x-1/2 -translate-y-1/2 bg-black">
-                        <p class="text-white">No se han registrado anomalias</p>
-                    </div>
-                </div>
-                ';
-            }
-            ?>
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <div class="block absolute  w-full h-full -translate-x-1/2 -translate-y-1/2 bg-black">
-                        <p class="text-white">primera slideeeee</p>
                     </div>
                 </div>
 
-                
-    
+                <!-- Tarjeta 2 -->
+                <div class="carousel-item">
+                    <div class="block  rounded-xl w-2/4 h-96 -translate-x-1/2 -translate-y-1/2 bg-light-blue">
+                    <p class="text-white">Tarjesdsdasdasda  ta 2</p>
+                    </div>
+                   
+                </div>
+        <!-- ... -->
+        </div>
+        <!-- Botones de navegación -->
         <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
-            <span class="inline-flex justify-center items-center w-10 h-10 rounded-full sm:w-10 sm:h-10 bg-white/30  group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
-                <svg class="w-10 h-10 text-black sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                <span class="hidden">Anterior</span>
-            </span>
+        <span class="inline-flex justify-center items-center w-10 h-10 rounded-full sm:w-10 sm:h-10 bg-white/30 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+            <svg class="w-10 h-10 text-black sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="hidden">Anterior</span>
+        </span>
         </button>
         <button type="button" class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-next>
-            <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 0 group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
-                <svg class="w-5 h-5 text-black sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                <span class="hidden">Siguiente</span>
-            </span>
+        <span class="inline-flex justify-center items-center w-10 h-10 rounded-full sm:w-10 sm:h-10 bg-white/30 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+            <svg class="w-10 h-10 text-black sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <span class="hidden">Siguiente</span>
+        </span>
         </button>
-        </div>
     </div>
-<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 </div>
+
 <?php
 include 'footer.html';
 ?>
+<script> 
+    // Selecionar los elementos del carrusel
+    const carouselInner = document.querySelector('.carousel-inner');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const prevButton = document.querySelector('[data-carousel-prev]');
+    const nextButton = document.querySelector('[data-carousel-next]');
+
+    // Establecer el índice actual del carrusel
+    let currentIndex = 0;
+
+    // Función para mostrar la tarjeta actual
+    function showCurrentItem() {
+    carouselItems.forEach((item, index) => {
+        item.classList.toggle('hidden', index !== currentIndex);
+    });
+    }
+
+    // Función para avanzar al siguiente elemento
+    function nextItem() {
+    currentIndex = (currentIndex + 1) % carouselItems.length;
+    showCurrentItem();
+    }
+
+    // Función para retroceder al elemento anterior
+    function prevItem() {
+    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+    showCurrentItem();
+    }
+
+    // Agregar eventos a los botones de navegación
+    prevButton.addEventListener('click', prevItem);
+    nextButton.addEventListener('click', nextItem);
+
+    // Mostrar la tarjeta actual al inicio
+    showCurrentItem();
+</script>
 </body>
 </html>
