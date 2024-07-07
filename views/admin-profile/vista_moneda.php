@@ -162,7 +162,15 @@ $res = mysqli_query($conectar, $sql);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($res as $index => $filas): ?>
+                        <?php 
+                        
+                        if(mysqli_num_rows($res)==0){
+                            echo "<td colspan='10' class='p-8'><h1>No hay ningun registro<h1><td>";
+                        }
+
+                        foreach ($res as $index => $filas): 
+                        
+                        ?>
                             <tr class="bg-gray-100">
                                 <td class="border px-4 py-2"><img src="<?= $filas['imagen_anverso'] ?>" alt="" class="w-16 h-16 object-cover rounded-full"></td>
                                 <td class="border px-4 py-2"><img src="<?= $filas['imagen_reverso'] ?>" alt="" class="w-16 h-16 object-cover rounded-full"></td>
