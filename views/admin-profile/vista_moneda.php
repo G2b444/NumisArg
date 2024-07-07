@@ -38,11 +38,11 @@ $sql= "
         JOIN tipo_moneda ON tipo_moneda.id_tipo_moneda = moneda_atributo.id_tipo_moneda
     ";
 
-    if (isset($_POST['buscar'])) {
+    if (isset($_POST['buscar']) && isset($_POST['filtro'])) {
         $dato = trim($_POST['search']);
+        $filtro = $_POST['filtro'];
         
-        if (!empty($dato)) {
-            $filtro = $_POST['filtro'];
+        if (!empty($dato) && !empty($filtro)) {
 
             switch ($filtro) {
                 case 'divisa':
@@ -54,7 +54,8 @@ $sql= "
                 case 'nombre':
                     $sql .= " WHERE moneda.nombre LIKE '%$dato%'";
                     break;
-                    
+                case 'valor':
+                    break;
             }
         }
     }

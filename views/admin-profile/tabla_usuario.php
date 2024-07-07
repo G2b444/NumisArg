@@ -7,10 +7,11 @@ $sql = "SELECT tipo_usuario.nombre AS tipo_usuario,
 
 include '../../inc/conexion.php';
 
-if (isset($_POST['buscar'])) {
+if (isset($_POST['buscar']) && isset($_POST['filtro'])) {
     $dato = trim($_POST['search']);
+    $filtro = $_POST['filtro'];
     
-    if (!empty($dato)) {
+    if (!empty($dato) && !empty($filtro)) {
         $filtro = $_POST['filtro'];
         
         switch ($filtro) {
