@@ -2,6 +2,7 @@
     if(isset($_POST['agregar']) && isset($_GET['v'])){
 
         $id_moneda = $_GET['v'];
+        $nombre = $_POST['nombre'];
         $detalle = $_POST['detalle'];
         
         $ruta_indexphp = dirname(realpath(__FILE__));
@@ -26,8 +27,8 @@
                     $id_img_rev = mysqli_insert_id($conectar);
         
                     if($res){
-                        $sql = "INSERT INTO `anomalia`(`id_moneda`, `detalle`) 
-                        VALUES ('$id_moneda','$detalle')";  
+                        $sql = "INSERT INTO `anomalia`(`id_moneda`, `nombre`, `detalle`) 
+                        VALUES ('$id_moneda', '$nombre','$detalle')";  
                         $res = mysqli_query($conectar, $sql);
                         $id_anomalia = mysqli_insert_id($conectar);
 
@@ -120,7 +121,8 @@
             </div>
             <div class="grid grid-rows">
                 <h1 class="text-xl"><?php echo $data['nombre']?></h1>
-                <textarea name="detalle" class="mt-2 w-full h-32 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Detalles"></textarea>
+                <input name="nombre" type="text" class="mt-4 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nombre de la anomalia">
+                <textarea name="detalle" class="mt-6 w-full h-32 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Detalles"></textarea>
                 <div class="text-center">
                     <button type="submit" class="mt-6 bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Cancelar <i class="fa-solid fa-xmark"></i></button>
                     <button type="submit" name="agregar" class="mt-6 bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Agregar <i class="fa-solid fa-check"></i></button>
