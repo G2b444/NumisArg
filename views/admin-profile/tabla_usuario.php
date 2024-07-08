@@ -128,7 +128,7 @@ $res = mysqli_query($conectar, $sql);
                             <td class="border px-4 py-2"><?= $filas['correo']?></td>
                             <td class="border px-4 py-2">**************</td>
                             <td class="border px-4 py-2 cursor-pointer"><a href="eliminar_usuario.php?v=<?=$filas['id_usuario']?>"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></a></td>
-                            <td class="border px-4 py-2 cursor-pointer"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></td>
+                            <td class="border px-4 py-2 cursor-pointer"><a href="editar_usuario.php?v=<?=$filas['id_usuario']?>"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
