@@ -242,7 +242,7 @@ $res = mysqli_query($conectar, $sql);
                                             $sql = "SELECT 
                                                     MAX(CASE WHEN lado.lado = 'anverso' THEN imagen.direccion END) AS imagen_anverso,
                                                     MAX(CASE WHEN lado.lado = 'reverso' THEN imagen.direccion END) AS imagen_reverso,
-                                                    anomalia.detalle, anomalia.id_anomalia
+                                                    anomalia.detalle, anomalia.id_anomalia, nombre 
                                                     FROM anomalia
                                                     LEFT JOIN lado ON anomalia.id_anomalia = lado.id_anomalia
                                                     LEFT JOIN imagen ON lado.id_imagen = imagen.id_imagen
@@ -264,9 +264,10 @@ $res = mysqli_query($conectar, $sql);
                                                         <table class='min-w-full bg-white'>
                                                             <thead>
                                                                 <tr>
-                                                                    <th class='py-2 px-4 bg-light-blue text-white text-left text-xl' colspan='5'>Anomalía</th>
+                                                                    <th class='py-2 px-4 bg-light-blue text-white text-left text-xl' colspan='6'>Anomalía</th>
                                                                 </tr>
                                                                 <tr>
+                                                                    <th class='py-2 px-4 bg-light-blue text-white text-left w-48'>Nombre</th>
                                                                     <th class='py-2 px-4 bg-light-blue text-white text-left'>Detalle</th>
                                                                     <th class='py-2 px-4 bg-light-blue text-white text-left'>Anverso</th>
                                                                     <th class='py-2 px-4 bg-light-blue text-white text-left'>Reverso</th>
@@ -277,7 +278,8 @@ $res = mysqli_query($conectar, $sql);
                                             
                                                 foreach ($anomalies as $fila) {
                                                     echo "<tr>
-                                                            <td class='border px-4 py-2 text-left'>{$fila['detalle']}</td>
+                                                            <td class='border px-4 py-2 text-left truncated' title='{$fila['nombre']}'>{$fila['nombre']}</td>
+                                                            <td class='border px-4 py-2 text-left truncated ' title='.{$fila['detalle']}'>{$fila['detalle']}</td>
                                                             <td class='border px-4 py-2'><img src='{$fila['imagen_anverso']}' alt='' class='w-16 h-16 object-cover rounded-full'></td>
                                                             <td class='border px-4 py-2'><img src='{$fila['imagen_reverso']}' alt='' class='w-16 h-16 object-cover rounded-full'></td>
                                                             <td class='border px-4 py-2 cursor-pointer'><a href='eliminar_anomalia.php?v={$fila['id_anomalia']}'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></a></td>
