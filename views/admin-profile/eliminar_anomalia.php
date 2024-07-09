@@ -1,8 +1,6 @@
 <?php 
 if(isset($_GET['v'])){
-    ini_set('display_errors', 1);
-    ini_set('log_errors', 1);
-    error_reporting(E_ALL);
+    
     $id_anomalia = $_GET['v'];
 
     $sql = "SELECT MAX(CASE WHEN lado.lado = 'anverso' THEN lado.id_imagen END) AS id_imagen_anverso,
@@ -14,8 +12,7 @@ if(isset($_GET['v'])){
             WHERE anomalia.id_anomalia = $id_anomalia
             AND anomalia.id_anomalia = lado.id_anomalia 
             AND imagen.id_imagen = lado.id_imagen";
-    echo $sql;
-    echo "<br>";
+    
     include '../../inc/conexion.php';
 
     if(!$res = mysqli_query($conectar, $sql)){
