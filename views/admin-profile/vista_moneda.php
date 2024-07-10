@@ -96,7 +96,7 @@ $res = mysqli_query($conectar, $sql);
             background-color: #FCFFFF;
         }
         .bg-black {
-            background-color:  #000911;
+            background-color: #000911;
         }
 
         body {
@@ -105,13 +105,33 @@ $res = mysqli_query($conectar, $sql);
         h1, h2 {
             font-family: 'Patua One', cursive;
         }
-       
         
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             min-height: calc(100vh - 80px);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 1rem;
+            z-index: 1001;
         }
         
     </style>
@@ -129,6 +149,28 @@ $res = mysqli_query($conectar, $sql);
     </header>
     <main class="p-6">
         <section class="mb-6 flex flex-col justify-center items-center text-center">
+
+    <!--Inicio del modal-->
+            <div class="modal-overlay" id="modal-overlay"></div>
+            <div class="modal delete-modal" id="delete-coin">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¿Seguro de que quieres eliminar esta moneda?</h1>
+                    <div class="flex justify-around">
+                        <button class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Cancelar</button>
+                        <button class="bg-transparent border-2 text-white py-2 px-4 rounded-3xl hover:bg-white hover:text-black confirm">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal delete-modal" id="delete-anomaly">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¿Seguro de que quieres eliminar esta anomalía?</h1>
+                    <div class="flex justify-around">
+                        <button class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Cancelar</button>
+                        <button class="bg-transparent border-2 text-white py-2 px-4 rounded-3xl hover:bg-white hover:text-black confirm">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+    <!--Fin del modal-->
             <section class="mb-6" >
                 <h1 class="text-4xl mb-5 mt-12">Monedas</h1>
                 <div class="flex space-x-4 items-center">
@@ -181,7 +223,7 @@ $res = mysqli_query($conectar, $sql);
                                 <td class="border px-4 py-2"><a href="javascript:void(0);" onclick="toggleDetails('caracteristicas-<?= $index ?>', this, 'Ocultar', 'Mostrar')">Mostrar</a></td>
                                 <td class="border px-4 py-2 w-24"><a href="javascript:void(0);" onclick="toggleDetails('anomalias-<?= $index ?>', this, 'Ocultar', 'Ver')">Ver</a></td>
                                 <td class="border px-4 py-2"><a href="agregar_anomalia.php?v=<?= $filas['id_moneda'] ?>">Agregar</a></td>
-                                <td class="border px-4 py-2 cursor-pointer"><a href="eliminar_moneda.php?v=<?= $filas['id_moneda'] ?>"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></a></td>
+                                <td class="border px-4 py-2 cursor-pointer"><a href="eliminar_moneda.php?v=<?= $filas['id_moneda'] ?>" class="delete-coin-link"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></a></td>
                                 <td class="border px-4 py-2 cursor-pointer"><a href="<?= $filas['id_moneda'] ?>"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
                             </tr>
                             <tr>
@@ -282,7 +324,7 @@ $res = mysqli_query($conectar, $sql);
                                                             <td class='border px-4 py-2 text-left truncated ' title='.{$fila['detalle']}'>{$fila['detalle']}</td>
                                                             <td class='border px-4 py-2'><img src='{$fila['imagen_anverso']}' alt='' class='w-16 h-16 object-cover rounded-full'></td>
                                                             <td class='border px-4 py-2'><img src='{$fila['imagen_reverso']}' alt='' class='w-16 h-16 object-cover rounded-full'></td>
-                                                            <td class='border px-4 py-2 cursor-pointer'><a href='eliminar_anomalia.php?v={$fila['id_anomalia']}'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></a></td>
+                                                            <td class='border px-4 py-2 cursor-pointer'><a href='eliminar_anomalia.php?v={$fila['id_anomalia']}' class='delete-anomaly-link'><i class='fa-solid fa-trash-can' style='font-size: x-large; margin-right: 10px; margin-left: 10px;'></i></a></td>
                                                             <td class='border px-4 py-2 cursor-pointer'><a href='editar_anomalia.php?v={$fila['id_anomalia']}'><i class='fa-solid fa-pen' style='font-size: x-large;'></i></a></td>
                                                         </tr>";
                                                 }
@@ -325,7 +367,7 @@ $res = mysqli_query($conectar, $sql);
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        max-width: 150px; /* Ajusta el tamaño según tus necesidades */
+        max-width: 150px;
         position: relative;
     }
     .truncated:hover::after {
@@ -352,4 +394,45 @@ function toggleDetails(id, link, open, close) {
         link.textContent = close;
     }
 }
+</script>
+<script>
+        function openModal(modalId) {
+            document.getElementById('modal-overlay').style.display = 'block';
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById('modal-overlay').style.display = 'none';
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            initDeleteModal('delete-coin-link', 'delete-coin');            
+            initDeleteModal('delete-anomaly-link', 'delete-anomaly');            
+        });
+
+        function initDeleteModal(className, modalId) {
+                var confirmButton = document.querySelector(`#${modalId} .confirm`);
+                var cancelButton = document.querySelector(`#${modalId} .cancel`);
+                var currentLink = null;
+
+                document.querySelectorAll(`.${className}`).forEach(function(link) {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        currentLink = this;
+                        openModal(modalId);
+                    });
+                });
+
+                confirmButton.onclick = function() {
+                    if (currentLink) {
+                        window.location.href = currentLink.href;
+                    }
+                }
+
+                cancelButton.onclick = function() {
+                    closeModal(modalId);
+                    currentLink = null;
+                }
+            }
 </script>
