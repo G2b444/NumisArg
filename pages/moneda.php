@@ -117,6 +117,7 @@ if($gral){
                 while($anom=mysqli_fetch_assoc($anomalia)){
                             $det=$anom['detalle'];
                             $anomaliaid=$anom['id_anomalia'];
+                            $anomalianombre=$anom['nombre'];
 
                             $sql="SELECT `direccion` 
                                 FROM `imagen`
@@ -151,7 +152,8 @@ if($gral){
                                     <img src="'.$aAnverso.'" class="w-52 rounded-full">
                                     <img src="'.$aReverso.'" class="w-52 rounded-full">
                                 </span>
-                                <p class="text-xl pt-5 px-10 text-white">'.$det.'</p>   
+                                <h2 class="text-2xl px-10 pt-5 text-white">'.$anomalianombre.'</h2>
+                                <p class="text-xl pt-3 px-10 text-white">'.$det.'</p>   
                             </div>
                         </div>
                     </div>
@@ -179,8 +181,8 @@ if($gral){
     </div>
 </div>
 
-<div class="w-1/3 h-96 bg-white absolute top-1/3 right-1/3 rounded-2xl shadow-xl border-light-blue border">
-    <h2 class="text-center text-2xl mt-10 font-light-blue">Guardar moneda</h2>
+<div class="w-1/3 h-fit bg-white absolute top-28 right-1/3 rounded-2xl shadow-xl border-light-blue border">
+    <h2 class="text-center text-2xl mt-10 font-light-blue">Guardar moneda</h2> 
     <form action="guardarmoneda.php" method="post" class="flex flex-col h-full p-5">
 
         <label class="flex flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
@@ -191,15 +193,32 @@ if($gral){
             <img src="./assets/valormercado.png" class="w-6 m-1">    
             <input type="number" name="valor" id="valor" placeholder="Valor de mercado (en USD)" class="border-0 bg-transparent w-full outline-none " maxlength="8" required>
         </label>
+        <?php
+        echo '
         <input type="hidden" name="usuario" id="usuario" value="1">
+        <input type="hidden" name="moneda" id="moneda" value="'.$id.'">
+        ';
+        ?>
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
             <img src="./assets/billetera.svg" class="w-6 m-1">
-            <select name="anomalia" id="anomalia" class="border-0 bg-transparent w-full rounded-lg outline-none">
+            <select name="estado" id="estado" class="border-0 bg-transparent w-full rounded-lg outline-none">
                 <option value="0">Estado de moneda</option>
                 <?php
                 if($estado){
                     while($est = mysqli_fetch_array($estado)){
                         echo '<option value="'.$est['id_estado'].'">'.$est['estado'].'</option>';
+                    }
+                }
+                ?>
+            </select>
+        </label>
+        <label class="flex flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
+            <select name="anomalia" id="anomalia" class="border-0 bg-transparent w-full rounded-lg outline-none pl-8">
+                <option value="0">Seleccionar anomalía</option>
+                <?php
+                if($anomalia){
+                    while($anom = mysqli_fetch_array($anomalia)){
+                        echo '<option value="'.$anom['id_anomalia'].'">'.$anom['nombre'].'</option>';
                     }
                 }
                 ?>
@@ -218,14 +237,20 @@ if($gral){
                 ?>
             </select>
         </label>
-
-        <input type="submit" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">
+        <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1 pl-8">
+            <input type="text" name="nuevacoleccion" id="nuevacoleccion" placeholder="Nueva colección" class="border-0 bg-transparent w-full outline-none " maxlength="20">
+        </label>
+        <label class="w-full flex justify-evenly">
+            <input type="submit" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">
+            <button onclick="cerrarguardar()" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">Cancelar</button>
+        </label>
     </form>
 </div>
 <?php
 include 'footer.html';
 ?>
 <script> 
+//carrusel
     // Selecionar los elementos del carrusel
     const carouselInner = document.querySelector('.carousel-inner');
     const carouselItems = document.querySelectorAll('.carousel-item');
@@ -260,6 +285,16 @@ include 'footer.html';
 
     // Mostrar la tarjeta actual al inicio
     showCurrentItem();
+
+//formulario guardar moneda
+    //mostrar formulario
+    function guardarmoneda(){
+
+    }
+    //cerrar formulario
+    function cerrarguardar(){
+        
+    }
 </script>
 </body>
 </html>

@@ -34,7 +34,7 @@ $id= $_GET['moneda'];
     
 
 //anomalias
-    $sql="SELECT detalle, anomalia.id_anomalia
+    $sql="SELECT detalle, anomalia.id_anomalia, nombre
         FROM `lado` 
         INNER JOIN anomalia ON anomalia.id_anomalia=lado.id_anomalia
         WHERE id_moneda='$id'";
