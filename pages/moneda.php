@@ -35,7 +35,7 @@ if($gral){
                 <section class="grid grid-cols-4 grid-rows-6 p-5 font-light-blue">
                         
                     <h1 class="col-span-2 h-10 text-center text-4xl ">'.$nombre.'</h1>
-                    <span class="inline-block col-start-3 col-span-4 row-span-6 m-2 p-4 border-2 rounded-2xl shadow-lg border-light-blue border">
+                    <span class="inline-block col-start-3 col-span-4 row-span-6 m-2 p-4 border-2 rounded-2xl shadow-lg border-light-blue">
                         <h2 class="text-2xl inline-block mb-5 ">Características:</h2>
                         <button onclick="guardarmoneda()"  class="float-right p-1 px-5 m-1 rounded-full text-white font-bold text-2xl bg-light-blue leading-loose">
                             +
@@ -94,7 +94,7 @@ if($gral){
                     echo'
                 </section>
 
-                <section  class="border-2 rounded-2xl shadow-lg m-7 p-4  border-light-blue border font-light-blue">
+                <section  class="border-2 rounded-2xl shadow-lg m-7 p-4  border-light-blue font-light-blue">
                     <h2 class="mb-3 text-xl">Historia</h2>
                     <p class="break-words">
                     '.$historia.'
@@ -179,25 +179,44 @@ if($gral){
     </div>
 </div>
 
-<div class="w-1/3 h-1/2 bg-white absolute top-1/3 right-1/3 rounded-2xl shadow-xl border-light-blue border">
+<div class="w-1/3 h-96 bg-white absolute top-1/3 right-1/3 rounded-2xl shadow-xl border-light-blue border">
     <h2 class="text-center text-2xl mt-10 font-light-blue">Guardar moneda</h2>
     <form action="guardarmoneda.php" method="post" class="flex flex-col h-full p-5">
 
         <label class="flex flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
             <img src="./assets/cantidadmoneda.png" class="w-5 m-1">
-            <input type="" name="" id="" placeholder="Cantidad" class="border-0 bg-transparent" required>
+            <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad" class="border-0 bg-transparent w-full outline-none" maxlength="3" required>
         </label>
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
             <img src="./assets/valormercado.png" class="w-6 m-1">    
-            <input type="" name="" id="" placeholder="Valor de mercado" class="border-0 bg-transparent" required>
+            <input type="number" name="valor" id="valor" placeholder="Valor de mercado (en USD)" class="border-0 bg-transparent w-full outline-none " maxlength="8" required>
+        </label>
+        <input type="hidden" name="usuario" id="usuario" value="1">
+        <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
+            <img src="./assets/billetera.svg" class="w-6 m-1">
+            <select name="anomalia" id="anomalia" class="border-0 bg-transparent w-full rounded-lg outline-none">
+                <option value="0">Estado de moneda</option>
+                <?php
+                if($estado){
+                    while($est = mysqli_fetch_array($estado)){
+                        echo '<option value="'.$est['id_estado'].'">'.$est['estado'].'</option>';
+                    }
+                }
+                ?>
+            </select>
         </label>
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
             <img src="./assets/anomalia.svg" class="w-6 m-1">
-            <select name="campo" id="campo" class="border-0 bg-transparent"></select>
-        </label>
-        <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
-            <img src="./assets/billetera.svg" class="w-6 m-1">
-            <select name="campo" id="campo" class="border-0 bg-transparent"></select>
+            <select name="coleccion" id="coleccion" class="border-0 bg-transparent w-full rounded-lg outline-none">
+                <option value="0">Colección a guardar</option>
+                <?php
+                if($coleccion){
+                    while($col = mysqli_fetch_array($coleccion)){
+                        echo '<option value="'.$col['id_coleccion'].'">'.$col['nombre'].'</option>';
+                    }
+                }
+                ?>
+            </select>
         </label>
 
         <input type="submit" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">

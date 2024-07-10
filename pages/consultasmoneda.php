@@ -39,4 +39,17 @@ $id= $_GET['moneda'];
         INNER JOIN anomalia ON anomalia.id_anomalia=lado.id_anomalia
         WHERE id_moneda='$id'";
     $anomalia=mysqli_query($conectar,$sql);
+
+//GUARDAR MONEDAS
+//estado moneda
+    $sql="SELECT * 
+        FROM estado";
+    $estado=mysqli_query($conectar,$sql);
+
+//billetera usuario
+    $sql="SELECT * 
+        FROM coleccion
+        WHERE id_usuario='1'";
+    $coleccion=mysqli_query($conectar,$sql);
+
 ?>
