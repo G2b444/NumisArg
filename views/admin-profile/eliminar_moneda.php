@@ -134,7 +134,7 @@ if(isset($_GET['v'])){
 
 
     mysqli_close($conectar);
-    echo "<script>alert('Moneda eliminada éxitosamente'); window.location='vista_moneda.php';</script>";
+    header('Location: vista_moneda.php?success=eliminar_moneda');
     exit;
 }else{
     echo "<script>history.go(-1);</script>";

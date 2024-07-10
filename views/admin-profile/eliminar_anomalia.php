@@ -60,6 +60,7 @@ if(isset($_GET['v'])){
         exit; 
     }
 
-    echo "<script>alert('Anomalia eliminada con éxito'); window.location='vista_moneda.php';</script>";
+    mysqli_close($conectar);
+    header('Location: vista_moneda.php?success=eliminar_anomalia');
 }
 ?>

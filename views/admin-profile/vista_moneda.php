@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $sql= "
         SELECT 
@@ -167,6 +167,22 @@ $res = mysqli_query($conectar, $sql);
                     <div class="flex justify-around">
                         <button class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Cancelar</button>
                         <button class="bg-transparent border-2 text-white py-2 px-4 rounded-3xl hover:bg-white hover:text-black confirm">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal delete-modal" id="delete-coin-success">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¡Moneda eliminada de forma exitosa!</h1>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('delete-coin-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal delete-modal" id="delete-anomaly-success">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¡Anomalia eliminada de forma exitosa!</h1>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('delete-anomaly-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
                     </div>
                 </div>
             </div>
@@ -436,3 +452,19 @@ function toggleDetails(id, link, open, close) {
                 }
             }
 </script>
+<?php 
+
+if(isset($_GET['success'])){
+
+    $proceso = $_GET['success'];
+
+    if($proceso == 'eliminar_moneda'){
+        echo "<script>openModal('delete-coin-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+    }
+
+    if($proceso == 'eliminar_anomalia'){
+        echo "<script>openModal('delete-anomaly-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+    }
+}
+
+?>
