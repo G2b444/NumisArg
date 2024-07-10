@@ -28,43 +28,46 @@ if(isset($_GET['v'])){
         exit; 
     }
 
-    $data_id = mysqli_fetch_assoc($res);
+    if(mysqli_num_rows($res) > 0){
 
-    $sql = "DELETE FROM lado WHERE id_lado = ".$data_id['id_lado_anverso']."";
-    
-    if(!$res = mysqli_query($conectar, $sql)){
-        echo "Error al eliminar el lado anverso: " . mysqli_error($conectar) . "\n";
-        echo "Código de error: " . mysqli_errno($conectar) . "\n";
-        exit; 
-    } 
-    $sql = "DELETE FROM lado WHERE id_lado = ".$data_id['id_lado_reverso'].""; 
-    echo $sql;
-    echo "<br>";
-    if(!$res = mysqli_query($conectar, $sql)){
-        echo "Error al eliminar el lado reverso: " . mysqli_error($conectar) . "\n";
-        echo "Código de error: " . mysqli_errno($conectar) . "\n";
-        exit; 
-    }
-    $sql = "DELETE FROM imagen WHERE id_imagen = ".$data_id['id_imagen_anverso']."";
+        $data_id = mysqli_fetch_assoc($res);
 
-    if(!$res = mysqli_query($conectar, $sql)){
-        echo "Error al eliminar la imagen anversa: " . mysqli_error($conectar) . "\n";
-        echo "Código de error: " . mysqli_errno($conectar) . "\n";
-        exit; 
-    }
-    $sql = "DELETE FROM imagen WHERE id_imagen = ".$data_id['id_imagen_reverso']."";
-    
-    if(!$res = mysqli_query($conectar, $sql)){
-        echo "Error al eliminar la imagen reversa: " . mysqli_error($conectar) . "\n";
-        echo "Código de error: " . mysqli_errno($conectar) . "\n";
-        exit; 
-    }
-    $sql = "DELETE FROM anomalia WHERE id_anomalia = ".$data_id['identificador_anomalia']."";
-    
-    if(!$res = mysqli_query($conectar, $sql)){
-        echo "Error al eliminar la anomalia: " . mysqli_error($conectar) . "\n";
-        echo "Código de error: " . mysqli_errno($conectar) . "\n";
-        exit; 
+        $sql = "DELETE FROM lado WHERE id_lado = ".$data_id['id_lado_anverso']."";
+        
+        if(!$res = mysqli_query($conectar, $sql)){
+            echo "Error al eliminar el lado anverso: " . mysqli_error($conectar) . "\n";
+            echo "Código de error: " . mysqli_errno($conectar) . "\n";
+            exit; 
+        } 
+        $sql = "DELETE FROM lado WHERE id_lado = ".$data_id['id_lado_reverso'].""; 
+        echo $sql;
+        echo "<br>";
+        if(!$res = mysqli_query($conectar, $sql)){
+            echo "Error al eliminar el lado reverso: " . mysqli_error($conectar) . "\n";
+            echo "Código de error: " . mysqli_errno($conectar) . "\n";
+            exit; 
+        }
+        $sql = "DELETE FROM imagen WHERE id_imagen = ".$data_id['id_imagen_anverso']."";
+
+        if(!$res = mysqli_query($conectar, $sql)){
+            echo "Error al eliminar la imagen anversa: " . mysqli_error($conectar) . "\n";
+            echo "Código de error: " . mysqli_errno($conectar) . "\n";
+            exit; 
+        }
+        $sql = "DELETE FROM imagen WHERE id_imagen = ".$data_id['id_imagen_reverso']."";
+        
+        if(!$res = mysqli_query($conectar, $sql)){
+            echo "Error al eliminar la imagen reversa: " . mysqli_error($conectar) . "\n";
+            echo "Código de error: " . mysqli_errno($conectar) . "\n";
+            exit; 
+        }
+        $sql = "DELETE FROM anomalia WHERE id_anomalia = ".$data_id['identificador_anomalia']."";
+        
+        if(!$res = mysqli_query($conectar, $sql)){
+            echo "Error al eliminar la anomalia: " . mysqli_error($conectar) . "\n";
+            echo "Código de error: " . mysqli_errno($conectar) . "\n";
+            exit; 
+        }
     }
 
     $sql = "SELECT * FROM moneda_atributo WHERE id_moneda = $id_moneda";
