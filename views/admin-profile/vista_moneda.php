@@ -186,6 +186,22 @@ $res = mysqli_query($conectar, $sql);
                     </div>
                 </div>
             </div>
+            <div class="modal delete-modal" id="add-coin-success">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¡Moneda agregada de forma exitosa!</h1>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('add-coin-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal delete-modal" id="add-anomaly-success">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¡Anomalia agregada de forma exitosa!</h1>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('add-anomaly-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+                    </div>
+                </div>
+            </div>
     <!--Fin del modal-->
             <section class="mb-6" >
                 <h1 class="text-4xl mb-5 mt-12">Monedas</h1>
@@ -464,6 +480,14 @@ if(isset($_GET['success'])){
 
     if($proceso == 'eliminar_anomalia'){
         echo "<script>openModal('delete-anomaly-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+    }
+
+    if($proceso == 'agregar_moneda'){
+        echo "<script>openModal('add-coin-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+    }
+
+    if($proceso == 'agregar_anomalia'){
+        echo "<script>openModal('add-anomaly-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
     }
 }
 

@@ -43,10 +43,8 @@
                                 $res = mysqli_query($conectar, $sql);
 
                                 if($res){
-                                    echo "<script>alert('Anomalía agregada con éxito.');</script>";
-                                    echo "<script>window.location='vista_moneda.php'</script>";
                                     mysqli_close($conectar);
-                                    exit;
+                                    header('Location: vista_moneda.php?success=agregar_anomalia');                         
                                 }else{
                                     echo "<script>alert('ERROR: No se pudo ingresar las imagenes del lado reverso');</script>";
                                     echo "Error: " . mysqli_error($conectar) . "\n";

@@ -108,8 +108,8 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
                             var_dump($sql);
 
                             if($res){
-                                echo "<script>alert('La moneda se ingresó con éxito.');</script>";
-                                echo "<script>window.location='vista_moneda.php';</script>";
+                                mysqli_close($conectar);
+                                header('Location: vista_moneda.php?success=agregar_moneda');
                             }else{
                                 echo "<script>alert('ERROR: La moneda no se pudo ingresar.');</script>";
                                 echo "<script>location.reload();</script>";
