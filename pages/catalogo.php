@@ -114,8 +114,8 @@ switch($campo){
                 echo'
                     <a href="moneda.php?moneda='.$id.'">
                         <div class="bg-white w-64  rounded-lg shadow-lg border border-blue-950 relative mx-6 my-8 flex flex-col">
-                            <img src="'.$imagen2.'" class="pb-4 p-6 z-10">
-                            <img src="'.$imagen1.'" class="pb-3 p-6 hover:opacity-5 absolute bottom-20">
+                            <img src="'.$imagen2.'" class="pb-4 p-6 z-10 rounded-full">
+                            <img src="'.$imagen1.'" class="pb-3 p-6 hover:opacity-5 absolute bottom-20 rounded-full">
 
                             <p class="pt-2 border-t border-blue-950	">
                             <h5 class="text-center text-lg font-medium"><a href="">'.$nombre.'</a></h5>

@@ -32,22 +32,24 @@ if($gral){
                 $espesor= $det['espesor'];
                 $historia= mb_convert_encoding($det['historia'], "UTF-8", mb_detect_encoding($det['historia']));
                 echo'
-                <section class="grid grid-cols-4 grid-rows-6 p-5">
+                <section class="grid grid-cols-4 grid-rows-6 p-5 font-light-blue">
                         
                     <h1 class="col-span-2 h-10 text-center text-4xl ">'.$nombre.'</h1>
-                    <span class="inline-block col-start-3 col-span-4 row-span-6 m-2 p-4 border-2 rounded-2xl shadow-lg">
-                    <h2 class="text-2xl inline-block mb-5 ">Características:</h2>
-                    <button class="float-right p-1 px-3  m-1 rounded-xl text-white font-bold text-2xl bg-light-blue">+</button>
-                    <p class="text-lg leading-loose">
-                        <b>Valor:</b> '.$valor.'
-                        <b><br>Divisa:</b> '.$divisa.'
-                        <b><br>Años de emisión:</b> '.$emisioni.'-'.$emisionf.'
-                        <b><br>Tipo de moneda:</b> '.$tipomoneda.'
-                        <b><br>Composición:</b> '.$composicion.'
-                        <b><br>Diámetro:</b> '.$diametro.'
-                        <b><br>Espesor:</b> '.$espesor.'
-                        <b><br>Canto:</b> '.$canto.'
-                    </p>
+                    <span class="inline-block col-start-3 col-span-4 row-span-6 m-2 p-4 border-2 rounded-2xl shadow-lg border-light-blue border">
+                        <h2 class="text-2xl inline-block mb-5 ">Características:</h2>
+                        <button onclick="guardarmoneda()"  class="float-right p-1 px-5 m-1 rounded-full text-white font-bold text-2xl bg-light-blue leading-loose">
+                            +
+                        </button>
+                        <p class="text-lg leading-loose">
+                            <b>Valor:</b> '.$valor.'
+                            <b><br>Divisa:</b> '.$divisa.'
+                            <b><br>Años de emisión:</b> '.$emisioni.'-'.$emisionf.'
+                            <b><br>Tipo de moneda:</b> '.$tipomoneda.'
+                            <b><br>Composición:</b> '.$composicion.'
+                            <b><br>Diámetro:</b> '.$diametro.'
+                            <b><br>Espesor:</b> '.$espesor.'
+                            <b><br>Canto:</b> '.$canto.'
+                        </p>
                     </span>';
                     if($lados){
                         while($lado=mysqli_fetch_assoc($lados)){
@@ -75,7 +77,7 @@ if($gral){
                             }
                             echo '
                             <div class="inline-block  row-span-6 p-4 ">
-                                <img src="'.$imagenlado.'" class="w-52 mx-6 rounded-full">
+                                <img src="'.$imagenlado.'" class="w-60 mx-6 rounded-full">
                                 <h3 class="font-semibold">'.$nombrelado.'</h3>
                                 <p class="text-sm">
                                     '.$leyenda.'
@@ -92,7 +94,7 @@ if($gral){
                     echo'
                 </section>
 
-                <section  class="border-2 rounded-2xl shadow-lg m-7 p-4">
+                <section  class="border-2 rounded-2xl shadow-lg m-7 p-4  border-light-blue border font-light-blue">
                     <h2 class="mb-3 text-xl">Historia</h2>
                     <p class="break-words">
                     '.$historia.'
@@ -106,7 +108,7 @@ if($gral){
         ?>
 
 <div class="relative py-10 pb-20">
-    <h1 class="text-center text-3xl mb-10">Anomalias registradas</h1>
+    <h1 class="text-center text-3xl mb-10 font-light-blue">Anomalias registradas</h1>
     <div class="relative  rounded-xl sm:h-64 xl:h-80 4xl:h-96">
         <!-- Contenido del carrusel -->
         <div class="carousel-inner">
@@ -162,13 +164,13 @@ if($gral){
         <!-- ... -->
         </div>
         <!-- Botones de navegación -->
-        <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
+        <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center pl-44 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
         <span class="inline-flex justify-center items-center w-10 h-10 rounded-full sm:w-10 sm:h-10 bg-white/30 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
             <svg class="w-10 h-10 text-black sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
             <span class="hidden">Anterior</span>
         </span>
         </button>
-        <button type="button" class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-next>
+        <button type="button" class="flex absolute top-0 right-0 z-30 justify-center items-center pr-44 h-full cursor-pointer group focus:outline-none" data-carousel-next>
         <span class="inline-flex justify-center items-center w-10 h-10 rounded-full sm:w-10 sm:h-10 bg-white/30 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
             <svg class="w-10 h-10 text-black sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             <span class="hidden">Siguiente</span>
@@ -177,6 +179,30 @@ if($gral){
     </div>
 </div>
 
+<div class="w-1/3 h-1/2 bg-white absolute top-1/3 right-1/3 rounded-2xl shadow-xl border-light-blue border">
+    <h2 class="text-center text-2xl mt-10 font-light-blue">Guardar moneda</h2>
+    <form action="guardarmoneda.php" method="post" class="flex flex-col h-full p-5">
+
+        <label class="flex flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
+            <img src="./assets/cantidadmoneda.png" class="w-5 m-1">
+            <input type="" name="" id="" placeholder="Cantidad" class="border-0 bg-transparent" required>
+        </label>
+        <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
+            <img src="./assets/valormercado.png" class="w-6 m-1">    
+            <input type="" name="" id="" placeholder="Valor de mercado" class="border-0 bg-transparent" required>
+        </label>
+        <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
+            <img src="./assets/anomalia.svg" class="w-6 m-1">
+            <select name="campo" id="campo" class="border-0 bg-transparent"></select>
+        </label>
+        <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
+            <img src="./assets/billetera.svg" class="w-6 m-1">
+            <select name="campo" id="campo" class="border-0 bg-transparent"></select>
+        </label>
+
+        <input type="submit" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">
+    </form>
+</div>
 <?php
 include 'footer.html';
 ?>
