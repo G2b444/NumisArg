@@ -222,7 +222,7 @@ if(isset($_GET['success'])){
         echo "<script>openModal('add-user-success');</script>";
     }
 
-    echo "<script>window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+    echo "<script>window.history.replaceState({}, '', 'tabla_usuario.php');</script>";
 }
 
 ?>
