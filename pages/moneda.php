@@ -202,7 +202,7 @@ if($gral){
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
             <img src="./assets/billetera.svg" class="w-6 m-1">
             <select name="estado" id="estado" class="border-0 bg-transparent w-full rounded-lg outline-none">
-                <option value="0">Estado de moneda</option>
+                <option value="">Estado de moneda</option>
                 <?php
                 if($estado){
                     while($est = mysqli_fetch_array($estado)){
@@ -210,20 +210,25 @@ if($gral){
                     }
                 }
                 ?>
+                <option value="0">Anomalía</option>
             </select>
         </label>
+
         <label id="cont-anomalia" class="hidden flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
             <select name="anomalia" id="anomalia" class="border-0 bg-transparent w-full rounded-lg outline-none pl-8">
-                <option value="">Seleccionar anomalía</option>
                 <?php
-                if($anomalia){
+                if(mysqli_num_rows($anomalia) > 0) {
+                echo '<option value="">Seleccionar anomalía</option>';
                     while($anom = mysqli_fetch_array($anomalia)){
                         echo '<option value="'.$anom['id_anomalia'].'">'.$anom['nombre'].'</option>';
                     }
+                }else{
+                    echo '<option value="0">Esta moneda no tiene anomalias</option>';
                 }
                 ?>
             </select>
         </label>
+
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
             <img src="./assets/anomalia.svg" class="w-6 m-1">
             <select name="coleccion" id="coleccion" class="border-0 bg-transparent w-full rounded-lg outline-none">
@@ -239,7 +244,7 @@ if($gral){
             </select>
         </label>
         <label id="cont-coleccion" class="hidden flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1 pl-8">
-            <input type="text" name="nuevacoleccion" id="nuevacoleccion" placeholder="Nueva colección" class="border-0 bg-transparent w-full outline-none " maxlength="20">
+            <input type="text" name="nuevacoleccion" id="nuevacoleccion" placeholder="Nombre de colección" class="border-0 bg-transparent w-full outline-none " maxlength="20">
         </label>
         <label class="w-full flex justify-evenly">
             <input type="submit" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">
@@ -302,7 +307,7 @@ include 'footer.html';
     const estadoSelect = document.getElementById("estado");
     estadoSelect.addEventListener("change", function() {
         const selectedValue = this.value;
-        if (selectedValue == '7') {
+        if (selectedValue == '0') {
             document.getElementById("cont-anomalia").style.display = "flex";
         } else {
             document.getElementById("cont-anomalia").style.display = "none";
@@ -319,7 +324,7 @@ include 'footer.html';
             document.getElementById("cont-coleccion").style.display = "none";
         }
     });
-    
+
 </script>
 </body>
 </html>
