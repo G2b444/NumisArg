@@ -207,6 +207,31 @@ $res = mysqli_query($conectar, $sql);
                     </div>
                 </div>
             </div>
+            <div class="modal" id="add-coin-error">
+                <div class="text-white rounded-3xl p-6 w-full text-center bg-dark-blue">
+                    <h1 class="mb-6 text-4xl">¡Error al agregar la moneda!</h1>
+                    <h3 class="text-lg">Intentelo nuevamente.</h3>
+                    <br>
+                    <p class="text-base">Si el error persiste, contacte a soporte para obtener ayuda.</p>
+                    <br>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('add-coin-error')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="add-anomaly-error">
+                <div class="text-white rounded-3xl p-6 w-full text-center bg-dark-blue">
+                    <h1 class="mb-6 text-4xl">¡Error al agregar la anomalía!</h1>
+                    <h3 class="text-lg">Intentelo nuevamente.</h3>
+                    <br>
+                    <p class="text-base">Si el error persiste, contacte a soporte para obtener ayuda.</p>
+                    <br>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('add-anomaly-error')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+                    </div>
+                </div>
+            </div>
+           
     <!--Fin del modal-->
             <section class="mb-6" >
                 <h1 class="text-4xl mb-5 mt-12">Monedas</h1>
@@ -444,20 +469,29 @@ if(isset($_GET['success'])){
 
     $proceso = $_GET['success'];
 
-    if($proceso == 'eliminar_moneda'){
-        echo "<script>openModal('delete-coin-success');</script>";
-    }
-
-    if($proceso == 'eliminar_anomalia'){
-        echo "<script>openModal('delete-anomaly-success');</script>";
-    }
-
-    if($proceso == 'agregar_moneda'){
-        echo "<script>openModal('add-coin-success'); </script>";
-    }
-
-    if($proceso == 'agregar_anomalia'){
-        echo "<script>openModal('add-anomaly-success');</script>";
+    switch ($proceso) {
+        case 'eliminar_moneda':
+            echo "<script>openModal('delete-coin-success');</script>";
+            break;
+        case 'eliminar_anomalia':
+            echo "<script>openModal('delete-anomaly-success');</script>";
+            break;
+        case 'agregar_moneda':
+            echo "<script>openModal('add-coin-success');</script>";
+            break;
+        case 'agregar_anomalia':
+            echo "<script>openModal('add-anomaly-success');</script>";
+            break;
+        case 'error_agregar_moneda':
+            echo "<script>openModal('add-coin-error');</script>";
+            break;
+        case 'error_agregar_anomalia':
+            echo "<script>openModal('add-anomaly-error');</script>";
+            break;
+        
+        default:
+            # code...
+            break;
     }
 
     echo "<script>window.history.replaceState({}, '', 'vista_moneda.php');</script>";

@@ -46,21 +46,20 @@
                                     mysqli_close($conectar);
                                     header('Location: vista_moneda.php?success=agregar_anomalia');                         
                                 }else{
-                                    echo "<script>alert('ERROR: No se pudo ingresar las imagenes del lado reverso');</script>";
-                                    echo "Error: " . mysqli_error($conectar) . "\n";
-                                    echo "Código de error: " . mysqli_errno($conectar) . "\n";
+                                    mysqli_close($conectar);
+                                    header('Location: vista_moneda.php?success=error_agregar_anomalia');
+                                    exit;
                                 }
                             }
                         }else{
-                            echo "<script>alert('ERROR: No se pudo ingresar las imagenes del lado anverso');</script>";
-                            echo "Error: " . mysqli_error($conectar) . "\n";
-                            echo "Código de error: " . mysqli_errno($conectar) . "\n";
+                            mysqli_close($conectar);
+                            header('Location: vista_moneda.php?success=error_agregar_anomalia');
+                            exit;
                         }
                     }else{
-                        echo "<script>alert('ERROR: No se pudo ingresar las imagenes de la moneda');</script>";
-                        echo "Error: " . mysqli_error($conectar) . "\n";
-                        echo "Código de error: " . mysqli_errno($conectar) . "\n";
-                        exit; 
+                        mysqli_close($conectar);
+                        header('Location: vista_moneda.php?success=error_agregar_anomalia');
+                        exit;
                     }
                     }
             }

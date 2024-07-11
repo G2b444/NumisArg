@@ -108,27 +108,32 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
                                 mysqli_close($conectar);
                                 header('Location: vista_moneda.php?success=agregar_moneda');
                             }else{
-                                echo "<script>alert('ERROR: La moneda no se pudo ingresar.');</script>";
-                                echo "<script>location.reload();</script>";
+                                mysqli_close($conectar);
+                                header('Location: vista_moneda.php?success=error_agregar_moneda');
+                                exit;
                             }
 
                         }else{
-                            echo "<script>alert('ERROR: No se pudo insertar el anverso de la moneda');</script>";
-                            echo "<script>location.reload();</script>";
+                            mysqli_close($conectar);
+                            header('Location: vista_moneda.php?success=error_agregar_moneda');
+                            exit;
                         }
                     }else{
-                        echo "<script>alert('ERROR: No se pudo insertar los atrbutos de la moneda');</script>";
-                        echo "<script>location.reload();</script>";
+                        mysqli_close($conectar);
+                        header('Location: vista_moneda.php?success=error_agregar_moneda');
+                        exit;
                     }
                 }else{
-                    echo "<script>alert('ERROR: No se pudo insertar el nombre de la moneda');</script>";
-                    echo "<script>location.reload();</script>";
+                    mysqli_close($conectar);
+                    header('Location: vista_moneda.php?success=error_agregar_moneda');
+                    exit;
                 }
             }else{
-                echo "<script>alert('ERROR: No se pudo ingresar las imagenes de la moneda');</script>";
-                echo "<script>location.reload();</script>";
+                mysqli_close($conectar);
+                header('Location: vista_moneda.php?success=error_agregar_moneda');
+                exit;
             }
-            }
+        }
     }
 }
 ?>
