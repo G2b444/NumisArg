@@ -40,6 +40,7 @@ $res = mysqli_query($conectar, $sql);
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
+    <script src=../../js/funciones.js></script>
     <style>
         .bg-dark-blue {
             background-color: #021526;
@@ -51,7 +52,7 @@ $res = mysqli_query($conectar, $sql);
             background-color: #FCFFFF;
         }
         .bg-black {
-            background-color:  #000911;
+            background-color: #000911;
         }
 
         body {
@@ -60,13 +61,37 @@ $res = mysqli_query($conectar, $sql);
         h1, h2 {
             font-family: 'Patua One', cursive;
         }
-       
+
+        html {
+            scrollbar-width: none;
+        }
         
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             min-height: calc(100vh - 80px);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 1rem;
+            z-index: 1001;
         }
         
     </style>
@@ -84,6 +109,34 @@ $res = mysqli_query($conectar, $sql);
     </header>
     <main class="p-6">
         <section class="mb-6 flex flex-col justify-center items-center text-center">
+        <!--Inicio del modal-->
+            <div class="modal-overlay" id="modal-overlay"></div>
+            <div class="modal" id="delete-user">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¿Seguro de que quieres eliminar este usuario?</h1>
+                    <div class="flex justify-around">
+                        <button class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Cancelar</button>
+                        <button class="bg-transparent border-2 text-white py-2 px-4 rounded-3xl hover:bg-white hover:text-black confirm">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="delete-user-success">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¡Usuario eliminado de forma exitosa!</h1>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('delete-user-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="add-user-success">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¡Usuario agregado de forma exitosa!</h1>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('add-user-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+                    </div>
+                </div>
+            </div>
+    <!--Fin del modal-->
             <section class="mb-6" >
                 <h1 class="text-4xl mb-5 mt-12">Usuarios</h1>
                 <div class="flex space-x-4 items-center">
@@ -127,8 +180,8 @@ $res = mysqli_query($conectar, $sql);
                             <td class="border px-4 py-2"><?= $filas['nombre']?></td>
                             <td class="border px-4 py-2"><?= $filas['correo']?></td>
                             <td class="border px-4 py-2">**************</td>
-                            <td class="border px-4 py-2 cursor-pointer"><a href="eliminar_usuario.php?v=<?=$filas['id_usuario']?>"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></a></td>
-                            <td class="border px-4 py-2 cursor-pointer"><a href="editar_usuario.php?v=<?=$filas['id_usuario']?>"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
+                            <td class="border px-4 py-2 cursor-pointer"><a href="eliminar_usuario.php?v=<?=$filas['id_usuario']?>" class="delete-user-link"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></a></td>
+                            <td class="border px-4 py-2 cursor-pointer"><a href="editar_usuario.php?v=<?=$filas['id_usuario']?>" class="add-user-link"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -149,3 +202,27 @@ $res = mysqli_query($conectar, $sql);
     </footer>
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        initModal('delete-user-link', 'delete-user');                      
+        initModal('add-user-link', 'add-user');                      
+    });
+</script>
+<?php 
+
+if(isset($_GET['success'])){
+
+    $proceso = $_GET['success'];
+
+    if($proceso == 'eliminar_usuario'){
+        echo "<script>openModal('delete-user-success');</script>";
+    }
+
+    if($proceso == 'agregar_usuario'){
+        echo "<script>openModal('add-user-success');</script>";
+    }
+
+    echo "<script>window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+}
+
+?>

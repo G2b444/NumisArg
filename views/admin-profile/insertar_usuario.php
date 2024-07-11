@@ -20,8 +20,8 @@ if(isset($_POST['agregar'])){
         $res = mysqli_query($conectar, $sql);
 
         if($res){
-            echo "<script>alert('Usuario agregado con éxito'); window.location='tabla_usuario.php';</script>";
             mysqli_close($conectar);
+            header('Location: tabla_usuario.php?success=agregar_usuario');
             exit;
         }
     }

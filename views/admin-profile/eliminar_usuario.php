@@ -66,7 +66,8 @@ if(isset($_GET['v'])){
     }
 
     mysqli_close($conectar);
-    echo "<script>alert('Usuario eliminado con éxito'); window.location='tabla_usuario.php';</script>";
+    header('Location: tabla_usuario.php?success=eliminar_usuario');
+    exit;
 }
 ?>
 
