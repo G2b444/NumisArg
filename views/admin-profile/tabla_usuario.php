@@ -136,6 +136,14 @@ $res = mysqli_query($conectar, $sql);
                     </div>
                 </div>
             </div>
+            <div class="modal" id="edit-user-success">
+                <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+                    <h1 class="mb-6 text-lg">¡El usuario se editó de forma exitosa!</h1>
+                    <div class="flex justify-around">
+                        <button onclick="closeModal('edit-user-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+                    </div>
+                </div>
+            </div>
     <!--Fin del modal-->
             <section class="mb-6" >
                 <h1 class="text-4xl mb-5 mt-12">Usuarios</h1>
@@ -181,7 +189,7 @@ $res = mysqli_query($conectar, $sql);
                             <td class="border px-4 py-2"><?= $filas['correo']?></td>
                             <td class="border px-4 py-2">**************</td>
                             <td class="border px-4 py-2 cursor-pointer"><a href="eliminar_usuario.php?v=<?=$filas['id_usuario']?>" class="delete-user-link"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></a></td>
-                            <td class="border px-4 py-2 cursor-pointer"><a href="editar_usuario.php?v=<?=$filas['id_usuario']?>" class="add-user-link"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
+                            <td class="border px-4 py-2 cursor-pointer"><a href="editar_usuario.php?v=<?=$filas['id_usuario']?>"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -204,8 +212,7 @@ $res = mysqli_query($conectar, $sql);
 </html>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        initModal('delete-user-link', 'delete-user');                      
-        initModal('add-user-link', 'add-user');                      
+        initModal('delete-user-link', 'delete-user');                                          
     });
 </script>
 <?php 
@@ -220,6 +227,10 @@ if(isset($_GET['success'])){
 
     if($proceso == 'agregar_usuario'){
         echo "<script>openModal('add-user-success');</script>";
+    }
+
+    if($proceso == 'editar_usuario'){
+        echo "<script>openModal('edit-user-success');</script>";
     }
 
     echo "<script>window.history.replaceState({}, '', 'tabla_usuario.php');</script>";

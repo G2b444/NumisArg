@@ -43,8 +43,11 @@ if (isset($_POST['update'])) {
 
     if (!empty($updates)) {
         $sql_update = "UPDATE usuario SET " . implode(", ", $updates) . " WHERE id_usuario=$id_usuario";
-        mysqli_query($conectar, $sql_update);
-        echo "<script>window.location='tabla_usuario.php';</script>";
+        if(mysqli_query($conectar, $sql_update)){
+            mysqli_close($conectar);
+            header('Location: tabla_usuario.php?success=editar_usuario');
+            exit;
+        }
     }
 }
 
