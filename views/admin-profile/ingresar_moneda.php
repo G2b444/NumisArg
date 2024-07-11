@@ -22,14 +22,14 @@
                         <h2 class="text-xl" id="Reverso">Reverso</h2>
                         <label class="text-sm text-gray-400 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"><div class="w-32 h-32 my-3 bg-dark-blue rounded-full"></div></label>
                         <div class="grid w-full max-w-xs items-center gap-1.5">
-                            <input name="img" id="img" type="file" class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
+                            <input name="img" id="img" type="file" class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium" required>
                         </div>
-                        <input type="text" name="listel" placeholder="Listel" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-center">
-                        <input type="text" name="efigie" placeholder="Efigie" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <input type="text" name="leyenda" placeholder="Leyenda" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <input type="text" name="exergo" placeholder="Exergo" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <input type="text" name="ley" placeholder="Ley" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <input type="text" name="grafilia" placeholder="Grafilia" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" name="listel" placeholder="Listel" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-center" required>
+                        <input type="text" name="efigie" placeholder="Efigie" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <input type="text" name="leyenda" placeholder="Leyenda" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <input type="text" name="exergo" placeholder="Exergo" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <input type="text" name="ley" placeholder="Ley" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <input type="text" name="grafilia" placeholder="Grafilia" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
                     <div class="container mx-auto flex justify-between items-center">
                         <button onclick="redireccionar('vista_moneda.php');" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Cancelar <i class="fa-solid fa-x"></i></button>
@@ -41,10 +41,10 @@
                         <div>
                             <div class="mb-4">
                                 <label class="block text-gray-700">General</label>
-                                <input type="text" placeholder="Nombre de la moneda" name="nombre_moneda" class="mt-2 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="text" placeholder="Nombre de la moneda" name="nombre_moneda" class="mt-2 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <div class="flex space-x-4 mt-2">
-                                    <input type="number" placeholder="Valor N." name="v_n" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <select name="divisa" class="w-1/2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="number" placeholder="Valor N." name="v_n" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    <select name="divisa" class="w-1/2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                         <option>Divisa</option>
                                         <?php 
                                             $sql = "SELECT * FROM divisa";
@@ -61,8 +61,8 @@
                             <div class="mb-4">
                                 <label class="block text-gray-700">Emisión</label>
                                 <div class="flex space-x-4 mt-2">
-                                    <input type="number" placeholder="Inicio" name="ini_emi" min="1" max="2024" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <input type="number" placeholder="Final" name="fin_emi" min="1" max="2024" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="number" placeholder="Inicio" name="ini_emi" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required min="1816" max="2024">
+                                    <input type="number" placeholder="Final" name="fin_emi" class="w-1/2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required min="1816" max="2024">
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             <div class="mb-4">
                                 <label class="block text-gray-700">Características</label>
                                 <div class="grid grid-rows gap-4 mt-2">
-                                    <select name="tipo_moneda" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select name="tipo_moneda" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                         <option>Tipo</option>
                                         <?php
                                             $sql = "SELECT * FROM tipo_moneda";
@@ -81,7 +81,7 @@
                                             }
                                         ?>
                                     </select>
-                                    <select name="t_c" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select name="t_c" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                         <option>Canto</option>
                                         <?php
                                             $sql = "SELECT * FROM tipo_canto";
@@ -92,16 +92,16 @@
                                             }
                                         ?>
                                     </select>
-                                    <input type="text" placeholder="Composición" name="composicion" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <input type="text" placeholder="Diámetro" name="diametro" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <input type="text" placeholder="Espesor" name="espesor" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <input type="text" placeholder="Composición" name="composicion" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    <input type="text" placeholder="Diámetro" name="diametro" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    <input type="text" placeholder="Espesor" name="espesor" class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700">Historia</label>
-                        <textarea name="historia" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <textarea name="historia" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
                     </div>
                     <div class="container mx-auto flex justify-between items-center">
                         <button onclick="redireccionar('vista_moneda.php');" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Cancelar <i class="fa-solid fa-x"></i></button>
@@ -112,7 +112,7 @@
         </div>
     </main>
 </body>
-</html>
+</html>   
 <script>
     let i = 0;
     let accumulatedData = {};
