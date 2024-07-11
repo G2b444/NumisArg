@@ -210,21 +210,19 @@ if($gral){
                     }
                 }
                 ?>
-                <option value="0">Anomalía</option>
             </select>
         </label>
 
         <label id="cont-anomalia" class="hidden flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
             <select name="anomalia" id="anomalia" class="border-0 bg-transparent w-full rounded-lg outline-none pl-8">
                 <?php
-                if(mysqli_num_rows($anomalia) > 0) {
-                echo '<option value="">Seleccionar anomalía</option>';
-                    while($anom = mysqli_fetch_array($anomalia)){
-                        echo '<option value="'.$anom['id_anomalia'].'">'.$anom['nombre'].'</option>';
+                $anomaliascol= mysqli_num_rows($anomalia);
+                    while($anom=mysqli_fetch_assoc($anomalia)){
+                        $anomaliaid=$anom['id_anomalia'];
+                        $nombreanomalia=$anom['nombre'];
+                        echo '<option value="">Seleccionar anomalía</option>
+                        <option value="'.$anomaliaid.'">'.$nombreanomalia.'</option>';
                     }
-                }else{
-                    echo '<option value="0">Esta moneda no tiene anomalias</option>';
-                }
                 ?>
             </select>
         </label>
@@ -235,7 +233,7 @@ if($gral){
                 <option value="">Colección a guardar</option>
                 <?php
                 if($coleccion){
-                    while($col = mysqli_fetch_array($coleccion)){
+                    while($col = mysqli_fetch_assoc($coleccion)){
                         echo '<option value="'.$col['id_coleccion'].'">'.$col['nombre'].'</option>';
                     }
                 }
@@ -304,15 +302,10 @@ include 'footer.html';
     }
     
     //mostrar el input de anomalia
-    const estadoSelect = document.getElementById("estado");
-    estadoSelect.addEventListener("change", function() {
-        const selectedValue = this.value;
-        if (selectedValue == '0') {
-            document.getElementById("cont-anomalia").style.display = "flex";
-        } else {
-            document.getElementById("cont-anomalia").style.display = "none";
-        }
-    });
+    var anomaliascol = "<?php echo $anomaliascol; ?>";
+    if(anomaliascol > 0){
+        document.getElementById("cont-anomalia").style.display = "flex";
+    }
 
     //mostrar el input de coleccion nueva
     const coleccionSelect = document.getElementById("coleccion");

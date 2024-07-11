@@ -62,5 +62,18 @@ if(isset($_POST)){
         }
     }
 
+    //detalle de guardado
+    $sql="INSERT INTO `detalle_guarda`(`id_estado`, `cantidad`, `valor_de_mercado`) 
+    VALUES ('$estado','$cantidad','$valor')";
+
+    if(estado!=0){
+        //estados normales
+        $sql="INSERT INTO `guarda_moneda`(`id_detalle_guarda`, `id_moneda`, `id_coleccion`, `fecha_guardado`) 
+            VALUES ('','','','')";
+
+    }else{
+        //estado anomalía
+
+    }
 }
 ?>
