@@ -148,7 +148,6 @@
         i += 1;
 
         if (i == 1) {
-            alert(i);
             document.getElementById('Anverso').style.display = 'none';
             document.getElementById('Reverso').style.display = 'block';
             let formData = new FormData(this);
@@ -163,7 +162,6 @@
 
             appendFormDataToAccumulatedData(formData);
         } else {
-            alert('Enviando datos...');
             let formData = new FormData(this);
             renameArrayData(formData, 'img', 'rvo');
             renameArrayData(formData, 'listel', 'listel_rever');
@@ -179,7 +177,6 @@
 
     document.getElementById('general').addEventListener('submit', function(event) {
         event.preventDefault();
-        alert('hola');
         document.getElementById('general').style.display = 'none';
         document.getElementById('lados').style.display = 'block';
         document.getElementById('Reverso').style.display = 'none';

@@ -22,7 +22,7 @@ $lynd_anver = $_POST['leyenda_anver'];
 $exergo_anver = $_POST['exergo_anver'];
 $ly_anver = $_POST['ley_anver'];
 $grfl_anver = $_POST['grafilia_anver'];
-//$dtlls_anver = $_POST['detalles_anver'];
+
 
 $lstl_rever = $_POST['listel_rever'];
 $fg_rever = $_POST['efigie_rever'];
@@ -30,7 +30,6 @@ $lynd_rever = $_POST['leyenda_rever'];
 $exergo_rever = $_POST['exergo_rever'];
 $ly_rever = $_POST['ley_rever'];
 $grfl_rever = $_POST['grafilia_rever'];
-//$dtlls_rever = $_POST['detalles_rever'];
 
 $ruta_indexphp = dirname(realpath(__FILE__));
 $anverso = $_FILES['anv']['tmp_name'];
@@ -43,9 +42,8 @@ $extensiones = array(0=>'image/jpg', 1=>'image/jpeg', 2=>'image/png');
 $max_tamanio = 1024*1024*8;
 
 if(in_array($_FILES['anv']['type'], $extensiones)){
-    echo "<script>alert('Efectivamente es una imagen');</script>";
+
     if($_FILES['anv']['size']<$max_tamanio){
-        echo "<script>alert('Pesa menos de 1 MB medio raro');</script>";
         if((move_uploaded_file($anverso, $anverso_destino)) && (move_uploaded_file($reverso, $reverso_destino))){
             include '../../inc/conexion.php';
             $sql = "INSERT INTO `imagen`(`direccion`) VALUES ('$anverso_destino')";
@@ -87,7 +85,6 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
                             '".$nc_msm."-01-01',
                             '".$fn_msm."-01-01'
                         )";
-                    echo "<script>alert('$sql');</script>";
                     $res = mysqli_query($conectar, $sql);
                     $id_act = mysqli_insert_id($conectar);
 
@@ -120,7 +117,6 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
                             echo "<script>location.reload();</script>";
                         }
                     }else{
-                        var_dump($sql);
                         echo "<script>alert('ERROR: No se pudo insertar los atrbutos de la moneda');</script>";
                         echo "<script>location.reload();</script>";
                     }
