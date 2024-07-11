@@ -42,3 +42,7 @@ function initModal(className, modalId) {
         currentLink = null;
     }
 }
+
+function redireccionar(url) {
+    window.location.href = url;
+}
