@@ -117,7 +117,7 @@
                 <h1 class="text-xl"><?php echo $data['nombre']?></h1>
                 <input name="nombre" type="text" class="mt-4 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nombre de la anomalia">
                 <textarea name="detalle" class="mt-6 w-full h-32 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Detalles"></textarea>
-                <div class="text-center">
+                <div class="container mx-auto flex justify-between items-center">
                     <button onclick="redireccionar('vista_moneda.php');" type="button" class="mt-6 bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Cancelar <i class="fa-solid fa-xmark"></i></button>
                     <button type="submit" name="agregar" class="mt-6 bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Agregar <i class="fa-solid fa-check"></i></button>
                 </div>
