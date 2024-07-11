@@ -15,12 +15,30 @@
             <nav class="space-x-10 px-10">
                 <a href="catalogo.php" class="text-white">Catálogo</a>
                 <a href="contacto.html" class="text-white">Contáctanos</a>
-                <a href="#" class="border-2 border-white text-white px-4 py-2 rounded">Ingresar</a>
+                <a href="#" class="border-2 border-white text-white px-4 py-2 rounded-lg">Ingresar</a>
             </nav>
         </div>
     </header>
+<!--
+    <header class="flex items-center bg-dark-blue h-20 overflow-visible">
+        <div class="container mx-auto flex flex-nowrap justify-between items-center">
+            <img src="./assets/img/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4">
+            <nav class="flex flex-row space-x-10 px-10 pt-5">
+                <a href="catalogo.php" class="text-white">Catálogo</a>
+                <a href="contacto.html" class="text-white">Contáctanos</a>
+                <div class="flex flex-col relative bottom-2">
+                    <a href="#" class="border-2 border-white text-white px-4 py-2 rounded-lg" id="desplegable">Usuario</a>
+                    <a href="#" class=" hidden absolute top-9 border-2 bg-dark-blue border-white text-white px-4 py-2 rounded-b-lg" id="menu">Cerrar sesion</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+-->
+
+ 
 </body>
 </html>
+
 
 <!-- Tailwind CSS Config -->
 <style>
@@ -55,4 +73,7 @@
             font-family: 'Patua One', cursive;
         }
     
+    #desplegable:hover + #menu, #menu:hover {
+        display: block;
+    }
 </style>
