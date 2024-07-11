@@ -85,6 +85,7 @@ $res = mysqli_query($conectar, $sql);
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
+    <script src=../../js/funciones.js></script>
     <style>
         .bg-dark-blue {
             background-color: #021526;
@@ -105,6 +106,10 @@ $res = mysqli_query($conectar, $sql);
         h1, h2 {
             font-family: 'Patua One', cursive;
         }
+
+        html {
+            scrollbar-width: none;
+        }
         
         main {
             flex: 1;
@@ -152,7 +157,7 @@ $res = mysqli_query($conectar, $sql);
 
     <!--Inicio del modal-->
             <div class="modal-overlay" id="modal-overlay"></div>
-            <div class="modal delete-modal" id="delete-coin">
+            <div class="modal" id="delete-coin">
                 <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
                     <h1 class="mb-6 text-lg">¿Seguro de que quieres eliminar esta moneda?</h1>
                     <div class="flex justify-around">
@@ -161,7 +166,7 @@ $res = mysqli_query($conectar, $sql);
                     </div>
                 </div>
             </div>
-            <div class="modal delete-modal" id="delete-anomaly">
+            <div class="modal" id="delete-anomaly">
                 <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
                     <h1 class="mb-6 text-lg">¿Seguro de que quieres eliminar esta anomalía?</h1>
                     <div class="flex justify-around">
@@ -170,7 +175,7 @@ $res = mysqli_query($conectar, $sql);
                     </div>
                 </div>
             </div>
-            <div class="modal delete-modal" id="delete-coin-success">
+            <div class="modal" id="delete-coin-success">
                 <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
                     <h1 class="mb-6 text-lg">¡Moneda eliminada de forma exitosa!</h1>
                     <div class="flex justify-around">
@@ -178,7 +183,7 @@ $res = mysqli_query($conectar, $sql);
                     </div>
                 </div>
             </div>
-            <div class="modal delete-modal" id="delete-anomaly-success">
+            <div class="modal" id="delete-anomaly-success">
                 <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
                     <h1 class="mb-6 text-lg">¡Anomalia eliminada de forma exitosa!</h1>
                     <div class="flex justify-around">
@@ -186,7 +191,7 @@ $res = mysqli_query($conectar, $sql);
                     </div>
                 </div>
             </div>
-            <div class="modal delete-modal" id="add-coin-success">
+            <div class="modal" id="add-coin-success">
                 <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
                     <h1 class="mb-6 text-lg">¡Moneda agregada de forma exitosa!</h1>
                     <div class="flex justify-around">
@@ -194,7 +199,7 @@ $res = mysqli_query($conectar, $sql);
                     </div>
                 </div>
             </div>
-            <div class="modal delete-modal" id="add-anomaly-success">
+            <div class="modal" id="add-anomaly-success">
                 <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
                     <h1 class="mb-6 text-lg">¡Anomalia agregada de forma exitosa!</h1>
                     <div class="flex justify-around">
@@ -426,47 +431,12 @@ function toggleDetails(id, link, open, close) {
         link.textContent = close;
     }
 }
-</script>
-<script>
-        function openModal(modalId) {
-            document.getElementById('modal-overlay').style.display = 'block';
-            document.getElementById(modalId).style.display = 'block';
-        }
 
-        function closeModal(modalId) {
-            document.getElementById('modal-overlay').style.display = 'none';
-            document.getElementById(modalId).style.display = 'none';
-        }
+document.addEventListener('DOMContentLoaded', (event) => {
+    initModal('delete-coin-link', 'delete-coin');            
+    initModal('delete-anomaly-link', 'delete-anomaly');            
+});
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            initDeleteModal('delete-coin-link', 'delete-coin');            
-            initDeleteModal('delete-anomaly-link', 'delete-anomaly');            
-        });
-
-        function initDeleteModal(className, modalId) {
-                var confirmButton = document.querySelector(`#${modalId} .confirm`);
-                var cancelButton = document.querySelector(`#${modalId} .cancel`);
-                var currentLink = null;
-
-                document.querySelectorAll(`.${className}`).forEach(function(link) {
-                    link.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        currentLink = this;
-                        openModal(modalId);
-                    });
-                });
-
-                confirmButton.onclick = function() {
-                    if (currentLink) {
-                        window.location.href = currentLink.href;
-                    }
-                }
-
-                cancelButton.onclick = function() {
-                    closeModal(modalId);
-                    currentLink = null;
-                }
-            }
 </script>
 <?php 
 
@@ -475,20 +445,22 @@ if(isset($_GET['success'])){
     $proceso = $_GET['success'];
 
     if($proceso == 'eliminar_moneda'){
-        echo "<script>openModal('delete-coin-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+        echo "<script>openModal('delete-coin-success');</script>";
     }
 
     if($proceso == 'eliminar_anomalia'){
-        echo "<script>openModal('delete-anomaly-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+        echo "<script>openModal('delete-anomaly-success');</script>";
     }
 
     if($proceso == 'agregar_moneda'){
-        echo "<script>openModal('add-coin-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+        echo "<script>openModal('add-coin-success'); </script>";
     }
 
     if($proceso == 'agregar_anomalia'){
-        echo "<script>openModal('add-anomaly-success'); window.history.replaceState({}, '', 'vista_moneda.php');</script>";
+        echo "<script>openModal('add-anomaly-success');</script>";
     }
+
+    echo "<script>window.history.replaceState({}, '', 'vista_moneda.php');</script>";
 }
 
 ?>
