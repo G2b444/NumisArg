@@ -23,11 +23,11 @@ if(isset($_POST)){
     }
 
 
-    if($estado=='0'){
+    if($estado==''){
         echo '<script>alert("ERROR: debe seleccionar un estado de moneda");history.go(-1);</script>';
     }
 
-    if($coleccion=='0'){
+    if($coleccion==''){
         echo '<script>alert("ERROR: debe seleccionar una colección");history.go(-1);</script>';
     }
 
