@@ -54,6 +54,7 @@ switch($campo){
     <title>Catálogo</title>
 </head>
 <body>
+    <?php include  'header.php'; ?>
     <section class="w-full h-fit p-5 px-16">
         <h1 class="text-5xl p-2 font-semibold">Catálogo</h1>
             <!-- <form class="p-2 pt-4" action="catalogo.php" method="get">
@@ -129,4 +130,5 @@ switch($campo){
             ?>
 
     </section>
+    <?php include  'footer.html';?>
 </body>
