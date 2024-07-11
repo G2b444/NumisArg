@@ -89,11 +89,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../src/style.css">
-    <script>
-        function triggerFileInput(inputId) {
-            document.getElementById(inputId).click();
-        }
-    </script>
+    <script src="../../js/funciones.js"></script>
 </head>
 <body class="bg-white">
     <form action="" method="post" enctype="multipart/form-data">
@@ -122,7 +118,7 @@
                 <input name="nombre" type="text" class="mt-4 px-2 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nombre de la anomalia">
                 <textarea name="detalle" class="mt-6 w-full h-32 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Detalles"></textarea>
                 <div class="text-center">
-                    <button type="submit" class="mt-6 bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Cancelar <i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="redireccionar('vista_moneda.php');" type="button" class="mt-6 bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Cancelar <i class="fa-solid fa-xmark"></i></button>
                     <button type="submit" name="agregar" class="mt-6 bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Agregar <i class="fa-solid fa-check"></i></button>
                 </div>
             </div>
