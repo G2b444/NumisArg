@@ -65,6 +65,7 @@ if(isset($_POST['cancelar'])){
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../src/style.css">
     <script>
         function toggleInput(inputId) {
             const input = document.getElementById(inputId);
@@ -113,23 +114,3 @@ if(isset($_POST['cancelar'])){
     </form>
 </body>
 </html>
-<style>
-    .bg-dark-blue {
-        background-color: #021526;
-    }
-    .bg-light-blue {
-        background-color: #0D3559;
-    }
-    .bg-white {
-        background-color: #FCFFFF;
-    }
-    .bg-black {
-        background-color: #000911;
-    }
-    body {
-        font-family: 'Radio Canada', sans-serif;
-    }
-    h1, h2 {
-        font-family: 'Patua One', cursive;
-    }
-</style>

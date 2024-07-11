@@ -41,60 +41,7 @@ $res = mysqli_query($conectar, $sql);
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
     <script src=../../js/funciones.js></script>
-    <style>
-        .bg-dark-blue {
-            background-color: #021526;
-        }
-        .bg-light-blue {
-            background-color: #0D3559;
-        }
-        .bg-white {
-            background-color: #FCFFFF;
-        }
-        .bg-black {
-            background-color: #000911;
-        }
-
-        body {
-            font-family: 'Radio Canada', sans-serif;
-        }
-        h1, h2 {
-            font-family: 'Patua One', cursive;
-        }
-
-        html {
-            scrollbar-width: none;
-        }
-        
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: calc(100vh - 80px);
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 1rem;
-            z-index: 1001;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="../../src/style.css">
 </head>
 <body class="bg-gray-100">
     <header class="flex items-center bg-dark-blue h-20">
