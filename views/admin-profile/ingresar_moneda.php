@@ -8,18 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../src/style.css">
+    <script src="../../js/funciones.js"></script>
 </head>
 <body class="bg-white">
-    <header class="flex items-center bg-dark-blue h-20">
-        <div class="container mx-auto flex justify-between items-center">
-            <img src="../../assets/multimedia/img/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2">
-            <nav class="space-x-4">
-                <a href="#" class="text-white">Usuarios</a>
-                <a href="#" class="text-white">Monedas</a>
-                <a href="#" class="bg-light-blue text-white px-4 py-2 rounded">Ingresar</a>
-            </nav>
-        </div>
-    </header>
     <main>
         <div class="mb-6">
             <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-2xl">
@@ -40,8 +31,9 @@
                         <input type="text" name="ley" placeholder="Ley" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <input type="text" name="grafilia" placeholder="Grafilia" class="mt-2 px-2 py-2 border border-black border-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
-                    <div class="text-right" id="caja_anver">
-                        <button type="submit" type="button" id="lado" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+                    <div class="container mx-auto flex justify-between items-center">
+                        <button onclick="redireccionar('vista_moneda.php');" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Cancelar <i class="fa-solid fa-x"></i></button>
+                        <button type="submit" id="siguienteGeneral" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </form>
                 <form method="post" action="insertar_moneda.php" id="general" class="general">
@@ -111,24 +103,14 @@
                         <label class="block text-gray-700">Historia</label>
                         <textarea name="historia" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                     </div>
-                    <div class="text-right">
+                    <div class="container mx-auto flex justify-between items-center">
+                        <button onclick="redireccionar('vista_moneda.php');" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Cancelar <i class="fa-solid fa-x"></i></button>
                         <button type="submit" id="siguienteGeneral" class="text-right bg-dark-blue text-white px-3 py-2 rounded-md hover:bg-blue-900">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </form>
             </div>
         </div>
     </main>
-    <footer class="bg-gray-900 py-4 w-full">
-        <div class="container mx-auto text-center">
-            <h1 class="text-3xl font-bold text-white">NumisArg</h1>
-            <p class="text-lg mt-2 text-white">Hecho por:</p>
-            <div class="flex justify-center space-x-8 mt-2 text-white">
-                <span>Vincenti Gania</span>
-                <span>Rodriguez Gabriel</span>
-                <span>Koncerewicz Kevin</span>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
 <script>
