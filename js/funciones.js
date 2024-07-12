@@ -46,3 +46,22 @@ function initModal(className, modalId) {
 function redireccionar(url) {
     window.location.href = url;
 }
+
+function createImagePreview(fileInputId, imagePreviewId) {
+  const fileInput = document.getElementById(fileInputId);
+  const imagePreview = document.getElementById(imagePreviewId);
+
+  fileInput.addEventListener('change', function() {
+    const file = this.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        imagePreview.style.backgroundImage = `url(${this.result})`;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      imagePreview.style.backgroundImage = 'none';
+    }
+  });
+}
