@@ -82,20 +82,21 @@ $res = mysqli_query($conectar, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NumisArg</title>
+    <link rel="icon" href="../../assets/multimedia/logo/LOGO NUMISARG.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
-    <script src=../../js/funciones.js></script>
-    <link rel="stylesheet" href="../../src/style.css">
+    <script src="../../js/funciones.js"></script>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body class="bg-gray-100">
-    <header class="flex items-center bg-dark-blue h-20">
+<header class="flex items-center bg-dark-blue h-20">
         <div class="container mx-auto flex justify-between items-center">
-            <img src="../../assets/multimedia/img/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2">
-            <nav class="space-x-4">
-                <a href="#" class="text-white">Usuarios</a>
-                <a href="#" class="text-white">Monedas</a>
-                <a href="#" class="bg-light-blue text-white px-4 py-2 rounded">Ingresar</a>
+            <a href="index.html"><img src="../../assets/multimedia/img/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
+            <nav class="space-x-10 px-10">
+                <a href="tabla_usuario.php" class="text-white">Usuarios</a>
+                <a href="vista_moneda.php" class="text-white">Monedas</a>
+                <a href="#" class="border-2 border-white text-white px-4 py-2 rounded-lg">Cerrar sesion</a>
             </nav>
         </div>
     </header>

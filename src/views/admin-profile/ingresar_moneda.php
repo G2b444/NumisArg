@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../src/style.css">
+    <link rel="stylesheet" href="../../style.css">
     <script src="../../js/funciones.js"></script>
 </head>
 <body class="bg-white">
