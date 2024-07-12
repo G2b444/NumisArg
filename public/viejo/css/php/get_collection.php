@@ -71,13 +71,13 @@ top: 100%;
 
 .styled-checkbox {
     appearance: none;
-    background-color: #021526;
+    background-color: #fff;
     margin: 0;
     font: inherit;
-    color: #FFFFFF;
+    color: #2E8B57;
     width: 1.25em;
     height: 1.25em;
-    border: 0.1em solid #021526;
+    border: 0.1em solid #2E8B57;
     border-radius: 0.25em;
     display: grid;
     place-content: center;
@@ -100,7 +100,7 @@ top: 100%;
 }
 
 .styled-checkbox:hover {
-    border-color: #FFFFFF; /* Color de borde cuando se pasa el ratón por encima */
+    border-color: #2E8B57; /* Color de borde cuando se pasa el ratón por encima */
 }
 
 .styled-checkbox:focus {

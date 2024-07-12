@@ -4,17 +4,16 @@ session_start();
 $id = $_SESSION['id_usuario'];
 
 // Información del perfil (funciona)
-$perfil = "SELECT usuario.nombre, usuario.fecha_inicio, GROUP_CONCAT(coleccion.id_coleccion) AS ids,
-COUNT(coleccion.id_coleccion) AS numero_coleccion 
-FROM usuario LEFT JOIN coleccion ON usuario.id_usuario = coleccion.id_usuario 
-WHERE usuario.id_usuario = $id GROUP BY usuario.id_usuario;";
+$perfil = "SELECT usuario.nombre, usuario.fecha_inicio, COUNT(coleccion.id_coleccion) AS numero_coleccion
+FROM usuario
+LEFT JOIN coleccion ON usuario.id_usuario = coleccion.id_usuario
+WHERE usuario.id_usuario = $id";
 $res_perfil = mysqli_query($conectar, $perfil);
 
 if(!$res_perfil){
     echo 'No se pudo cargar la información';
 }else{
     $info = mysqli_fetch_assoc($res_perfil);
-
     $u = $info['nombre'];
     $f = $info['fecha_inicio'];
     $m = $info['numero_coleccion'];
@@ -276,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <hr class="border-t-2 border-gray-400">
                 <h2 class="text-2xl ml-12">Usuario: <?php echo htmlspecialchars($u); ?></h2>
                 <p class="text-2xl ml-12">Usted es miembro desde: <?php echo htmlspecialchars($f); ?><br>
-                Ha creado un total de: <?php echo htmlspecialchars($m); ?> colecciones.
+                Ha coleccionado un total de: <?php echo htmlspecialchars($m); ?> monedas.
                 </p>
             </section>
 
@@ -351,12 +350,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
 
                         <div class="relative my-6">
-                            <input type="email" required name="correo" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Correo (verificación)">
+                            <input type="email" required name="correo" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Correo">
                             <img src="../images/image 5.png" alt="Icono Correo" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
-                            <input type="password" required name="contraseña" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña (verificación)">
+                            <input type="password" required name="contraseña" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña">
                             <img src="../images/image 6.png" alt="Icono Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 

@@ -24,7 +24,7 @@ if(!$res){
             $id_n = $id['id_usuario'];
             $_SESSION['id_usuario'] = $id_n;
         }
-        //echo '<script> alert("' . $_SESSION['numero'] . '\n' . $_SESSION['correo'] . '\n' . $_SESSION['id_usuario'] . '"); </script>';
+        echo '<script> alert("' . $_SESSION['numero'] . '\n' . $_SESSION['correo'] . '\n' . $_SESSION['id_usuario'] . '"); </script>';
         
         if(isset($_POST['Enviar'])) {
         
@@ -59,7 +59,7 @@ if(!$res){
             </head>
             <body>
                 <h1>Su código de verificacion es: ' . $numero . '</h1>
-                
+                <p>Tiene 15 minutos hasta que su código deje de funcionar.</p>
             </body>
             </html>';
             

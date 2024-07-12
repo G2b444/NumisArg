@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Cuenta</title>
+    <style>
+        @font-face {
+            font-family: 'MiFuente';
+            src: url('font/PatuaOne-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'MiFuente', sans-serif;
+        }
+    </style>
+    <script>
+        function toggleForms() {
+            var loginForm = document.getElementById("loginForm");
+            var registerForm = document.getElementById("registerForm");
+            loginForm.classList.toggle("hidden");
+            registerForm.classList.toggle("hidden");
+        }
+    </script>
+</head>
+<body class="flex justify-center items-center h-screen">
+    <div class="flex items-center w-[964px] h-[552px] bg-[#0D3559] rounded-[25px] p-0 pl-[10px] border-2 border-black">
+
+        <div class="flex flex-col justify-center w-[602px] h-[530px] bg-white rounded-[30px_400px_400px_30px]">
+            <form action="php/Registrar-Iniciar.php" method="post" class="flex flex-col items-center">
+                <h2 class="text-[35px] m-0 mx-[25%]">Inicia sesión</h2><br>
+                <p class="text-[20px] m-0 ml-[80px]">Completa los campos e ingresa</p><br>
+                <input type="text" placeholder="Correo" maxlength="30" name="correo" class="border-2 border-[#0D3559] w-[347px] h-[34px] rounded-[23px] my-[13px] text-[15px]"><br>
+                <input type="password" placeholder="Contraseña" maxlength="30" name="ps" class="border-2 border-[#0D3559] w-[347px] h-[34px] rounded-[23px] my-[13px] text-[15px]"><br>
+                <a href="php/recuperacion.php" class="text-[15px] text-blue-500 underline">Olvidé mi contraseña</a><br>
+                <input type="submit" name="IS" value="Iniciar sesión" class="bg-[#0D3559] text-white w-[154px] h-[39px] text-[20px] rounded-[23px] my-[7px]"><br>
+                <p>¿No tienes una cuenta? <a href="" class="text-blue-500 underline">¡Regístrate!</a></p>
+            </form>
+        </div>
+
+        <div class="flex flex-col items-end w-[312px] h-[180px] pb-[20px]">
+            <h1 class="text-white whitespace-pre">Bienvenido
+                de vuelta
+            </h1>
+            <p class="text-white whitespace-pre">Coleccionar 
+                tus monedas
+                nunca fue tan fácil
+            </p>
+        </div>
+
+        <div class="flex flex-col justify-center w-[602px] h-[530px] bg-white rounded-[30px_400px_400px_30px]">
+            <form action="php/Registrar-Iniciar.php" method="post" class="flex flex-col items-center">
+                <h2 class="text-[35px] m-0 mx-[25%]">Crea una cuenta</h2><br>
+                <p class="text-[20px] m-0 ml-[80px]">Completa los campos para registrarte</p><br>
+                <input type="text" placeholder="Nombre de usuario" maxlength="30" name="nombre" class="border-2 border-[#0D3559] w-[347px] h-[34px] rounded-[23px] my-[13px] text-[15px]"><br>
+                <input type="text" placeholder="Correo" maxlength="30" name="correo" class="border-2 border-[#0D3559] w-[347px] h-[34px] rounded-[23px] my-[13px] text-[15px]"><br>
+                <input type="password" placeholder="Contraseña" maxlength="30" name="ps" class="border-2 border-[#0D3559] w-[347px] h-[34px] rounded-[23px] my-[13px] text-[15px]"><br>
+                <input type="password" placeholder="Repetir Contraseña" maxlength="30" name="ps-verify" class="border-2 border-[#0D3559] w-[347px] h-[34px] rounded-[23px] my-[13px] text-[15px]"><br>
+                <a href="php/recuperacion.php" class="text-[15px] text-blue-500 underline">Olvidé mi contraseña</a><br>
+                <input type="submit" name="R" value="Registrarse" class="bg-[#0D3559] text-white w-[154px] h-[39px] text-[20px] rounded-[23px] my-[7px]"><br>
+                <p>¿Ya tienes una cuenta? <a href="" class="text-blue-500 underline">¡Inicia sesión!</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

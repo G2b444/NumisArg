@@ -8,9 +8,6 @@ if (!isset($_SESSION['id_usuario'])) {
 $id = $_SESSION['id_usuario'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selectedIds = isset($_POST['selected_ids']) ? json_decode($_POST['selected_ids']) : [];
-    if(empty($selectedIds)){
-        echo'<script> alert("seleccione registros si desea realizar alguna acción"); window.location="main.php";  </script>';
-    }
     $action = isset($_POST['action']) ? $_POST['action'] : '';
     $id_coleccion = isset($_POST['id_coleccion']) ? intval($_POST['id_coleccion']) : 0;
 
@@ -378,7 +375,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "<script> alert('Se han actualizado los registros'); window.location='main.php'; </script>";
         }
-    }elseif(isset($_POST['delete'])){ //borrar monedas seleccionadas
+    }elseif(isset($_POST['delete'])){
 
         $ids = implode(',', array_map('intval', $selectedIds));
 
@@ -439,7 +436,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (!$sqlgm && !$sqlga) {
             echo "No hay registros para actualizar.";
         }
-        echo "<script> alert('Monedas eliminadas.'); window.location='main.php'; </script>";
       
         $conectar->close();
     }
