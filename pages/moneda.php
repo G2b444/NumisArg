@@ -249,7 +249,7 @@ if($gral){
         </label>
         <label class="w-full flex justify-evenly">
             <input type="submit" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">
-            <button onclick="cerrarguardar()" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">Cancelar</button>
+            <button type="button" onclick="cerrarguardar()" class="m-2 border-2 border-light-blue rounded-full px-1 w-1/3 mt-8 place-self-center bg-light-blue text-white text-lg font-patua">Cancelar</button>
         </label>
     </form>
 </div>
