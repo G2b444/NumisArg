@@ -233,7 +233,7 @@ $res = mysqli_query($conectar, $sql);
                                 <td class="border px-4 py-2 w-24"><a href="javascript:void(0);" onclick="toggleDetails('anomalias-<?= $index ?>', this, 'Ocultar', 'Ver')">Ver</a></td>
                                 <td class="border px-4 py-2"><a href="agregar_anomalia.php?v=<?= $filas['id_moneda'] ?>">Agregar</a></td>
                                 <td class="border px-4 py-2 cursor-pointer"><a href="eliminar_moneda.php?v=<?= $filas['id_moneda'] ?>" class="delete-coin-link"><i class="fa-solid fa-trash-can" style="font-size: x-large; margin-right: 10px; margin-left: 10px;"></i></a></td>
-                                <td class="border px-4 py-2 cursor-pointer"><a href="<?= $filas['id_moneda'] ?>"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
+                                <td class="border px-4 py-2 cursor-pointer"><a href="editar_moneda.php?v=<?= $filas['id_moneda'] ?>"><i class="fa-solid fa-pen" style="font-size: x-large;"></i></a></td>
                             </tr>
                             <tr>
                                 <td colspan="11">
@@ -344,11 +344,7 @@ $res = mysqli_query($conectar, $sql);
                                                 echo "<h1>No hay anomalias registradas</h1>";
                                                 echo "</div>";
                                             }
-                                        ?>
-                                            
-                                                    
-                                                    
-                                                
+                                        ?>      
                                     </div>
                                 </td>
                             </tr>
