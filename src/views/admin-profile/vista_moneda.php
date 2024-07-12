@@ -92,7 +92,7 @@ $res = mysqli_query($conectar, $sql);
 <body class="bg-gray-100">
 <header class="flex items-center bg-dark-blue h-20">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html"><img src="../../assets/multimedia/img/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
+            <a href="index.html"><img src="../../assets/multimedia/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
             <nav class="space-x-10 px-10">
                 <a href="tabla_usuario.php" class="text-white">Usuarios</a>
                 <a href="vista_moneda.php" class="text-white">Monedas</a>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Moneda</title>
+    <link rel="icon" href="../../assets/multimedia/logo/LOGO NUMISARG.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
@@ -21,12 +22,22 @@
                         <h3 class="text-lg font-semibold">General</h3>
                         <input name="nombre_moneda" type="text" placeholder="Nombre de la moneda" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="30">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <input name="v_n" type="number" placeholder="Valor N." class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <select name="v_n" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option selected disabled>Valor N.</option>
+                            <?php 
+                                $sql = "SELECT * FROM valor_nominal";
+                                include '../../inc/conexion.php';
+                                $res = mysqli_query($conectar, $sql);
+
+                                foreach($res as $filas){
+                                    echo "<option value='".$filas['id_valor_nominal']."'>".$filas['valor']."</option>";
+                                }
+                            ?>
+                        </select>
                             <select name="divisa" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option selected disabled>Divisa</option>
                                 <?php 
                                     $sql = "SELECT * FROM divisa";
-                                    include '../../inc/conexion.php';
                                     $res = mysqli_query($conectar, $sql);
 
                                     foreach($res as $filas){
