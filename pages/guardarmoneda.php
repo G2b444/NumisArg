@@ -73,22 +73,23 @@ if(isset($_POST)){
         $id_detalle= mysqli_insert_id($conectar);
     }
 
-    if($anomalia==""){
-        //guardar sin anomalia 
-        $sql="INSERT INTO `guarda_moneda`(`id_detalle_guarda`, `id_moneda`, `id_coleccion`, `fecha_guardado`) 
-            VALUES ('$id_detalle','$moneda','$coleccion','$fechaguardado')";
-        $res = mysqli_query($conectar,$sql);
-        if($res){
-            echo '<script>alert("La moneda se ha guardado correctamente.");history.go(-1);</script>'; 
-        }
-    }else{
-        //guardar anomalia 
-        $sql="INSERT INTO `guarda_anomalia`(`id_detalle_guarda`, `id_anomalia`, `id_coleccion`, `fecha_guardado`) 
+    if($anomalia!=""){
+            //guardar anomalia 
+            $sql="INSERT INTO `guarda_anomalia`(`id_detalle_guarda`, `id_anomalia`, `id_coleccion`, `fecha_guardado`) 
             VALUES ('$id_detalle','$anomalia','$coleccion','$fechaguardado')";
         $res = mysqli_query($conectar, $sql);
         if($res){
             echo '<script>alert("La moneda anomala se ha guardado correctamente.");history.go(-1);</script>'; 
         }
+    }else{
+   
+     //guardar sin anomalia 
+     $sql="INSERT INTO `guarda_moneda`(`id_detalle_guarda`, `id_moneda`, `id_coleccion`, `fecha_guardado`) 
+        VALUES ('$id_detalle','$moneda','$coleccion','$fechaguardado')";
+    $res = mysqli_query($conectar,$sql);
+    if($res){
+        echo '<script>alert("La moneda se ha guardado correctamente.");history.go(-1);</script>'; 
+    }
     }
 }
 ?>

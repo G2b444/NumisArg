@@ -13,15 +13,16 @@
 <?php
 session_start();
 if(isset($_SESSION['id_usuario'])){
+    $usuario=$_SESSION['id_usuario'];
     ECHO '<header class="flex items-center bg-dark-blue h-20 overflow-visible">
         <div class="container mx-auto flex flex-nowrap justify-between items-center">
-            <a href="./../index.php"><img src="./LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
+            <a href="./index.php"><img src="./LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
             <nav class="flex flex-row space-x-10 px-10 pt-5">
-                <a href="./catalogo.php" class="text-white">Catálogo</a>
-                <a href="./contacto.php" class="text-white">Contáctanos</a>
+                <a href="./pages/catalogo.php" class="text-white">Catálogo</a>
+                <a href="./pages/contacto.php" class="text-white">Contáctanos</a>
                 <div class="flex flex-col relative bottom-2">
-                    <a href="./../public/css/php/main.php" class="border-2 border-white text-white px-4 py-2 rounded-lg" id="desplegable">Usuario</a>
-                    <a href="./../public/css/libreria/delsession.php" class=" hidden absolute top-9 border-2 bg-dark-blue border-white text-white px-4 py-2 rounded-b-lg" id="menu">Cerrar sesion</a>
+                    <a href="./public/css/php/main.php" class="border-2 border-white text-white px-4 py-2 rounded-lg" id="desplegable">Usuario</a>
+                    <a href="./public/css/libreria/delsession.php" class=" hidden absolute top-9 border-2 bg-dark-blue border-white text-white px-4 py-2 rounded-b-lg" id="menu">Cerrar sesion</a>
                 </div>
             </nav>
         </div>
@@ -29,11 +30,11 @@ if(isset($_SESSION['id_usuario'])){
 }else{
     echo '<header class="flex items-center bg-dark-blue h-20">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="./../index.php"><img src="./LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
+            <a href="index.php"><img src="./LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
             <nav class="space-x-10 px-10">
-                <a href="./catalogo.php" class="text-white">Catálogo</a>
-                <a href="./contacto.php" class="text-white">Contáctanos</a>
-                <a href="./../public/css/index.html" class="border-2 border-white text-white px-4 py-2 rounded-lg">Ingresar</a>
+                <a href="./pages/catalogo.php" class="text-white">Catálogo</a>
+                <a href="./pages/contacto.php" class="text-white">Contáctanos</a>
+                <a href="./public/css/index.html" class="border-2 border-white text-white px-4 py-2 rounded-lg">Ingresar</a>
             </nav>
         </div>
     </header>';

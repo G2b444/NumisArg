@@ -53,15 +53,21 @@ $res_3 = mysqli_query($conectar, $sql_3);
         $nombre = $array['nombre'];
         $contraseña = $array['contraseña'];
         $id_usuario = $array['id_usuario'];
-
+        $id_tipo_usuario = $array['id_tipo_usuario'];
 
         session_start();
         $_SESSION['nombre'] = $nombre;
         $_SESSION['contraseña'] = $contraseña; 
         $_SESSION['id_usuario'] = $id_usuario;
 
-        echo "<script> alert('El inicio de sesión fue exitoso.'); 
-        window.location='../php/main.php'; </script>";
+        if($id_tipo_usuario=='2'){
+            echo "<script> alert('El inicio de sesión fue exitoso.'); 
+            window.location='./../../../index.php'; </script>";
+        }else{
+            echo "<script> alert('El inicio de sesión fue exitoso.'); 
+            window.location='./../../../src/views/admin-profile/index.php'; </script>";
+        }
+       
     }else{
         echo "<script> alert('El inicio de sesión no se ha podido realizar. Intente nuevamente.'); 
         history.go(-1); </script>";

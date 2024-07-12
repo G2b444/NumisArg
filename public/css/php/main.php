@@ -1,6 +1,8 @@
 <?php 
 include("../libreria/conexion.php");
-session_start();
+if(!isset($_SESSION['id_usuario'])) {
+    echo '<script>window.location="./../../../index.php";</script>';
+}
 $id = $_SESSION['id_usuario'];
 
 // Información del perfil (funciona)
@@ -245,14 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </head>
 <body class="h-screen flex flex-col">
     <!-- parte superior-->
-    <nav class="flex w-full h-105 bg-customBlue justify-between items-center">
-        <img src="../images/LOGO.svg" alt="Logo" class="w-24 h-24 p-2 pb-0 ml-10 items-end"> <!--logo-->
-        <div class="flex text-white p-10 text-xl">
-            <a href="#" class="ml-4">Catálogo</a>
-            <a href="#" class="ml-4">Contáctanos</a>
-            <a href="../libreria/delsession.php" class="ml-4">Cerrar sesión</a>
-        </div>
-    </nav>
+    <?php include './../../../header.php'; ?>
 
     <!-- Contenedor principal para el aside y el contenido dinámico -->
     <div class="flex flex-1 overflow-hidden">
@@ -346,17 +341,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h2 class="text-3xl font-normal">Perfil</h2>
 
                         <div class="relative my-6">
-                            <input type="text" required name="usuario" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Nombre de usuario">
+                            <input type="text" required name="usuario" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Nombre de usuario">
                             <img src="../images/image 4.png" alt="Icono Usuario" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
-                            <input type="email" required name="correo" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Correo (verificación)">
+                            <input type="email" required name="correo" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Correo (verificación)">
                             <img src="../images/image 5.png" alt="Icono Correo" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
-                            <input type="password" required name="contraseña" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña (verificación)">
+                            <input type="password" required name="contraseña" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña (verificación)">
                             <img src="../images/image 6.png" alt="Icono Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
@@ -369,17 +364,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h2 class="text-3xl  font-normal">Seguridad</h2>
 
                         <div class="relative my-6">
-                            <input type="password" required name="con_nueva" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña nueva">
+                            <input type="password" required name="con_nueva" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2  shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña nueva">
                             <img src="../images/image 6.png" alt="Icono Nueva Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
-                            <input type="password" required name="rep_con_nueva" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Repetir contraseña">
+                            <input type="password" required name="rep_con_nueva" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2  shadow focus:outline-none focus:shadow-outline" placeholder="Repetir contraseña">
                             <img src="../images/image 6.png" alt="Icono Repetir Nueva Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
-                            <input type="password" required name="con_act" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña actual">
+                            <input type="password" required name="con_act" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña actual">
                             <img src="../images/image 6.png" alt="Icono Contraseña Actual" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
@@ -389,6 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </section>
     </div>
+
 </body>
 </html>
 

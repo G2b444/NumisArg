@@ -1,6 +1,8 @@
 <?php
 include 'conexion.php';
 
+$usuario=$_SESSION['id_usuario'];
+
 if(!isset($_GET['moneda'])){
     echo '<meta http-equiv="refresh" content="0; URL=./catalogo.php" />';
 }
@@ -53,7 +55,7 @@ $id= $_GET['moneda'];
 //billetera usuario
     $sql="SELECT * 
         FROM coleccion
-        WHERE id_usuario='1'";
+        WHERE id_usuario='$usuario'";
     $coleccion=mysqli_query($conectar,$sql);
 
 ?>

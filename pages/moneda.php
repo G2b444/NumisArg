@@ -1,4 +1,5 @@
 <?php
+include './header.php';
 include 'consultasmoneda.php';
 ?>
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ include 'consultasmoneda.php';
 </head>
 <body>
 <?php
-include 'header.php';
+
 if($gral){
     while($general=mysqli_fetch_assoc($gral)){
         if($detalle){
@@ -254,7 +255,7 @@ if($gral){
     </form>
 </div>
 <?php
-include 'footer.html';
+include './../footer.html';
 ?>
 <script> 
 //carrusel

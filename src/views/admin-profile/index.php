@@ -11,14 +11,7 @@
     <script src=../../js/funciones.js></script>
 </head>
 <body>
-    <header class="flex items-center bg-dark-blue h-20">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#"><img src="../../assets/multimedia/img/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
-            <nav class="space-x-10 px-10">
-                <a href="#" class="border-2 border-white text-white px-4 py-2 rounded-lg">Cerrar sesion</a>
-            </nav>
-        </div>
-    </header>
+    <?php include 'adminheader.html'; ?>
     <main>
         <section class="flex items-center flex-col mb-6">
             <h1 class="text-4xl mb-5 mt-12">Bienvenido, Administrador</h1>

@@ -9,13 +9,13 @@
     <?php include 'header.php'; ?>
     <main class="text-center">
         <div class="w-screen h-5/6 flex justify-between items-center my-5 ">
-            <div class="mb-10"> <img src="./assets/img/imagen_2024-06-13_181445666-removebg 1.svg" alt="moneda1"></div>
+            <div class="mb-10"> <img src="./src/assets/monedaindex1.svg" alt="moneda1"></div>
             <div class="mb-20">
-                <h1 class="text-7xl mb-10 font-light-blue">NumisArg</h1>
-                <p class="text-xl mb-8 font-light-blue">Coleccionando la patria</p>
-                <a href="catalogo.php"><button class="bg-dark-blue shadow-lg text-white px-6 py-3 mt-2 rounded hover:scale-105">Ver Monedas</button></a>
+                <h1 class="text-7xl mb-10 ">NumisArg</h1>
+                <p class="text-xl mb-8 ">Coleccionando la patria</p>
+                <a href="pages/catalogo.php"><button class="bg-dark-blue shadow-lg text-white px-6 py-3 mt-2 rounded hover:scale-105">Ver Monedas</button></a>
             </div>
-            <div class="mb-10"> <img src="./assets/img/imagen_2024-06-13_181445666-removebg 2.svg" alt="moneda2"></div>
+            <div class="mb-10"> <img src="./src/assets/monedaindex2.svg" alt="moneda2"></div>
         </div>
 
         <section class="w-screen h-screen flex items-start my-10">
@@ -26,7 +26,17 @@
                   <div class="bg-light-blue w-72 shadow-2xl h-72 rounded-xl flex items-center flex-col p-10"> <h1 class="text-white text-center text-4xl ">Registrá</h1><p class="text-white text-center text-3xl"><br> tus colecciones de monedas</p></div>
                   <div class="bg-light-blue w-72 shadow-2xl h-72 rounded-xl flex items-center flex-col p-10"> <h1 class="text-white text-center text-4xl ">Administrá</h1><p class="text-white text-center text-3xl"><br> facilmente los detalles de tus colecciones</p></div>
               </div>
-              <button class="bg-dark-blue shadow-xl text-white text-center text-3xl w-72 h-16 mt-24 rounded-xl"><h2>Ingresar</h2></button>
+              
+                    <?php
+                    if(isset($_SESSION['id_usuario'])){
+                        echo '<a href="./public/css/php/main.php" class="bg-dark-blue shadow-xl text-white text-center text-3xl w-72 h-16 mt-24 rounded-xl">
+                        <h2 class="py-3">Ver perfil</h2>';
+                    }else{
+                        echo '<a href="./public/css/index.html" class="bg-dark-blue shadow-xl text-white text-center text-3xl w-72 h-16 mt-24 rounded-xl">
+                        <h2 class="py-3">Ingresar</h2></a>';
+                    }
+                    ?>
+                </a>
             </div>
         </section>
     </main>
