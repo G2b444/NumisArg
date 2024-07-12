@@ -20,17 +20,17 @@ if($gral){
         if($detalle){
             while($det=mysqli_fetch_assoc($detalle)){
                 //variables
-                $nombre= mb_convert_encoding($general['nombre'], "UTF-8", mb_detect_encoding($general['nombre']));
+                $nombre= mb_convert_encoding($general['nombre'], "UTF-8", mb_detect_encoding($general['nombre'],"UTF-8, ISO-8859-1, auto"));
                 $emisioni= (int) $general['inicio_emision'];
                 $emisionf= (int) $general['fin_emision'];
                 $valor= $det['valor']; 
-                $divisa= mb_convert_encoding($det['nombre'], "UTF-8", mb_detect_encoding($det['nombre']));
+                $divisa= mb_convert_encoding($det['nombre'], "UTF-8", mb_detect_encoding($det['nombre'],"UTF-8, ISO-8859-1, auto"));
                 $canto= $det['tipo'];
                 $tipomoneda= $det['tipo_moneda'];
-                $composicion= mb_convert_encoding($det['composicion'], "UTF-8", mb_detect_encoding($det['composicion']));
+                $composicion= mb_convert_encoding($det['composicion'], "UTF-8", mb_detect_encoding($det['composicion'],"UTF-8, ISO-8859-1, auto"));
                 $diametro= $det['diametro'];
                 $espesor= $det['espesor'];
-                $historia= mb_convert_encoding($det['historia'], "UTF-8", mb_detect_encoding($det['historia']));
+                $historia= mb_convert_encoding($det['historia'], "UTF-8", mb_detect_encoding($det['historia'],"UTF-8, ISO-8859-1, auto"));
                 echo'
                 <section class="grid grid-cols-4 grid-rows-6 p-5 font-light-blue">
                         
@@ -56,7 +56,7 @@ if($gral){
                             $nombrelado=$lado['lado'];
                             $listel=$lado['listel'];
                             $efigie=$lado['efigie'];
-                            $leyenda= mb_convert_encoding($lado['leyenda'], "UTF-8", mb_detect_encoding($lado['leyenda']));
+                            $leyenda= mb_convert_encoding($lado['leyenda'], "UTF-8", mb_detect_encoding($lado['leyenda'],"UTF-8, ISO-8859-1, auto"));
                             $exergo=$lado['exergo'];
                             $ley=$lado['ley'];
                             $grafilia=$lado['grafilia'];
@@ -71,7 +71,7 @@ if($gral){
                             $img=mysqli_query($conectar,$sql);
                             $imagen=mysqli_fetch_assoc($img);
                             if(isset($imagen['direccion'])){
-                                $imagenlado= mb_convert_encoding($imagen['direccion'], "UTF-8", mb_detect_encoding($imagen['direccion']));
+                                $imagenlado= mb_convert_encoding($imagen['direccion'], "UTF-8", mb_detect_encoding($imagen['direccion'],"UTF-8, ISO-8859-1, auto"));
                             }else{
                             $imagenlado='assets/img/usd-circle.svg';
                             }
@@ -128,7 +128,7 @@ if($gral){
                             $res=mysqli_query($conectar,$sql);
                             $anomaliaReverso=mysqli_fetch_assoc($res);
                             if(isset($anomaliaReverso['direccion'])){
-                                $aReverso= mb_convert_encoding($anomaliaReverso['direccion'], "UTF-8", mb_detect_encoding($anomaliaReverso['direccion']));
+                                $aReverso= mb_convert_encoding($anomaliaReverso['direccion'], "UTF-8", mb_detect_encoding($anomaliaReverso['direccion'],"UTF-8, ISO-8859-1, auto"));
                             }
 
                             $sql="SELECT `direccion` 
@@ -140,7 +140,7 @@ if($gral){
                             $res=mysqli_query($conectar,$sql);
                             $anomaliaAnverso=mysqli_fetch_assoc($res);
                             if(isset($anomaliaAnverso['direccion'])){
-                                $aAnverso= mb_convert_encoding($anomaliaAnverso['direccion'], "UTF-8", mb_detect_encoding($anomaliaAnverso['direccion']));
+                                $aAnverso= mb_convert_encoding($anomaliaAnverso['direccion'], "UTF-8", mb_detect_encoding($anomaliaAnverso['direccion'],"UTF-8, ISO-8859-1, auto"));
                             }
 
                     echo '
@@ -161,7 +161,7 @@ if($gral){
 
                 }
             }
-            echo '<p class="text-2xl p-20 text-center">No se han registrado anomalias para esta moneda</p>';
+            echo '<p class="text-2xl p-20 py-32 text-center">No se han registrado anomalias para esta moneda</p>';
             ?>
         <!-- ... -->
         </div>

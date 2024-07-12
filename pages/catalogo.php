@@ -56,7 +56,7 @@ switch($campo){
 <body>
     <?php include  'header.php'; ?>
     <section class="w-full h-fit p-5 px-16">
-        <h1 class="text-5xl p-2 font-semibold">Catálogo</h1>
+        <h1 class="text-5xl p-2 pt-8 font-light-blue">Catálogo</h1>
             <!-- <form class="p-2 pt-4" action="catalogo.php" method="get">
                 <div class="inline px-1">
                     <p class="inline font-semibold">En </p>
@@ -77,12 +77,12 @@ switch($campo){
                 <input type="submit" class="px-3 mx-2 rounded-md bg-blue-950 font-semibold">
             </form> !-->
     </section>
-    <section class="p-5 w-full h-fit flex flex-row flex-wrap justify-evenly">
+    <section class="p-5 w-full h-fit flex flex-row flex-wrap justify-evenly ">
         <?php
         if($general){
             while($registrogral=mysqli_fetch_assoc($general)){
 
-                $nombre= mb_convert_encoding($registrogral['nombre'], "UTF-8", mb_detect_encoding($registrogral['nombre']));
+                $nombre= mb_convert_encoding($registrogral['nombre'], "UTF-8", mb_detect_encoding($registrogral['nombre'],"UTF-8, ISO-8859-1, auto"));
                 $inicioemision= (int) $registrogral['inicio_emision'];
                 $finemision= (int) $registrogral['fin_emision'];
                 $id= $registrogral['id_moneda'];
@@ -95,7 +95,7 @@ switch($campo){
                     $anverso=mysqli_query($conectar,$sql);
                         $imagena=mysqli_fetch_assoc($anverso);
                     if(isset($imagena['direccion'])){
-                        $imagen1= mb_convert_encoding($imagena['direccion'], "UTF-8", mb_detect_encoding($imagena['direccion']));
+                        $imagen1= mb_convert_encoding($imagena['direccion'], "UTF-8", mb_detect_encoding($imagena['direccion'],"UTF-8, ISO-8859-1, auto"));
                     }else{
                         $imagen1='assets/img/usd-circle.svg';
                     }
@@ -108,19 +108,19 @@ switch($campo){
                     $reverso=mysqli_query($conectar,$sql);
                     $imagenr=mysqli_fetch_assoc($reverso);
                     if(isset($imagenr['direccion'])){
-                        $imagen2= mb_convert_encoding($imagenr['direccion'], "UTF-8", mb_detect_encoding($imagenr['direccion']));
+                        $imagen2= mb_convert_encoding($imagenr['direccion'], "UTF-8", mb_detect_encoding($imagenr['direccion'],"UTF-8, ISO-8859-1, auto"));
                     }else{
                         $imagen2='assets/img/usd-circle.svg';
                     }
                 echo'
                     <a href="moneda.php?moneda='.$id.'">
-                        <div class="bg-white w-64  rounded-lg shadow-lg border border-blue-950 relative mx-6 my-8 flex flex-col">
+                        <div class="bg-white w-64  rounded-lg shadow-lg border-light-blue border-2 relative mx-6 my-8 flex flex-col">
                             <img src="'.$imagen2.'" class="pb-4 p-6 z-10 rounded-full">
                             <img src="'.$imagen1.'" class="pb-3 p-6 hover:opacity-5 absolute bottom-20 rounded-full">
 
-                            <p class="pt-2 border-t border-blue-950	">
-                            <h5 class="text-center text-lg font-medium"><a href="">'.$nombre.'</a></h5>
-                            <h6 class="text-center text-sm pb-4">'.$inicioemision.'-'.$finemision.'</h6>
+                            <p class="pt-2 border-t border-light-blue ">
+                            <h5 class="text-center text-lg font-medium font-light-blue">'.$nombre.'</h5>
+                            <h6 class="text-center text-sm pb-4 font-light-blue" >'.$inicioemision.'-'.$finemision.'</h6>
                             </p>
                         </div>
                     </a>';

@@ -14,7 +14,7 @@
             <a href="home.php"><img src="./assets/img/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
             <nav class="space-x-10 px-10">
                 <a href="catalogo.php" class="text-white">Catálogo</a>
-                <a href="contacto.html" class="text-white">Contáctanos</a>
+                <a href="contacto.php" class="text-white">Contáctanos</a>
                 <a href="#" class="border-2 border-white text-white px-4 py-2 rounded-lg">Ingresar</a>
             </nav>
         </div>
