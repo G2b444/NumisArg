@@ -46,7 +46,7 @@ if(!$res){
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             
-            $mail->setFrom('kevinkoncerewic@gmail.com', 'Intendente de Itaembé Guazú');
+            $mail->setFrom('kevinkoncerewic@gmail.com');
             $mail->addAddress($correoString, 'Usuario');
 
             

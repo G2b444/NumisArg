@@ -16,9 +16,17 @@
             font-family: 'MiFuente', sans-serif;
         }
     </style>
+    <script>
+        function toggleForms() {
+            var loginForm = document.getElementById("loginForm");
+            var registerForm = document.getElementById("registerForm");
+            loginForm.classList.toggle("hidden");
+            registerForm.classList.toggle("hidden");
+        }
+    </script>
 </head>
 <body class="flex justify-center items-center h-screen">
-    <div class="flex items-center w-[964px] h-[552px] bg-[#0D3559] rounded-[25px] p-0 pl-[10px]">
+    <div class="flex items-center w-[964px] h-[552px] bg-[#0D3559] rounded-[25px] p-0 pl-[10px] border-2 border-black">
 
         <div class="flex flex-col justify-center w-[602px] h-[530px] bg-white rounded-[30px_400px_400px_30px]">
             <form action="php/Registrar-Iniciar.php" method="post" class="flex flex-col items-center">
@@ -54,16 +62,6 @@
                 <input type="submit" name="R" value="Registrarse" class="bg-[#0D3559] text-white w-[154px] h-[39px] text-[20px] rounded-[23px] my-[7px]"><br>
                 <p>¿Ya tienes una cuenta? <a href="" class="text-blue-500 underline">¡Inicia sesión!</a></p>
             </form>
-        </div>
-
-        <div class="flex flex-col items-end w-[312px] h-[180px] pb-[20px]">
-            <h1 class="text-white whitespace-pre">Bienvenido
-                de vuelta
-            </h1>
-            <p class="text-white whitespace-pre">Coleccionar 
-                tus monedas
-                nunca fue tan fácil
-            </p>
         </div>
     </div>
 </body>
