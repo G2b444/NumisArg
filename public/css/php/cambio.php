@@ -92,7 +92,7 @@ if(isset($_POST['submit']) && !empty($ps) && !empty($ps2) && !empty($codigo)){
         if(!$res){
             echo '<script> alert("No se pudieron actualizar los datos correctamente. Intente nuevamente"); history.go(-1); </script>';
         }else{
-            echo '<script> alert("Los cambios se han hecho correctamente"); window.location="../html/main.html" </script>';
+            echo '<script> alert("Los cambios se han hecho correctamente"); window.location="../php/main.php"; </script>';
         }
     }else{
         echo '<script> alert("Los datos son erroneos o vacíos. Intente nuevamente"); history.go(-1); </script>';
