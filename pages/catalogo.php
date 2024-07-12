@@ -3,28 +3,24 @@ include 'conexion.php';
 
 $sql="SELECT nombre, inicio_emision, fin_emision, moneda.id_moneda 
     FROM  moneda
-    INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda";
-$general= mysqli_query($conectar,$sql);
-$campo=0;
+    INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda ";
 
-if($_GET){
+
+$campo=0;
+if(isset($_GET['campo']) && isset($_GET['valor'])) {
+
     $campo= $_GET['campo'];
     $valor= $_GET['valor'];
 }
-/*
+
 switch($campo){
     case 1:
-        $sql="SELECT moneda.nombre, inicio_emision, fin_emision, direccion 
-        FROM moneda 
-        INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda
-        INNER JOIN partes ON moneda_atributo.id_moneda_atributo=partes.id_moneda_atributo
-        INNER JOIN imagen ON partes.id_imagen=imagen.id_imagen
-        WHERE moneda.nombre='.$valor.'";
-        $general= mysqli_query($conectar,$sql);
+        $sql .= "WHERE moneda.nombre LIKE '%$valor%'";
         echo $valor;
     break;
     case 2:
-        
+        $sql .= "WHERE moneda.nombre LIKE '%$valor%'";
+        echo $valor;
     break;
     case 3:
         
@@ -39,7 +35,8 @@ switch($campo){
         
     break;
 }
-*/
+
+$gen= mysqli_query($conectar,$sql);
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +54,7 @@ switch($campo){
     <?php include  'header.php'; ?>
     <section class="w-full h-fit p-5 px-16">
         <h1 class="text-5xl p-2 pt-8 font-light-blue">Catálogo</h1>
-            <!-- <form class="p-2 pt-4" action="catalogo.php" method="get">
+            <form class="p-2 pt-4" action="catalogo.php" method="get">
                 <div class="inline px-1">
                     <p class="inline font-semibold">En </p>
                     <select name="campo" id="campo" class="border-2 rounded-lg  border-blue-950">
@@ -75,12 +72,14 @@ switch($campo){
                 </div>
                 
                 <input type="submit" class="px-3 mx-2 rounded-md bg-blue-950 font-semibold">
-            </form> !-->
+            </form>
     </section>
     <section class="p-5 w-full h-fit flex flex-row flex-wrap justify-evenly ">
         <?php
-        if($general){
-            while($registrogral=mysqli_fetch_assoc($general)){
+        if(empty($gen)){
+            echo '<p>No hay monedas con estas características</p>';
+        }else{
+            while($registrogral=mysqli_fetch_assoc($gen)){
 
                 $nombre= mb_convert_encoding($registrogral['nombre'], "UTF-8", mb_detect_encoding($registrogral['nombre'],"UTF-8, ISO-8859-1, auto"));
                 $inicioemision= (int) $registrogral['inicio_emision'];
