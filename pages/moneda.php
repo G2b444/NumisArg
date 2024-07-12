@@ -14,7 +14,7 @@ include 'consultasmoneda.php';
 </head>
 <body>
 <?php
-include 'header.html';
+include 'header.php';
 if($gral){
     while($general=mysqli_fetch_assoc($gral)){
         if($detalle){
@@ -214,16 +214,19 @@ if($gral){
         </label>
 
         <label id="cont-anomalia" class="hidden flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
-            <select name="anomalia" id="anomalia" class="border-0 bg-transparent w-full rounded-lg outline-none pl-8">
+            <img src="./assets/token.png" class="w-6 m-1">
+            <select name="anomalia" id="anomalia" class="border-0 bg-transparent w-full rounded-lg outline-none ">
                 <?php
+                 echo '<option value="">Seleccionar anomalía</option>';
                 $anomaliascol= mysqli_num_rows($anomalia);
-                    while($anom=mysqli_fetch_assoc($anomalia)){
-                        $anomaliaid=$anom['id_anomalia'];
-                        $nombreanomalia=$anom['nombre'];
-                        echo '<option value="">Seleccionar anomalía</option>
-                        <option value="'.$anomaliaid.'">'.$nombreanomalia.'</option>';
+                    while($anomselect=mysqli_fetch_assoc($anomaliaselect)){
+                        $anomaliaid= $anomselect['id_anomalia'];
+                        $anomalianombre= $anomselect['nombre'];
+                       
+                       echo'<option value="'.$anomaliaid.'">'.$anomaliaid.'='.$anomalianombre.'</option>';
                     }
                 ?>
+
             </select>
         </label>
 

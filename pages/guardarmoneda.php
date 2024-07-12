@@ -10,6 +10,7 @@ if(isset($_POST)){
     $anomalia = $_POST['anomalia'];
     $coleccion = $_POST['coleccion'];
     $nuevacoleccion = $_POST['nuevacoleccion'];
+    $fechaguardado= date('Y-m-d');
 
 
     //validaciones
@@ -34,17 +35,24 @@ if(isset($_POST)){
         echo '<script>alert("ERROR: debe seleccionar una colección");history.go(-1);</script>';
     }
 
-    //validaciones de desplegables
-    if(($estado=="0") AND ($anomalia=="0")){
-        echo '<script>alert("ERROR: debe seleccionar un estado válido");history.go(-1);</script>';
-    }
-
-    if(($estado=="0") AND ($anomalia=="")){
-        echo '<script>alert("ERROR: debe seleccionar una anomalía");history.go(-1);</script>';
-    }
-
     if(($coleccion=="0") AND ($nuevacoleccion=="")){
         echo '<script>alert("ERROR: debe definir un nombre para su colección");history.go(-1);</script>';
+    }
+
+    //verificar que coleccion nueva no exista
+    if($nuevacoleccion=="0"){
+            $sql = "SELECT * 
+            FROM coleccion 
+            WHERE nombre = '$nuevacoleccion' 
+            AND id_usuario='$usuario'";
+        $res = mysqli_query($conexion, $sql);
+        if($res){
+            $num = mysqli_num_rows($res);
+            if($num!=0){
+                echo '<script>alert("ERROR: Ya tienes una coleccion con este nombre.");history.go(-1);</script>';
+                exit();
+            }
+        }
     }
 
     //registrar coleccion
@@ -53,27 +61,34 @@ if(isset($_POST)){
             VALUES ('$nuevacoleccion','$usuario')";
         $res = mysqli_query($conectar,$sql);
         if($res){
-            $sql = "SELECT id_coleccion 
-                FROM coleccion 
-                WHERE nombre='$nuevacoleccion'";
-            $res = mysqli_query($conectar,$sql);
-            $idcol= mysqli_fetch_assoc($res);
-            $coleccion = $idcol['id_coleccion'];
+            $coleccion= mysqli_insert_id($conectar);
         }
     }
 
     //detalle de guardado
     $sql="INSERT INTO `detalle_guarda`(`id_estado`, `cantidad`, `valor_de_mercado`) 
     VALUES ('$estado','$cantidad','$valor')";
+    $res = mysqli_query($conectar,$sql);
+    if($res){
+        $id_detalle= mysqli_insert_id($conectar);
+    }
 
-    if(estado!=0){
-        //estados normales
+    if($anomalia==""){
+        //guardar sin anomalia 
         $sql="INSERT INTO `guarda_moneda`(`id_detalle_guarda`, `id_moneda`, `id_coleccion`, `fecha_guardado`) 
-            VALUES ('','','','')";
-
+            VALUES ('$id_detalle','$moneda','$coleccion','$fechaguardado')";
+        $res = mysqli_query($conectar,$sql);
+        if($res){
+            echo '<script>alert("La moneda se ha guardado correctamente.");history.go(-1);</script>'; 
+        }
     }else{
-        //estado anomalía
-
+        //guardar anomalia 
+        $sql="INSERT INTO `guarda_anomalia`(`id_detalle_guarda`, `id_anomalia`, `id_coleccion`, `fecha_guardado`) 
+            VALUES ('$id_detalle','$anomalia','$coleccion','$fechaguardado')";
+        $res = mysqli_query($conectar, $sql);
+        if($res){
+            echo '<script>alert("La moneda anomala se ha guardado correctamente.");history.go(-1);</script>'; 
+        }
     }
 }
 ?>
