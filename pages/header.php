@@ -11,7 +11,7 @@
 <a name="arriba"></a>
     <header class="flex items-center bg-dark-blue h-20">
         <div class="container mx-auto flex justify-between items-center">
-            <img src="./assets/img/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4">
+            <a href="home.php"><img src="./assets/img/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
             <nav class="space-x-10 px-10">
                 <a href="catalogo.php" class="text-white">Catálogo</a>
                 <a href="contacto.html" class="text-white">Contáctanos</a>

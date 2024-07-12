@@ -6,7 +6,7 @@
     <title>NumisArg</title>
    </head>
 <body class="bg-white">
-
+    <
     <main class="text-center">
         <div class="w-screen h-5/6 flex justify-between items-center my-5 ">
             <div class="mb-10"> <img src="./assets/img/imagen_2024-06-13_181445666-removebg 1.svg" alt="moneda1"></div>
