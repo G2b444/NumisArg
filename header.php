@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,8 +21,8 @@ if(isset($_SESSION['id_usuario'])){
                 <a href="./pages/catalogo.php" class="text-white">Catálogo</a>
                 <a href="./pages/contacto.php" class="text-white">Contáctanos</a>
                 <div class="flex flex-col relative bottom-2">
-                    <a href="./public/css/php/main.php" class="border-2 border-white text-white px-4 py-2 rounded-lg" id="desplegable">Usuario</a>
-                    <a href="./public/css/libreria/delsession.php" class=" hidden absolute top-9 border-2 bg-dark-blue border-white text-white px-4 py-2 rounded-b-lg" id="menu">Cerrar sesion</a>
+                    <a href="src/views/user-profile/main.php" class="border-2 border-white text-white px-4 py-2 rounded-lg" id="desplegable">Usuario</a>
+                    <a href="src/php/delsession.php" class=" hidden absolute top-9 border-2 bg-dark-blue border-white text-white px-4 py-2 rounded-b-lg" id="menu">Cerrar sesion</a>
                 </div>
             </nav>
         </div>
