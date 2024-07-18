@@ -64,9 +64,9 @@
     </script>
 </head>
 <body>
-    <form action="../libreria/delsession.php" method="post" >
+    <form action="../../php/delsession.php" method="post" >
         <button name="volver">
-            <img src="images/arrow.png" alt="Flecha de volver" class="w-10 h-10 m-2">
+            <img src="img/arrow.png" alt="Flecha de volver" class="w-10 h-10 m-2">
         </button>
     </form> 
     
@@ -74,21 +74,21 @@
 
         <div class="flex items-center w-[964px] h-[552px] bg-customBlue2 rounded-3xl p-0 pl-[10px]" id="inicio">
             <div class="flex flex-col justify-center w-[602px] h-[530px] bg-white rounded-3xl form-custom">
-                <form action="php/Registrar-Iniciar.php" method="post" class="flex flex-col items-center p-4">
+                <form action="Registrar-Iniciar.php" method="post" class="flex flex-col items-center p-4">
                     <h2 class="text-xl m-0 mx-[25%]">Inicia sesión</h2><br>
                     <p class="text-lg m-0 ml-[80px]">Completa los campos e ingresa</p><br>
     
                     <div class="relative w-64">
-                        <img src="images/image 5.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
+                        <img src="img/image 5.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
                         <input type="email" placeholder="Correo" maxlength="30" name="correo" class="border border-gray-300 p-2 pl-10 w-full rounded-3xl my-1" required>                
                     </div>
                     
                     <div class="relative w-64">
-                        <img src="images/image 6.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
+                        <img src="img/image 6.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
                         <input type="password" placeholder="Contraseña" maxlength="30" name="ps" class="border border-gray-300 p-2 pl-10 w-full rounded-3xl my-1" required>
                     </div>
                    
-                    <a href="php/recuperacion.php" class="text-xs text-blue-500 underline">Olvidé mi contraseña</a><br>
+                    <a href="recuperacion.php" class="text-xs text-blue-500 underline">Olvidé mi contraseña</a><br>
                     <input type="submit" name="IS" value="Iniciar sesión" class="bg-customBlue rounded-3xl text-white w-28 h-10 px-2 text-[20px]"><br>
                     <p class="pb-6">¿No tienes una cuenta? <a href="" class="text-blue-500 underline" id="button-registro">¡Regístrate!</a></p>
                 </form>
@@ -97,27 +97,27 @@
         
         <div class="flex items-center w-[964px] h-[552px] bg-customBlue2 rounded-3xl p-0 pl-[10px]" id="registro" style="display: none;">
             <div class="flex flex-col justify-center w-[602px] h-[530px] bg-white rounded-3xl form-custom">
-                <form action="php/Registrar-Iniciar.php" method="post" class="flex flex-col items-center p-4">
+                <form action="Registrar-Iniciar.php" method="post" class="flex flex-col items-center p-4">
                     <h2 class="text-xl m-0 mx-[25%]">Crea una cuenta</h2><br>
                     <p class="text-lg m-0 ml-[80px]">Completa los campos para registrarte</p><br>
                     
                     <div class="relative w-64">
-                        <img src="images/image 4.png"  class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
+                        <img src="img/image 4.png"  class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
                         <input type="text" placeholder="Nombre de usuario" maxlength="30" name="nombre" class="border border-gray-300 p-2 pl-10 w-full rounded-3xl my-1" required><br>
                     </div>
                     
                     <div class="relative w-64">
-                        <img src="images/image 5.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
+                        <img src="img/image 5.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
                         <input type="email" placeholder="Correo" maxlength="30" name="correo" class="border border-gray-300 p-2 pl-10 w-full rounded-3xl my-1" required><br>
                     </div>
     
                     <div class="relative w-64">
-                        <img src="images/image 6.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
+                        <img src="img/image 6.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
                         <input type="password" placeholder="Contraseña" maxlength="30" name="ps" class="border border-gray-300 p-2 pl-10 w-full rounded-3xl my-1" required><br>
                     </div>
                     
                     <div class="relative w-64">
-                        <img src="images/image 6.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
+                        <img src="img/image 6.png" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
                         <input type="password" placeholder="Repetir Contraseña" maxlength="30" name="ps-verify" class="border border-gray-300 p-2 pl-10 w-full rounded-3xl my-1" required>
                     </div>
     

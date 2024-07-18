@@ -26,16 +26,6 @@
                   <div class="bg-light-blue w-72 shadow-2xl h-72 rounded-xl flex items-center flex-col p-10"> <h1 class="text-white text-center text-4xl ">Registrá</h1><p class="text-white text-center text-3xl"><br> tus colecciones de monedas</p></div>
                   <div class="bg-light-blue w-72 shadow-2xl h-72 rounded-xl flex items-center flex-col p-10"> <h1 class="text-white text-center text-4xl ">Administrá</h1><p class="text-white text-center text-3xl"><br> facilmente los detalles de tus colecciones</p></div>
               </div>
-              
-                    <?php
-                    if(isset($_SESSION['id_usuario'])){
-                        echo '<a href="./public/css/php/main.php" class="bg-dark-blue shadow-xl text-white text-center text-3xl w-72 h-16 mt-24 rounded-xl">
-                        <h2 class="py-3">Ver perfil</h2>';
-                    }else{
-                        echo '<a href="./public/css/index.html" class="bg-dark-blue shadow-xl text-white text-center text-3xl w-72 h-16 mt-24 rounded-xl">
-                        <h2 class="py-3">Ingresar</h2></a>';
-                    }
-                    ?>
                 </a>
             </div>
         </section>

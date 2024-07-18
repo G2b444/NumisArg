@@ -34,7 +34,7 @@ if(isset($_SESSION['id_usuario'])){
             <nav class="space-x-10 px-10">
                 <a href="./pages/catalogo.php" class="text-white">Catálogo</a>
                 <a href="./pages/contacto.php" class="text-white">Contáctanos</a>
-                <a href="./public/css/index.html" class="border-2 border-white text-white px-4 py-2 rounded-lg">Ingresar</a>
+                <a href="./src/views/login" class="border-2 border-white text-white px-4 py-2 rounded-lg">Ingresar</a>
             </nav>
         </div>
     </header>';
