@@ -37,7 +37,7 @@ error_reporting(E_ALL);
 
         <form action="correo.php" method="POST" class="space-y-4">
             <div class="relative w-96">
-                <img src="../images/image 5.png" alt="Icono Correo" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6">
+                <img src="../../assets/icon/image 5.png" alt="Icono Correo" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6">
                 <input type="email" name="correo" placeholder="Correo" class="border border-gray-300 p-2 pl-10 w-full rounded-3xl" required>
             </div>
             <input type="submit" name="Enviar" value="Continuar" class="bg-white text-customBlue p-2 w-full border rounded-3xl cursor-pointer font-bold">

@@ -1,5 +1,6 @@
 <?php 
-include("../libreria/conexion.php");
+include("../../inc/conexion.php");
+include '../../../header.php';
 if(!isset($_SESSION['id_usuario'])) {
     echo '<script>window.location="./../../../index.php";</script>';
 }
@@ -246,21 +247,21 @@ document.addEventListener('DOMContentLoaded', () => {
     </style>
 </head>
 <body class="h-screen flex flex-col">
-    <!-- parte superior-->
-    <?php include './../../../header.php'; ?>
+    
+    
 
     <!-- Contenedor principal para el aside y el contenido dinámico -->
     <div class="flex flex-1 overflow-hidden">
         <!-- Menú lateral -->
         <aside class="w-96 mt-0.5 bg-customBlue text-white text-3xl justify-center items-center p-4 overflow-y-auto">
             <div class="flex flex-row items-center my-0.5 p-8 content-center cursor-pointer border-b border-gray" onclick="showSection('perfil')">
-                <img src="../images/user.png" alt="Perfil" class="w-10 h-10 mr-4">Perfil
+                <img src="../../assets/icon/user.png" alt="Perfil" class="w-10 h-10 mr-4">Perfil
             </div>
             <div class="flex flex-row items-center my-0.5 p-8 content-center cursor-pointer border-b border-gray" onclick="showSection('colecciones')">
-                <img src="../images/wallet.png" alt="Colecciones" class="w-10 h-10 mr-4">Colecciones
+                <img src="../../assets/icon/wallet.png" alt="Colecciones" class="w-10 h-10 mr-4">Colecciones
             </div>
             <div class="flex flex-row items-center my-0.5 p-8 content-center cursor-pointer border-b border-gray" onclick="showSection('configuracion')">
-                <img src="../images/customize.png" alt="" class="w-10 h-10 mr-4">Configuración
+                <img src="../../assets/icon/customize.png" alt="" class="w-10 h-10 mr-4">Configuración
             </div>
         </aside>
 
@@ -282,10 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div id="colecciones-form">
                         <button id="add-collection" name="add" data-action="add">
-                            <img src="../images/plus.png" class="w-8 h-8">
+                            <img src="../../assets/icon/plus.png" class="w-8 h-8">
                         </button>
                         <button id="delete-collection" name="del" data-action="del">
-                            <img src="../images/trash 4.png" alt="Eliminar" class="w-8 h-8 mr-10">
+                            <img src="../../assets/icon/trash 4.png" alt="Eliminar" class="w-8 h-8 mr-10">
                         </button>
                     </div>
                 </div>
@@ -307,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     echo '</select>';
                     echo '<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">';
-                    echo '<img src="../images/flecha.png" alt="Flecha" class="h-2 w-2">';
+                    echo '<img src="../../assets/icon/flecha.png" alt="Flecha" class="h-2 w-2">';
                     echo '</div>';
                     echo '</div>';
                 } else {
@@ -317,10 +318,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <div class="flex flex-row justify-end items-end gap-5 bg-customBlue2 p-2">
                     <button class="btn-customize" data-action="customize">
-                        <img src="../images/customize.png" class="w-8 h-8">
+                        <img src="../../assets/icon/customize.png" class="w-8 h-8">
                     </button>
                     <button class="btn-delete mr-8" data-action="delete">
-                        <img src="../images/trash.png" class="w-8 h-8">
+                        <img src="../../assets/icon/trash.png" class="w-8 h-8">
                     </button>
                 </div>
 
@@ -342,17 +343,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         <div class="relative my-6">
                             <input type="text" required name="usuario" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Nombre de usuario">
-                            <img src="../images/image 4.png" alt="Icono Usuario" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/images/image 4.png" alt="Icono Usuario" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
                             <input type="email" required name="correo" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Correo (verificación)">
-                            <img src="../images/image 5.png" alt="Icono Correo" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/images/image 5.png" alt="Icono Correo" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
                             <input type="password" required name="contraseña" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña (verificación)">
-                            <img src="../images/image 6.png" alt="Icono Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 6.png" alt="Icono Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <input type="submit" value="Actualizar" name="a1" class="bg-customBlue2 text-white font-bold py-2 px-4 rounded-3xl ml-2 w-32 mt-2">
@@ -365,17 +366,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         <div class="relative my-6">
                             <input type="password" required name="con_nueva" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2  shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña nueva">
-                            <img src="../images/image 6.png" alt="Icono Nueva Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 6.png" alt="Icono Nueva Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
                             <input type="password" required name="rep_con_nueva" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2  shadow focus:outline-none focus:shadow-outline" placeholder="Repetir contraseña">
-                            <img src="../images/image 6.png" alt="Icono Repetir Nueva Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 6.png" alt="Icono Repetir Nueva Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
                             <input type="password" required name="con_act" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Contraseña actual">
-                            <img src="../images/image 6.png" alt="Icono Contraseña Actual" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 6.png" alt="Icono Contraseña Actual" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <input type="submit" value="Actualizar" name="a2" class="bg-customBlue2 text-white font-bold py-2 px-4 rounded-3xl ml-2 w-32 mt-2">
