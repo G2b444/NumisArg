@@ -343,12 +343,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         <div class="relative my-6">
                             <input type="text" required name="usuario" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Nombre de usuario">
-                            <img src="../../assets/icon/images/image 4.png" alt="Icono Usuario" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 4.png" alt="Icono Usuario" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
                             <input type="email" required name="correo" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 shadow focus:outline-none focus:shadow-outline" placeholder="Correo (verificación)">
-                            <img src="../../assets/icon/images/image 5.png" alt="Icono Correo" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 5.png" alt="Icono Correo" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
 
                         <div class="relative my-6">
