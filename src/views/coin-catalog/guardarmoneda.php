@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../../inc/conexion.php';
 
 if(isset($_POST)){
     $usuario = $_POST['usuario'];
