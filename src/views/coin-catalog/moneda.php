@@ -74,7 +74,7 @@ if($gral){
                             if(isset($imagen['direccion'])){
                                 $imagenlado= mb_convert_encoding($imagen['direccion'], "UTF-8", mb_detect_encoding($imagen['direccion'],"UTF-8, ISO-8859-1, auto"));
                             }else{
-                            $imagenlado='assets/img/usd-circle.svg';
+                            $imagenlado='../../assets/icon/usd-circle.svg';
                             }
                             echo '
                             <div class="inline-block  row-span-6 p-4 ">
@@ -187,11 +187,11 @@ if($gral){
     <form action="guardarmoneda.php" method="post" class="flex flex-col h-full p-5">
 
         <label class="flex flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
-            <img src="./assets/cantidadmoneda.png" class="w-5 m-1">
+            <img src="../../assets/icon/cantidadmoneda.png" class="w-5 m-1">
             <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad" class="border-0 bg-transparent w-full outline-none" maxlength="3" required>
         </label>
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
-            <img src="./assets/valormercado.png" class="w-6 m-1">    
+            <img src="../../assets/icon/valormercado.png" class="w-6 m-1">    
             <input type="number" name="valor" id="valor" placeholder="Valor de mercado (en USD)" class="border-0 bg-transparent w-full outline-none " maxlength="8" required>
         </label>
         <?php
@@ -201,7 +201,7 @@ if($gral){
         ';
         ?>
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
-            <img src="./assets/billetera.svg" class="w-6 m-1">
+            <img src="../../assets/icon/billetera.svg" class="w-6 m-1">
             <select name="estado" id="estado" class="border-0 bg-transparent w-full rounded-lg outline-none">
                 <option value="">Estado de moneda</option>
                 <?php
@@ -215,7 +215,7 @@ if($gral){
         </label>
 
         <label id="cont-anomalia" class="hidden flex-row m-2 border-2 border-light-blue rounded-full w-4/5 place-self-center px-1">
-            <img src="./assets/token.png" class="w-6 m-1">
+            <img src="../../assets/icon/token.png" class="w-6 m-1">
             <select name="anomalia" id="anomalia" class="border-0 bg-transparent w-full rounded-lg outline-none ">
                 <?php
                  echo '<option value="">Seleccionar anomalía</option>';
@@ -232,7 +232,7 @@ if($gral){
         </label>
 
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
-            <img src="./assets/anomalia.svg" class="w-6 m-1">
+            <img src="../../assets/icon/anomalia.svg" class="w-6 m-1">
             <select name="coleccion" id="coleccion" class="border-0 bg-transparent w-full rounded-lg outline-none">
                 <option value="">Colección a guardar</option>
                 <?php
