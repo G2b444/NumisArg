@@ -1,5 +1,5 @@
 <?php
-include './header.php';
+include '../../../header.php';
 include 'consultasmoneda.php';
 ?>
 <!DOCTYPE html>
@@ -255,7 +255,7 @@ if($gral){
     </form>
 </div>
 <?php
-include './../footer.html';
+include '../../../footer.html';
 ?>
 <script> 
 //carrusel
