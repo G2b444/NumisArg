@@ -13,7 +13,7 @@
             <div class="mb-20">
                 <h1 class="text-7xl mb-10 ">NumisArg</h1>
                 <p class="text-xl mb-8 ">Coleccionando la patria</p>
-                <a href="pages/catalogo.php"><button class="bg-dark-blue shadow-lg text-white px-6 py-3 mt-2 rounded hover:scale-105">Ver Monedas</button></a>
+                <a href="src/views/coin-catalog/catalogo.php"><button class="bg-dark-blue shadow-lg text-white px-6 py-3 mt-2 rounded hover:scale-105">Ver Monedas</button></a>
             </div>
             <div class="mb-10"> <img src="./src/assets/monedaindex2.svg" alt="moneda2"></div>
         </div>
