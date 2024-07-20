@@ -90,7 +90,7 @@ $gen= mysqli_query($conectar,$sql);
                 $sql="SELECT  direccion
                     FROM imagen 
                     INNER JOIN partes ON partes.id_imagen=imagen.id_imagen
-                    WHERE partes.id_moneda_atributo='$id' 
+                    WHERE partes.id_moneda_atributo=$id 
                     AND lado='anverso'";
                     $anverso=mysqli_query($conectar,$sql);
                         $imagena=mysqli_fetch_assoc($anverso);
@@ -103,7 +103,7 @@ $gen= mysqli_query($conectar,$sql);
                 $sql="SELECT  direccion
                     FROM imagen 
                     INNER JOIN partes ON partes.id_imagen=imagen.id_imagen
-                    WHERE partes.id_moneda_atributo='$id' 
+                    WHERE partes.id_moneda_atributo=$id
                     AND lado='reverso'";
                     $reverso=mysqli_query($conectar,$sql);
                     $imagenr=mysqli_fetch_assoc($reverso);
