@@ -61,8 +61,6 @@ if(isset($_POST)){
     if($coleccion==0){
         $sql = "INSERT INTO coleccion (nombre, id_usuario) 
             VALUES ('$nuevacoleccion', $usuario)";
-        echo "<h1>$sql</h1>";
-        echo "<br>";
         $res = mysqli_query($conectar,$sql);
         if($res){
             $coleccion= mysqli_insert_id($conectar);
@@ -89,7 +87,6 @@ if(isset($_POST)){
      //guardar sin anomalia 
      $sql="INSERT INTO `guarda_moneda`(`id_detalle_guarda`, `id_moneda`, `id_coleccion`, `fecha_guardado`) 
         VALUES ($id_detalle,'$moneda',$coleccion,'$fechaguardado')";
-        echo "<h1>".$sql."</h1>";
     $res = mysqli_query($conectar,$sql);
     if($res){
         echo '<script>alert("La moneda se ha guardado correctamente.");history.go(-1);</script>'; 
