@@ -1,9 +1,9 @@
 <?php
 include '../../inc/conexion.php';
 
-$sql="SELECT nombre, inicio_emision, fin_emision, moneda.id_moneda 
+$sql="SELECT nombre, inicio_emision, fin_emision, moneda.id_moneda, id_moneda_atributo
     FROM  moneda
-    INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda ";
+    INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda";
 
 
 $campo=0;
@@ -86,11 +86,12 @@ $gen= mysqli_query($conectar,$sql);
                 $inicioemision= (int) $registrogral['inicio_emision'];
                 $finemision= (int) $registrogral['fin_emision'];
                 $id= $registrogral['id_moneda'];
+                $id_atributo = $registrogral['id_moneda_atributo'];
                 
                 $sql="SELECT  direccion
                     FROM imagen 
                     INNER JOIN partes ON partes.id_imagen=imagen.id_imagen
-                    WHERE partes.id_moneda_atributo=$id 
+                    WHERE partes.id_moneda_atributo=$id_atributo
                     AND lado='anverso'";
                     $anverso=mysqli_query($conectar,$sql);
                         $imagena=mysqli_fetch_assoc($anverso);
@@ -103,7 +104,7 @@ $gen= mysqli_query($conectar,$sql);
                 $sql="SELECT  direccion
                     FROM imagen 
                     INNER JOIN partes ON partes.id_imagen=imagen.id_imagen
-                    WHERE partes.id_moneda_atributo=$id
+                    WHERE partes.id_moneda_atributo=$id_atributo
                     AND lado='reverso'";
                     $reverso=mysqli_query($conectar,$sql);
                     $imagenr=mysqli_fetch_assoc($reverso);
