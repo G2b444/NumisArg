@@ -16,7 +16,7 @@ if(isset($_SESSION['id_usuario'])){
     $usuario=$_SESSION['id_usuario'];
     ECHO '<header class="flex items-center bg-dark-blue h-20 overflow-visible">
         <div class="container mx-auto flex flex-nowrap justify-between items-center">
-            <a href="./index.php"><img src="./LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
+            <a href="/numisarg/index.php"><img src="/numisarg/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
             <nav class="flex flex-row space-x-10 px-10 pt-5">
                 <a href="/numisarg/src/views/coin-catalog/catalogo.php" class="text-white">Catálogo</a>
                 <a href="/numisarg/src/views/contact/contacto.php" class="text-white">Contáctanos</a>
@@ -30,7 +30,7 @@ if(isset($_SESSION['id_usuario'])){
 }else{
     echo '<header class="flex items-center bg-dark-blue h-20">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.php"><img src="./LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
+            <a href="/numisarg/index.php"><img src="/numisarg/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
             <nav class="space-x-10 px-10">
                 <a href="/numisarg/src/views/coin-catalog/catalogo.php" class="text-white">Catálogo</a>
                 <a href="/numisarg/src/views/contact/contacto.php" class="text-white">Contáctanos</a>
