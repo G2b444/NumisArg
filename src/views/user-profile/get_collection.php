@@ -116,7 +116,7 @@ top: 100%;
 <body class="bg-gray-100 p-6">
 
 <?php
-include("../libreria/conexion.php");
+include("../../inc/conexion.php");
 
 if (isset($_GET['id_coleccion'])) {
     $id_coleccion = intval($_GET['id_coleccion']);
