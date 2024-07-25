@@ -21,8 +21,8 @@ if(isset($_SESSION['id_usuario'])){
                 <a href="/numisarg/src/views/coin-catalog/catalogo.php" class="text-white">Catálogo</a>
                 <a href="/numisarg/src/views/contact/contacto.php" class="text-white">Contáctanos</a>
                 <div class="flex flex-col relative bottom-2">
-                    <a href="src/views/user-profile/main.php" class="border-2 border-white text-white px-4 py-2 rounded-lg" id="desplegable">Usuario</a>
-                    <a href="src/php/delsession.php" class=" hidden absolute top-9 border-2 bg-dark-blue border-white text-white px-4 py-2 rounded-b-lg" id="menu">Cerrar sesion</a>
+                    <a href="/numisarg/src/views/user-profile/main.php" class="border-2 border-white text-white px-4 py-2 rounded-lg" id="desplegable">Usuario</a>
+                    <a href="/numisarg/src/php/delsession.php" class=" hidden absolute top-9 border-2 bg-dark-blue border-white text-white px-4 py-2 rounded-b-lg" id="menu">Cerrar sesion</a>
                 </div>
             </nav>
         </div>
@@ -34,7 +34,7 @@ if(isset($_SESSION['id_usuario'])){
             <nav class="space-x-10 px-10">
                 <a href="/numisarg/src/views/coin-catalog/catalogo.php" class="text-white">Catálogo</a>
                 <a href="/numisarg/src/views/contact/contacto.php" class="text-white">Contáctanos</a>
-                <a href="./src/views/login" class="border-2 border-white text-white px-4 py-2 rounded-lg">Ingresar</a>
+                <a href="/numisarg/src/views/login" class="border-2 border-white text-white px-4 py-2 rounded-lg">Ingresar</a>
             </nav>
         </div>
     </header>';
