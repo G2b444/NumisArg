@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <?php include './header.php'; ?>
+    <?php include '../../../header.php'; ?>
 
     <section class="h-screen flex items-center justify-start ">
         <div class="px-32 h-full flex flex-col items-start justify-center">
@@ -39,7 +39,7 @@
         </div>
     </section>
 
-    <?php include './../footer.html'; ?>
+    <?php include '../../../footer.html'; ?>
 </body>
 </html>
 
