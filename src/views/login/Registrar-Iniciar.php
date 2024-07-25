@@ -65,7 +65,7 @@ $res_3 = mysqli_query($conectar, $sql_3);
             window.location='./../../../index.php'; </script>";
         }else{
             echo "<script> alert('El inicio de sesión fue exitoso.'); 
-            window.location='./../../../src/views/admin-profile/index.php'; </script>";
+            window.location='../admin-pages/index.php'; </script>";
         }
        
     }else{
