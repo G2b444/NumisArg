@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <form method="post" action="" class="w-full flex flex-col items-center">
                                 <div class="relative my-6 mb-4 w-full flex justify-center">
                                     <div class="relative w-96">
-                                        <img src="../images/billetera.png" alt="Icono Correo" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6">
+                                        <img src="../../assets/icon/billetera.png" alt="Icono Correo" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6">
                                         <input placeholder="Nombre" type="text" name="nombre" min="1" class="w-full p-2 pl-10 rounded-3xl">
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 ?>
                                             </select>
                                             <div class="pointer-events-none absolute inset-y-0 right-1 flex items-center px-2 text-gray-700">
-                                                <img src="../images/flecha.png" alt="Flecha" class="h-4 w-4">
+                                                <img src="../../assets/icon/flecha.png" alt="Flecha" class="h-4 w-4">
                                             </div>
                                         </div>
                                     </div>
