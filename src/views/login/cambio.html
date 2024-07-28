@@ -42,9 +42,9 @@
     </style>
 </head>
 <body > 
-    <form action="../libreria/delsession.php" method="post" >
+    <form action="../../php/delsession.php" method="post" >
         <button name="volver">
-            <img src="../images/arrow.png" alt="Flecha de volver" class="w-10 h-10 m-2">
+            <img src="../../assets/icon/arrow.png" alt="Flecha de volver" class="w-10 h-10 m-2">
         </button>
     </form> 
     <div class="flex items-center justify-center min-h-screen bg-white font-semibold">
@@ -53,22 +53,22 @@
             
             <div class="bg-white w-full h-full  form-custom"><!--fondo blanco-->
                 <div class="mt-8 w-96 h-64">
-                    <form action="../php/cambio.php" method="post" class="w-full flex flex-col items-center" id="form1">
+                    <form action="cambio.php" method="post" class="w-full flex flex-col items-center" id="form1">
                         <h2 class="text-3xl font-semibold text-black ">Reestablecer contraseña</h2>
     
                         <div class="relative my-2">
                             <input type="password" id="passwordField1" placeholder="Contraseña" required name="ps" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded-3xl shadow focus:outline-none focus:shadow-outline">
-                            <img src="../images/image 6.png" alt="Icono Usuario" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 6.png" alt="Icono Usuario" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
     
                         <div class="relative my-2">
                             <input type="password" id="passwordField2" placeholder="Repetir contraseña" required name="ps2" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded-3xl shadow focus:outline-none focus:shadow-outline">
-                            <img src="../images/image 6.png" alt="Icono Correo" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 6.png" alt="Icono Correo" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
     
                         <div class="relative my-2">
                             <input type="number" required placeholder="Código de verificación" name="n" min="1" class="w-full bg-white border border-gray-400 rounded-3xl px-10 py-2 rounded-3xl shadow focus:outline-none focus:shadow-outline" >
-                            <img src="../images/image 6.png" alt="Icono Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
+                            <img src="../../assets/icon/image 6.png" alt="Icono Contraseña" class="absolute left-3 top-2.5 w-6 h-6">
                         </div>
     <br><br>
                         <input type="submit" value="Cambiar" name="submit" class="bg-customBlue2 text-white cursor-pointer font-bold text-xl  rounded-3xl ml-2 w-32 mt-1">

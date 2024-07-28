@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    include ("../libreria/conexion.php");
+    include ("../../inc/conexion.php");
 session_start();
 $correoString = $_POST['correo'];
 
@@ -28,9 +28,9 @@ if(!$res){
         
         if(isset($_POST['Enviar'])) {
         
-        require '../PHPMailer/Exception.php';
-        require '../PHPMailer/PHPMailer.php';
-        require '../PHPMailer/SMTP.php';
+        require '../../inc/PHPMailer/Exception.php';
+        require '../../inc/PHPMailer/PHPMailer.php';
+        require '../../inc/PHPMailer/SMTP.php';
 
         $mail = new PHPMailer(true);
 
@@ -66,7 +66,7 @@ if(!$res){
             $mail->charset = 'UTF-8';
             $mail->send();
             echo 'Message has been sent';
-            echo " <script> location.href='../html/cambio.html'; </script> ";
+            echo " <script> location.href='cambio.html'; </script> ";
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
