@@ -20,7 +20,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="space-y-4">
                         <h3 class="text-lg font-semibold">General</h3>
-                        <input name="nombre_moneda" type="text" placeholder="Nombre de la moneda" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="30">
+                        <input name="nombre_moneda" type="text" placeholder="Nombre de la moneda" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="50">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <select name="v_n" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                             <option selected disabled>Valor N.</option>
@@ -49,7 +49,7 @@
                         <h3 class="text-lg font-semibold">Emisión</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <input name="ini_emi" type="number" placeholder="Inicio" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required min="1816" max="2024">
-                            <input name="fin_emi" type="number" placeholder="Final" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required min="1816" max="2024">
+                            <input name="fin_emi" type="number" placeholder="Final" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"  min="1816" max="2024">
                         </div>
                         <textarea name="historia" placeholder="Historia" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="500"></textarea>
                     </div>
@@ -94,7 +94,7 @@
                                 </div>
                                 <input type="text" name="listel_anver" placeholder="Listel" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
                                 <input type="text" name="efigie_anver" placeholder="Efigie" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
-                                <input type="text" name="leyenda_anver" placeholder="Leyenda" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
+                                <input type="text" name="leyenda_anver" placeholder="Leyenda" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="500">
                                 <input type="text" name="exergo_anver" placeholder="Exergo" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
                                 <input type="text" name="ley_anver" placeholder="Ley" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
                                 <input type="text" name="grafilia_anver" placeholder="Grafilia" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
@@ -108,7 +108,7 @@
                                 </div>
                                 <input type="text" name="listel_rever" placeholder="Listel" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
                                 <input type="text" name="efigie_rever" placeholder="Efigie" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
-                                <input type="text" name="leyenda_rever" placeholder="Leyenda" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
+                                <input type="text" name="leyenda_rever" placeholder="Leyenda" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="500">
                                 <input type="text" name="exergo_rever" placeholder="Exergo" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
                                 <input type="text" name="ley_rever" placeholder="Ley" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
                                 <input type="text" name="grafilia_rever" placeholder="Grafilia" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
