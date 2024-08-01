@@ -152,9 +152,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Cerrar modal de añadir coleccion
+function cerrarAddCollection() {
+        document.getElementById('addCollection').classList.add('hidden');
+    }
+
 //averiguar el id de coleccion
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const select = document.querySelector('#colecciones-select');
     const buttonAdd = document.querySelector('#add-collection');
@@ -162,14 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Evento para el botón de añadir colección
     buttonAdd.addEventListener('click', (e) => {
-        e.preventDefault();
-        let id_coleccion = select.value;
-        if (!id_coleccion) {
-            alert('Por favor selecciona una colección.');
-            return;
-        }
-        enviarFormulario('add', id_coleccion);
+        document.getElementById('addCollection').classList.remove('hidden');
     });
+
+    
 
     // Evento para el botón de eliminar colección
     buttonDelete.addEventListener('click', (e) => {
@@ -248,7 +247,22 @@ document.addEventListener('DOMContentLoaded', () => {
 </head>
 <body class="h-screen flex flex-col">
     
+<div id="addCollection" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+        <div class="w-1/3 bg-white rounded-2xl shadow-xl border-light-blue border p-5">
+            <h1 class="text-center text-2xl mt-10 font-light-blue">Agregar Nueva Colección</h1> 
+            <form action="agregar_coleccion.php" method="post" class="flex flex-col">
     
+                <label class="flex flex-row m-4 border-2 border-light-blue w-4/5 mx-auto rounded-lg px-2 py-2">
+                    <input type="text" name="nuevacoleccion" id="nuevacoleccion" placeholder="Nombre de colección" class="border-0 bg-transparent w-full outline-none px-2 py-2" maxlength="20" required>
+                </label>                
+    
+                <div class="flex justify-between mt-8">
+                    <input type="submit" class="m-2 border-2 border-light-blue rounded-full px-4 py-2 w-1/2 bg-light-blue text-white text-lg font-patua cursor-pointer" value="Guardar">
+                    <button type="button" onclick="cerrarAddCollection()" class="m-2 border-2 border-light-blue rounded-full px-4 py-2 w-1/2 bg-light-blue text-white text-lg font-patua cursor-pointer">Cancelar</button>
+                </div>
+            </form>
+        </div>
+</div>
 
     <!-- Contenedor principal para el aside y el contenido dinámico -->
     <div class="flex flex-1 overflow-hidden">
