@@ -144,7 +144,7 @@ if (isset($_GET['id_coleccion'])) {
                         JOIN partes ON moneda_atributo.id_moneda_atributo = partes.id_moneda_atributo
                         JOIN imagen ON partes.id_imagen = imagen.id_imagen
                     WHERE 
-                        coleccion.id_coleccion = 1
+                        coleccion.id_coleccion = $id_coleccion
 
                     GROUP BY 
                         guarda_moneda.id_moneda,
@@ -180,7 +180,7 @@ if (isset($_GET['id_coleccion'])) {
                         JOIN lado ON anomalia.id_anomalia = lado.id_anomalia
                         JOIN imagen ON lado.id_imagen = imagen.id_imagen
                     WHERE 
-                        coleccion.id_coleccion = 1
+                        coleccion.id_coleccion = $id_coleccion
 
                     GROUP BY 
                         guarda_anomalia.id_anomalia,
