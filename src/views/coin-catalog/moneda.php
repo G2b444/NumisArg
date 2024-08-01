@@ -120,45 +120,31 @@ if($gral){
                             $anomaliaid=$anom['id_anomalia'];
                             $anomalianombre=$anom['nombre'];
 
-                            $sql="SELECT `direccion` 
+                            $sql="SELECT 
+                                    MAX(CASE WHEN lado.lado = 'anverso' THEN imagen.direccion END) AS anverso,
+                                    MAX(CASE WHEN lado.lado = 'reverso' THEN imagen.direccion END) AS reverso
                                 FROM `imagen`
                                 INNER JOIN lado ON imagen.id_imagen=lado.id_imagen
-                                WHERE id_anomalia='$anomaliaid' 
-                                AND lado='reverso'";
+                                WHERE id_anomalia= $anomaliaid;";
 
                             $res=mysqli_query($conectar,$sql);
-                            $anomaliaReverso=mysqli_fetch_assoc($res);
-                            if(isset($anomaliaReverso['direccion'])){
-                                $aReverso= mb_convert_encoding($anomaliaReverso['direccion'], "UTF-8", mb_detect_encoding($anomaliaReverso['direccion'],"UTF-8, ISO-8859-1, auto"));
-                            }
+                            $res=mysqli_fetch_assoc($res);
+                            $aAnverso = $res['anverso'];
+                            $aReverso = $res['reverso'];
+                            
 
-                            $sql="SELECT `direccion` 
-                                FROM `imagen`
-                                INNER JOIN lado ON imagen.id_imagen=lado.id_imagen
-                                WHERE id_anomalia='$anomaliaid' 
-                                AND lado='anverso'";
-
-                            $res=mysqli_query($conectar,$sql);
-                            $anomaliaAnverso=mysqli_fetch_assoc($res);
-                            if(isset($anomaliaAnverso['direccion'])){
-                                $aAnverso= mb_convert_encoding($anomaliaAnverso['direccion'], "UTF-8", mb_detect_encoding($anomaliaAnverso['direccion'],"UTF-8, ISO-8859-1, auto"));
-                            }
-
-                    echo '
-                    <!-- Tarjeta 3 -->
-                    <div class="carousel-item">
-                        <div class="flex justify-center absolute w-full 2xl:h-96 -translate-x-1/2 -translate-y-1/2">
-                            <div class="w-1/2 h-full shadow-lg flex flex-col flex-wrap justify-between rounded-xl py-10 bg-light-blue">
-                                <span class="flex flex-row justify-evenly">
-                                    <img src="'.$aAnverso.'" class="w-52 rounded-full">
-                                    <img src="'.$aReverso.'" class="w-52 rounded-full">
-                                </span>
-                                <h2 class="text-2xl px-10 pt-5 text-white">'.$anomalianombre.'</h2>
-                                <p class="text-xl pt-3 px-10 text-white">'.$det.'</p>   
+                            echo '<div class="carousel-item">
+                            <div class="flex justify-center absolute w-full 2xl:h-96 -translate-x-1/2 -translate-y-1/2">
+                                <div class="w-1/2 h-full shadow-lg flex flex-col justify-between rounded-xl py-10 bg-light-blue">
+                                    <span class="flex flex-row justify-evenly">
+                                        <img src="' . htmlspecialchars($aAnverso, ENT_QUOTES, 'UTF-8') . '" class="w-48 h-48 mx-6 object-cover rounded-full">
+                                        <img src="' . htmlspecialchars($aReverso, ENT_QUOTES, 'UTF-8') . '" class="w-48 h-48 mx-6 object-cover rounded-full">
+                                    </span>
+                                    <h2 class="text-2xl px-10 pt-5 text-white">' . htmlspecialchars($anomalianombre, ENT_QUOTES, 'UTF-8') . '</h2>
+                                    <p class="text-xl pt-3 px-10 text-white">' . htmlspecialchars($det, ENT_QUOTES, 'UTF-8') . '</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    ';
+                        </div>';
 
                 }
             }
