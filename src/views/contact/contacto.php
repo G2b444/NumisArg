@@ -19,22 +19,22 @@
             <p class="text-2xl mb-4 text-dark-blue"> argentina</p>
         </div>
         <div class="bg-white p-8 ">
-            <form>
+            <form method="POST" action="send_email.php">
                 <article class="flex items-center justify-evenly">
                   <div class="mb-4 w-60">
-                      <input type="text" id="name" class="w-full px-4 py-2 border-2 shadow-md rounded-xl border-dark-blue " placeholder="Nombre">
+                      <input type="text" name="nombre" id="name" class="w-full px-4 py-2 border-2 shadow-md rounded-xl border-dark-blue " placeholder="Nombre">
                   </div>
                   <div class="mb-4 w-60 ml-10">
-                      <input type="text" id="name" class="w-full px-4 py-2 border-2 shadow-md rounded-xl border-dark-blue" placeholder="Asunto">
+                      <input type="text" name="asunto" id="name" class="w-full px-4 py-2 border-2 shadow-md rounded-xl border-dark-blue" placeholder="Asunto">
                   </div>
                 </article>  
                 <div class="mb-4">
-                    <input type="text" id="subject" class="w-full px-4 py-2 border-2 shadow-md rounded-xl border-dark-blue" placeholder="Correo">
+                    <input type="text" name="email" id="subject" class="w-full px-4 py-2 border-2 shadow-md rounded-xl border-dark-blue" placeholder="Correo">
                 </div>
                 <div class="mb-4">
-                    <textarea id="message" class="w-full px-4 py-2 border-2 shadow-md rounded-xl border-dark-blue" placeholder="Mensaje" rows="10"></textarea>
+                    <textarea id="message" name="mensaje" class="w-full px-4 py-2 border-2 shadow-md rounded-xl border-dark-blue" placeholder="Mensaje" rows="10"></textarea>
                 </div>
-                <button type="submit" class="bg-dark-blue text-white font-patua text-2xl px-4 py-2 rounded-xl w-full">Enviar correo</button>
+                <button type="submit" name="send" class="bg-dark-blue text-white font-patua text-2xl px-4 py-2 rounded-xl w-full">Enviar correo</button>
             </form>
         </div>
     </section>
