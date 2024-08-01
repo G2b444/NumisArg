@@ -3,7 +3,7 @@ include '../../../header.php';
 include 'consultasmoneda.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -295,11 +295,21 @@ include '../../../footer.html';
     showCurrentItem();
 
 //formulario guardar moneda
-    //mostrar formulario
-    function mostrarguardar(){
-        document.getElementById("guardar").style.display = "block";
-        document.getElementById("guardar").style.position = "absolute";
+    var usuarioId = <?=isset($_SESSION['id_usuario']) ? 'true' : 'false' ?>;
+    if(usuarioId){
+        function mostrarguardar(){
+            //mostrar formulario
+            document.getElementById("guardar").style.display = "block";
+            document.getElementById("guardar").style.position = "absolute";
+        }
+    }else{
+        function mostrarguardar(){
+            //Almacenamiento del id moneda y redireccionamiento al login
+            <?php $_SESSION['id_moneda'] = $_GET['moneda']?>
+            window.location= "../login";
+        }
     }
+
     //cerrar formulario
     function cerrarguardar(){
         document.getElementById("guardar").style.display = "none";

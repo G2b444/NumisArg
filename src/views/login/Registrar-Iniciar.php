@@ -61,8 +61,15 @@ $res_3 = mysqli_query($conectar, $sql_3);
         $_SESSION['id_usuario'] = $id_usuario;
 
         if($id_tipo_usuario=='2'){
-            echo "<script> alert('El inicio de sesión fue exitoso.'); 
-            window.location='./../../../index.php'; </script>";
+            echo "<script> alert('El inicio de sesión fue exitoso.');</script>";
+
+            if(isset($_SESSION['id_moneda'])){
+                $id_moneda = $_SESSION['id_moneda'];
+                unset($_SESSION['id_moneda']);
+                echo "<script>window.location='../coin-catalog/moneda.php?moneda=$id_moneda';</script>";
+            }else{
+                echo "<script>window.location='./../../../index.php';</script>";
+            }
         }else{
             echo "<script> alert('El inicio de sesión fue exitoso.'); 
             window.location='../admin-pages/index.php'; </script>";

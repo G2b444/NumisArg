@@ -1,7 +1,6 @@
 <?php
 include '../../inc/conexion.php';
 
-$usuario=$_SESSION['id_usuario'];
 
 if(!isset($_GET['moneda'])){
     echo '<meta http-equiv="refresh" content="0; URL=./catalogo.php" />';
@@ -47,15 +46,18 @@ $id= $_GET['moneda'];
     $anomaliaselect=mysqli_query($conectar,$sql);
 
 //GUARDAR MONEDAS
-//estado moneda
-    $sql="SELECT * 
-        FROM estado";
-    $estado=mysqli_query($conectar,$sql);
+    if(isset($_SESSION['id_usuario'])){
+            $usuario=$_SESSION['id_usuario'];
+            
+        //estado moneda
+            $sql="SELECT * 
+                FROM estado";
+            $estado=mysqli_query($conectar,$sql);
 
-//billetera usuario
-    $sql="SELECT * 
-        FROM coleccion
-        WHERE id_usuario='$usuario'";
-    $coleccion=mysqli_query($conectar,$sql);
-
+        //billetera usuario
+            $sql="SELECT * 
+                FROM coleccion
+                WHERE id_usuario='$usuario'";
+            $coleccion=mysqli_query($conectar,$sql);
+    }
 ?>
