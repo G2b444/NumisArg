@@ -123,67 +123,78 @@ if (isset($_GET['id_coleccion'])) {
 
     // Consulta para obtener las monedas y anomalías de la colección seleccionada
     $sql_normal = "SELECT 
-    gm.id_guarda_moneda AS id_guarda,
-    gm.id_moneda,
-    gm.fecha_guardado,
-    moneda.nombre AS nombre_moneda,
-    gm.id_coleccion,
-    dg.id_estado,
-    dg.cantidad,
-    dg.valor_de_mercado,
-    e.estado,
-    i.direccion,
-    'Moneda Normal' AS tipo_moneda
-FROM 
-    guarda_moneda gm
-LEFT JOIN 
-    detalle_guarda dg ON gm.id_detalle_guarda = dg.id_detalle_guarda
-LEFT JOIN 
-    estado e ON dg.id_estado = e.id_estado
-LEFT JOIN
-    moneda ON moneda.id_moneda = gm.id_moneda
-LEFT JOIN 
-    anomalia a ON a.id_moneda = gm.id_moneda 
-LEFT JOIN
-    lado l ON l.id_anomalia = a.id_anomalia
-LEFT JOIN
-    imagen i ON i.id_imagen = l.id_imagen
-WHERE 
-    gm.id_coleccion = $id_coleccion
+                        guarda_moneda.id_moneda AS id_guarda,
+                        moneda.id_moneda,
+                        guarda_moneda.fecha_guardado,
+                        moneda.nombre AS nombre_moneda,
+                        coleccion.id_coleccion,
+                        detalle_guarda.id_estado,
+                        detalle_guarda.cantidad,
+                        detalle_guarda.valor_de_mercado,
+                        estado.estado,
+                        MAX(CASE WHEN partes.lado = 'reverso' THEN imagen.direccion END) AS direccion,
+                        'Moneda Normal' AS tipo_moneda
+                    FROM 
+                        coleccion
+                        JOIN guarda_moneda ON coleccion.id_coleccion = guarda_moneda.id_coleccion
+                        JOIN detalle_guarda ON guarda_moneda.id_detalle_guarda = detalle_guarda.id_detalle_guarda
+                        JOIN estado ON detalle_guarda.id_estado = estado.id_estado
+                        JOIN moneda ON guarda_moneda.id_moneda = moneda.id_moneda
+                        JOIN moneda_atributo ON moneda.id_moneda = moneda_atributo.id_moneda
+                        JOIN partes ON moneda_atributo.id_moneda_atributo = partes.id_moneda_atributo
+                        JOIN imagen ON partes.id_imagen = imagen.id_imagen
+                    WHERE 
+                        coleccion.id_coleccion = 1
 
-UNION ALL
+                    GROUP BY 
+                        guarda_moneda.id_moneda,
+                        moneda.id_moneda,
+                        guarda_moneda.fecha_guardado,
+                        moneda.nombre,
+                        coleccion.id_coleccion,
+                        detalle_guarda.id_estado,
+                        detalle_guarda.cantidad,
+                        detalle_guarda.valor_de_mercado,
+                        estado.estado
 
-SELECT 
-    ga.id_guarda_anomalia AS id_guarda,
-    ga.id_anomalia AS id_moneda,
-    ga.fecha_guardado,
-    moneda.nombre AS nombre_moneda,
-    ga.id_coleccion,
-    dg.id_estado,
-    dg.cantidad,
-    dg.valor_de_mercado,
-    e.estado,
-    i.direccion,
-    'Moneda Anomalía' AS tipo_moneda
-FROM 
-    guarda_anomalia ga
-LEFT JOIN 
-    detalle_guarda dg ON ga.id_detalle_guarda = dg.id_detalle_guarda
-LEFT JOIN 
-    estado e ON dg.id_estado = e.id_estado
-LEFT JOIN
-    moneda ON moneda.id_moneda = ga.id_anomalia
-LEFT JOIN
-    anomalia ON anomalia.id_moneda = moneda.id_moneda AND anomalia.id_anomalia = ga.id_anomalia
-LEFT JOIN
-    lado l ON l.id_anomalia = ga.id_anomalia 
-LEFT JOIN 
-    imagen i ON i.id_imagen = l.id_imagen
-WHERE 
-    ga.id_coleccion = $id_coleccion
+                    UNION ALL
 
-ORDER BY fecha_guardado
-    ";
+                    SELECT 
+                        guarda_anomalia.id_anomalia AS id_guarda,
+                        anomalia.id_anomalia,
+                        guarda_anomalia.fecha_guardado,
+                        anomalia.nombre AS nombre_anomalia,
+                        coleccion.id_coleccion,
+                        detalle_guarda.id_estado,
+                        detalle_guarda.cantidad,
+                        detalle_guarda.valor_de_mercado,
+                        estado.estado,
+                        MAX(CASE WHEN lado.lado = 'reverso' THEN imagen.direccion END) AS direccion,
+                        'Anomalia' AS tipo_moneda
+                    FROM 
+                        coleccion
+                        JOIN guarda_anomalia ON coleccion.id_coleccion = guarda_anomalia.id_coleccion
+                        JOIN detalle_guarda ON guarda_anomalia.id_detalle_guarda = detalle_guarda.id_detalle_guarda
+                        JOIN estado ON detalle_guarda.id_estado = estado.id_estado
+                        JOIN anomalia ON guarda_anomalia.id_anomalia = anomalia.id_anomalia
+                        JOIN lado ON anomalia.id_anomalia = lado.id_anomalia
+                        JOIN imagen ON lado.id_imagen = imagen.id_imagen
+                    WHERE 
+                        coleccion.id_coleccion = 1
+
+                    GROUP BY 
+                        guarda_anomalia.id_anomalia,
+                        anomalia.id_anomalia,
+                        guarda_anomalia.fecha_guardado,
+                        anomalia.nombre,
+                        coleccion.id_coleccion,
+                        detalle_guarda.id_estado,
+                        detalle_guarda.cantidad,
+                        detalle_guarda.valor_de_mercado,
+                        estado.estado
+
+                    ORDER BY fecha_guardado
+                ";
 
     $result = mysqli_query($conectar, $sql_normal);
 
