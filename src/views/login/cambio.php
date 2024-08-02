@@ -61,7 +61,14 @@ if(isset($_POST['submit']) && !empty($ps) && !empty($ps2) && !empty($codigo)){
         }else{
             $ps = mysqli_fetch_assoc($res);
             $ps = $ps['contraseña'];
-            $sql = "UPDATE `usuario` SET `nombre`='$usu' WHERE `id_usuario` = '$id' AND `contraseña`='$ps' AND `correo`='$cor'";
+
+            $sql = "SELECT * FROM usuario WHERE `id_usuario` = '$id' AND `contraseña`='$ps' AND `correo`='$cor'";
+
+            if(mysqli_num_rows(mysqli_query($conectar, $sql))==0){
+                echo "<script>window.location='../user-profile/main.php?success=var_error';</script>";
+            }
+
+            $sql = "UPDATE `usuario` SET `nombre`='$usu' WHERE `id_usuario` = '$id'";
             $res = mysqli_query($conectar, $sql);
            
             if(!$res){
