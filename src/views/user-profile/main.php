@@ -33,56 +33,50 @@ if(!$res_perfil){
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Cuenta</title>
     <script>
-        // Mostrar sección por defecto al cargar la página
-        document.addEventListener('DOMContentLoaded', () => {
+    // Mostrar sección por defecto al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
     // Mostrar sección por defecto al cargar la página
     showSection('colecciones'); // Mostrar sección colecciones por defecto
 
-    // Añadir eventos de clic a los botones de personalización y eliminación
-    document.querySelectorAll('.btn-customize').forEach(button => {
+    // Añadir evento de clic al botón de selección
+    document.getElementById('seleccionar').addEventListener('click', function() {
+        toggleSelectionGrid();
+    });
+
+    // Añadir eventos de clic a todos los botones con la clase 'btn-action'
+    document.querySelectorAll('.btn-action').forEach(button => {
         button.addEventListener('click', function() {
-            toggleSelectionGrid();
-            document.getElementById('apply-changes').setAttribute('data-action', this.getAttribute('data-action'));
-            document.getElementById('apply-changes').classList.remove('hidden'); // Mostrar botón
+            var selectedIds = [];
+            document.querySelectorAll('.selection-checkbox:checked').forEach(function(checkbox) {
+                selectedIds.push(checkbox.value);
+            });
+
+            var action = this.getAttribute('data-action'); // Obtener la acción (customize o delete)
+            alert(action);
+
+            // Enviar los datos seleccionados a PHP
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'process_changes.php';
+
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'selected_ids';
+            input.value = JSON.stringify(selectedIds);
+            form.appendChild(input);
+
+            var actionInput = document.createElement('input');
+            actionInput.type = 'hidden';
+            actionInput.name = 'action';
+            actionInput.value = action;
+            form.appendChild(actionInput);
+
+            document.body.appendChild(form);
+            form.submit();
         });
     });
 
-    document.querySelectorAll('.btn-delete').forEach(button => {
-        button.addEventListener('click', function() {
-            toggleSelectionGrid();
-            document.getElementById('apply-changes').setAttribute('data-action', this.getAttribute('data-action'));
-            document.getElementById('apply-changes').classList.remove('hidden'); // Mostrar botón
-        });
     });
-
-    // Añadir evento de clic al botón de realizar cambios
-    document.getElementById('apply-changes').addEventListener('click', function() {
-        var selectedIds = [];
-        document.querySelectorAll('.selection-checkbox:checked').forEach(function(checkbox) {
-            
-            selectedIds.push(checkbox.value);
-        });
-        var action = this.getAttribute('data-action'); // Obtener la acción (customize o delete)
-        
-        // Enviar los datos seleccionados a PHP
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'process_changes.php';
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'selected_ids';
-        input.value = JSON.stringify(selectedIds);
-        form.appendChild(input);
-        var actionInput = document.createElement('input');
-        actionInput.type = 'hidden';
-        actionInput.name = 'action';
-        actionInput.value = action;
-        form.appendChild(actionInput);
-        document.body.appendChild(form);
-        form.submit();
-       
-    });
-});
 
 // Función para mostrar y ocultar la rejilla de selección
 function toggleSelectionGrid() {
@@ -357,16 +351,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
 
                 <div class="flex flex-row justify-end items-end gap-5 bg-customBlue2 p-2">
-                    <button class="btn-customize" data-action="customize">
+                                <!--En proceso-->
+                    <button class="btn-action" data-action="customize">
                         <img src="../../assets/icon/customize.png" class="w-8 h-8">
                     </button>
-                    <button class="btn-delete mr-8" data-action="delete">
+                    <button class="mr-8 btn-action" data-action="delete">
                         <img src="../../assets/icon/trash.png" class="w-8 h-8">
                     </button>
                 </div>
 
                 <div class="flex justify-end bg-customBlue2">
-                    <button id="apply-changes" data-action="delete" class="bg-currentColor text-white text-xl mr-8 border border-gray rounded-3xl p-2">Modificar</button>
+                    <button id="seleccionar" class="bg-currentColor text-white text-xl mr-8 border border-gray rounded-3xl p-2">Seleccionar</button>
                 </div>
 
                 <div class="pt-4 h-full bg-customBlue2" id="collection-content"></div>
@@ -378,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             <div class="grid grid-cols-2 grid-flow-col gap">
                 <div class="mt-8 w-96 h-64">
-                    <form action="../php/cambio.php" method="post" class="mt-4 grid grid-rows grid-rows-col gap-0.5" id="form1">
+                    <form action="../login/cambio.php" method="post" class="mt-4 grid grid-rows grid-rows-col gap-0.5" id="form1">
                         <h2 class="text-3xl font-normal">Perfil</h2>
 
                         <div class="relative my-6">
@@ -401,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="mt-8 w-96 h-64">
-                    <form action="../php/cambio.php" method="post" class="mt-4 grid grid-rows grid-rows-col gap-0.5" id="form2">
+                    <form action="../login/cambio.php" method="post" class="mt-4 grid grid-rows grid-rows-col gap-0.5" id="form2">
                         <h2 class="text-3xl  font-normal">Seguridad</h2>
 
                         <div class="relative my-6">
