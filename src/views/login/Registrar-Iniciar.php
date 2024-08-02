@@ -59,6 +59,7 @@ $res_3 = mysqli_query($conectar, $sql_3);
         $_SESSION['nombre'] = $nombre;
         $_SESSION['contraseña'] = $contraseña; 
         $_SESSION['id_usuario'] = $id_usuario;
+        $_SESSION['id_tipo_usuario'] = $id_tipo_usuario;
 
         if($id_tipo_usuario=='2'){
 

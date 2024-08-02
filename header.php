@@ -12,6 +12,13 @@
     
 <?php
 session_start();
+if(isset($_SESSION['id_tipo_usuario'])){
+    $id = $_SESSION['id_tipo_usuario'];
+
+    if($id == 1){
+        echo "<script>window.location='src/views/admin-pages';</script>";
+    }
+}
 if(isset($_SESSION['id_usuario'])){
     $usuario=$_SESSION['id_usuario'];
     ECHO '<header class="flex items-center bg-dark-blue h-20 overflow-visible">
