@@ -52,7 +52,6 @@ if(!$res_perfil){
             });
 
             var action = this.getAttribute('data-action'); // Obtener la acción (customize o delete)
-            alert(action);
 
             // Enviar los datos seleccionados a PHP
             var form = document.createElement('form');
