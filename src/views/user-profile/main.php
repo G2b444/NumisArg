@@ -309,6 +309,14 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </div>
+<div class="modal" id="delete-successful">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">¡Eliminación éxitosa!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('delete-successful')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
 
     
 <div id="addCollection" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
@@ -527,6 +535,10 @@ if(isset($_GET['success'])){
 
         case 'var_error':
             echo "<script>openModal('var_error');</script>";
+            break;
+
+        case 'eliminacion_exitosa':
+            echo "<script>openModal('delete-successful');</script>";
             break;
             
 

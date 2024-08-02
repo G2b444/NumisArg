@@ -320,11 +320,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (($sqlgm && $sqlga) || ($sqlgm && $conectar->query($sqlgm) === TRUE && $sqlga && $conectar->query($sqlga) === TRUE)) {
-            echo "<script> alert('Monedas eliminadas.'); window.location='main.php'; </script>";
+            echo "<script>window.location='main.php?success=eliminacion_exitosa'; </script>";
         } elseif (!$sqlgm && !$sqlga) {
             echo "No hay registros para actualizar.";
         }
-        echo "<script> alert('Monedas eliminadas.'); window.location='main.php'; </script>";
+        echo "<script>window.location='main.php?success=eliminacion_exitosa'; </script>";
       
         $conectar->close();
     }
