@@ -12,11 +12,11 @@ if(isset($_POST['R'])){
         $fecha = date('Y-m-d'); // Formato adecuado para la base de datos (AAAA-MM-DD)
 
         if($ID == $ID2){
-            $sql_1 = "SELECT * FROM usuario WHERE correo = '$mail' AND contraseña = '$ID' AND correo = '$mail'";
+            $sql_1 = "SELECT * FROM usuario WHERE correo = '$mail'";
             $res_1 = mysqli_query($conectar, $sql_1);
 
             if(mysqli_num_rows($res_1) > 0){
-                echo "<script> alert('El registro no se ha podido llevar a cabo. Intente nuevamente.'); history.go(-1); </script>";
+                echo "<script>window.location='index.php?success=correo_existente';</script>";
             } else {
                 $sql_2 = "INSERT INTO usuario (id_usuario, id_tipo_usuario, nombre, correo, contraseña, fecha_inicio)
                           VALUES ('', '2', '$nombre', '$mail', '$ID', '$fecha')";
