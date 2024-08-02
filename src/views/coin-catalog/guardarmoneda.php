@@ -3,6 +3,9 @@ include '../../inc/conexion.php';
 
 
 if(isset($_POST)){
+
+    $anterior_url = $_SERVER['HTTP_REFERER'];
+
     session_start();
     $usuario = $_SESSION['id_usuario'];
     $moneda = $_POST['moneda'];
@@ -81,7 +84,8 @@ if(isset($_POST)){
             VALUES ($id_detalle,'$anomalia',$coleccion,'$fechaguardado')";
         $res = mysqli_query($conectar, $sql);
         if($res){
-            echo '<script>alert("La moneda anomala se ha guardado correctamente.");history.go(-1);</script>'; 
+            $anterior_url .= "&success=añadir_moneda_anomala_coleccion";
+            echo '<script>window.location="'.$anterior_url.'";</script>'; 
         }
     }else{
      //guardar sin anomalia 
@@ -89,7 +93,8 @@ if(isset($_POST)){
         VALUES ($id_detalle,'$moneda',$coleccion,'$fechaguardado')";
     $res = mysqli_query($conectar,$sql);
     if($res){
-        echo '<script>alert("La moneda se ha guardado correctamente.");history.go(-1);</script>'; 
+        $anterior_url .= "&success=añadir_moneda_coleccion";
+        echo '<script>window.location="'.$anterior_url.'";</script>'; 
     }
     }
 }

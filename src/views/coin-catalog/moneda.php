@@ -12,8 +12,29 @@ include 'consultasmoneda.php';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
     <title>Moneda</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../../js/funciones.js"></script>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
+<div class="modal-overlay" id="modal-overlay"></div>
+<div class="modal" id="add-anomala-collection-success">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">¡Moneda anomala guardada de forma éxitosa!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('add-anomala-collection-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="add-coin-collection-success">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">¡Moneda guardada de forma éxitosa!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('add-coin-collection-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
 <?php
 
 if($gral){
@@ -321,3 +342,39 @@ include '../../../footer.html';
 </script>
 </body>
 </html>
+<?php 
+
+if(isset($_GET['success'])){
+
+    $proceso = $_GET['success'];
+
+    switch ($proceso) {
+        case 'añadir_moneda_anomala_coleccion':
+            echo "<script>openModal('add-anomala-collection-success');</script>";
+            break;
+
+        case 'añadir_moneda_coleccion':
+            echo "<script>openModal('add-coin-collection-success');</script>";
+            break;
+    }
+
+    // Imprime el script JavaScript para modificar la URL
+    echo "
+    <script>
+        function removeFromChar(url, char) {
+            let index = url.indexOf(char);
+            if (index !== -1) {
+                return url.substring(0, index);
+            }
+            return url;
+        }
+
+        let currentUrl = window.location.href;
+        let modifiedUrl = removeFromChar(currentUrl, '&');
+
+        // Actualiza la URL en la barra de direcciones del navegador
+        window.history.replaceState({}, '', modifiedUrl);
+    </script>";
+}
+
+?>
