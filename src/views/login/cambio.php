@@ -1,5 +1,5 @@
 <?php
-include ("../libreria/conexion.php");
+include ("../../inc/conexion.php");
 session_start();
     
 if(isset($_POST['submit'])){
@@ -43,7 +43,9 @@ if(isset($_POST['submit']) && !empty($ps) && !empty($ps2) && !empty($codigo)){
     $con = $_POST['contraseña'];
 
     
-    if(!empty($usu) OR !empty($cor) OR !empty($con)){
+
+    
+    if(empty($usu) && empty($cor) && empty($con)){
         echo '<script> alert("Hubo un problema al actualizar el nombre"); history.go(-1); </script>';
     }else{
 
@@ -65,7 +67,7 @@ if(isset($_POST['submit']) && !empty($ps) && !empty($ps2) && !empty($codigo)){
             if(!$res){
                 echo '<script> alert("No se pudieron actualizar los datos correctamente. Intente nuevamente 2"); history.go(-1); </script>';
             }else{
-                echo '<script> alert("Los cambios se han hecho correctamente"); window.location="../html/main.html" </script>';
+                echo '<script> window.location="../user-profile/main.php?success=cambio_de_nombre"; </script>';
             }
         }
         
