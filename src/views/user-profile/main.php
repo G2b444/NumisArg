@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <hr class="border-t-2 border-gray-400">
             
             <div class="grid grid-flow-col gap-8">
-                <div class="mt-8 w-96 h-64">
+                <div class="mt-8 w-58 h-42">
                     <form action="../login/cambio.php" method="post" class="mt-4 grid grid-rows grid-rows-col gap-0.5" id="form1">
                         <h2 class="text-3xl font-normal">Perfil</h2>
 
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </form>
                 </div>
 
-                <div class="mt-8 w-96 h-64">
+                <div class="mt-8 w-58 h-42">
                     <form action="../login/cambio.php" method="post" class="mt-4 grid grid-rows grid-rows-col gap-0.5" id="form2">
                         <h2 class="text-3xl  font-normal">Seguridad</h2>
 
