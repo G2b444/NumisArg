@@ -277,6 +277,14 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </div>
+<div class="modal" id="change-name-profile-success">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">¡Cambio de nombre de perfil realizado con éxito!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('change-name-profile-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
 
     
 <div id="addCollection" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
@@ -479,6 +487,10 @@ if(isset($_GET['success'])){
 
         case 'actualizacion_moneda':
             echo "<script>openModal('update-details-collection-success');</script>";
+            break;
+
+        case 'cambio_de_nombre':
+            echo "<script>openModal('change-name-profile-success');</script>";
             break;
             
 
