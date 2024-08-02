@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 <div class="modal" id="var_error">
     <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
-        <h1 class="mb-6 text-lg">¡Los datos que introdujo son erroneos!</h1>
+        <h1 class="mb-6 text-lg">¡Los datos que introdujo son erroneos! Revise los datos de verificación</h1>
         <div class="flex justify-around">
             <button onclick="closeModal('var_error')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
         </div>
