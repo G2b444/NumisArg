@@ -285,6 +285,22 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </div>
+<div class="modal" id="change-password-success">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">¡Cambio de contraseña realizado con éxito!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('change-password-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="change-password-fail">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">Los datos son erroneos o vacíos. Intente nuevamente</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('change-password-fail')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
 
     
 <div id="addCollection" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
@@ -491,6 +507,14 @@ if(isset($_GET['success'])){
 
         case 'cambio_de_nombre':
             echo "<script>openModal('change-name-profile-success');</script>";
+            break;
+
+        case 'cambio_contraseña_éxito':
+            echo "<script>openModal('change-password-success');</script>";
+            break;
+
+        case 'error_cambiar_contraseña':
+            echo "<script>openModal('change-password-fail');</script>";
             break;
             
 

@@ -12,7 +12,7 @@ if(isset($_POST['submit']) && !empty($ps) && !empty($ps2) && !empty($codigo)){
 
     $numero = $_SESSION['numero'];
     $correo = $_SESSION['correo'];
-    
+
     if("$ps" == "$ps2" && $codigo == $numero){
 
         $sql = " SELECT * FROM usuario WHERE correo = '$correo'";
@@ -94,10 +94,10 @@ if(isset($_POST['submit']) && !empty($ps) && !empty($ps2) && !empty($codigo)){
         if(!$res){
             echo '<script> alert("No se pudieron actualizar los datos correctamente. Intente nuevamente"); history.go(-1); </script>';
         }else{
-            echo '<script> alert("Los cambios se han hecho correctamente"); window.location="../php/main.php"; </script>';
+            echo '<script> window.location="../user-profile/main.php?success=cambio_contraseña_éxito";</script>';
         }
     }else{
-        echo '<script> alert("Los datos son erroneos o vacíos. Intente nuevamente"); history.go(-1); </script>';
+        echo '<script> window.location="../user-profile/main.php?success=error_cambiar_contraseña" </script>';
         
     }
 
