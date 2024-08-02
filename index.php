@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NumisArg</title>
+    <link rel="icon" href="src/assets/multimedia/logo/LOGO NUMISARG.ico" type="image/x-icon">
    </head>
 <body class="bg-white overflow-x-hidden">
     <?php include 'header.php'; ?>

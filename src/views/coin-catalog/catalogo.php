@@ -49,7 +49,8 @@ $gen= mysqli_query($conectar,$sql);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
-    <title>Catálogo</title>
+    <title>NumisArg</title>
+    <link rel="icon" href="../../assets/multimedia/logo/LOGO NUMISARG.ico" type="image/x-icon">
 </head>
 <body>
     <?php include  '../../../header.php'; 
