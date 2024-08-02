@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h1 class="text-4xl m-4 font-normal">Configuración</h1>
             <hr class="border-t-2 border-gray-400">
             
-            <div class="grid grid-cols-2 grid-flow-col gap">
+            <div class="grid grid-flow-col gap-8">
                 <div class="mt-8 w-96 h-64">
                     <form action="../login/cambio.php" method="post" class="mt-4 grid grid-rows grid-rows-col gap-0.5" id="form1">
                         <h2 class="text-3xl font-normal">Perfil</h2>
