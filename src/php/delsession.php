@@ -16,7 +16,7 @@
 
         session_destroy();
 
-        header('Location: ../../index.php');
+        echo "<script>window.location='/numisarg/';</script>";
         exit;
     }
 

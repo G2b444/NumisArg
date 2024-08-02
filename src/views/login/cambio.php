@@ -26,7 +26,7 @@ if(isset($_POST['submit']) && !empty($ps) && !empty($ps2) && !empty($codigo)){
             if(!$res){
                 echo '<script> alert("No se pudo realizar el cambio de contraseña. Inténtelo nuevamente"); history.go(-1); </script>';
             }else{
-                echo' <script> alert("Cambio de contraseña realizado con éxito. Inicie sesión nuevamente."); window.location="../libreria/delsession.php"; </script> ';
+                echo' <script> alert("Cambio de contraseña realizado con éxito. Inicie sesión nuevamente."); window.location="../../php/delsession.php"; </script> ';
             }
         }
 
