@@ -256,11 +256,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (($sqlnormal && $sql_anomalias) || ($sqlnormal && $conectar->query($sqlnormal) === TRUE && $sql_anomalias && $conectar->query($sql_anomalias) === TRUE)) {
-            echo "<script> alert('Registros actualizados exitosamente.'); window.location='main.php'; </script>";
+            echo "<script> window.location='main.php'; </script>";
         } elseif (!$sqlnormal && !$sql_anomalias) {
             echo "No hay registros para actualizar.";
         } else {
-            echo "<script> alert('Se han actualizado los registros'); window.location='main.php'; </script>";
+            echo "<script>window.location='main.php?success=actualizacion_moneda';</script>";
         }
     }elseif(isset($_POST['delete'])){ //borrar monedas seleccionadas
 
