@@ -48,6 +48,7 @@ $gen= mysqli_query($conectar,$sql);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f594a2a0d1.js" crossorigin="anonymous"></script>
     <title>Catálogo</title>
 </head>
 <body>
@@ -58,7 +59,7 @@ $gen= mysqli_query($conectar,$sql);
             <form class="p-2 pt-4" action="catalogo.php" method="get">
                 <div class="inline px-1">
                     <p class="inline font-semibold">En </p>
-                    <select name="campo" id="campo" class="border-2 rounded-lg  border-blue-950">
+                    <select name="campo" id="campo" class="border-2 rounded-lg  border-blue-950 p-1">
                         <option value="nombre">Nombre</option>
                         <option value="valor">Valor</option>
                         <option value="divisa">Divisa</option>
@@ -71,16 +72,16 @@ $gen= mysqli_query($conectar,$sql);
                 </div>
                 <div class="inline px-1">
                     <p class="inline font-semibold">buscar </p>
-                    <input type="text" name="valor" id="valor" maxlength="20" class="border-2 rounded-lg  border-blue-950">
+                    <input type="text" name="valor" id="valor" maxlength="20" class="border-2 rounded-lg border-blue-950 p-1">
                 </div>
                 
-                <input type="submit" class="px-3 mx-2 rounded-md bg-blue-950 font-semibold">
+                <button type="submit" name="buscar" class="bg-dark-blue text-white px-4 py-2 rounded"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
     </section>
     <section class="p-5 w-full h-fit flex flex-row flex-wrap justify-evenly ">
         <?php
-        if(empty($gen)){
-            echo '<p>No hay monedas con estas características</p>';
+        if(mysqli_num_rows($gen) == 0){
+            echo '<h1 class="p-36 text-lg">No hay monedas con estas características</h1>';
         }else{
             while($registrogral=mysqli_fetch_assoc($gen)){
 
