@@ -37,7 +37,8 @@ if(isset($_POST)){
     }
 
     if($coleccion==''){
-        echo '<script>alert("ERROR: debe seleccionar una colección");history.go(-1);</script>';
+        $anterior_url .= "&success=seleccione_coleccion";
+        echo '<script>window.location="";</script>';
     }
 
     if(($coleccion==0) AND ($nuevacoleccion=="")){

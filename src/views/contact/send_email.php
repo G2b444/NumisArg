@@ -47,9 +47,23 @@ use PHPMailer\PHPMailer\Exception;
             $mail->charset = 'UTF-8';
             $mail->send();
             echo 'Message has been sent';
-            echo " <script> location.href='cambio.html'; </script> ";
+            echo " <script> location.href='contacto.php?success=send_message'; </script> ";
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
+
+    if(isset($_GET['success'])){
+
+        $proceso = $_GET['success'];
+    
+        switch ($proceso) {
+            case 'send_message':
+                echo "<script>openModal('add-collection-success');</script>";
+                break;
+        }
+    
+        echo "<script>window.history.replaceState({}, '', 'main.php');</script>";
+    }
+
 ?>

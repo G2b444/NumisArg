@@ -35,6 +35,14 @@ include 'consultasmoneda.php';
         </div>
     </div>
 </div>
+<div class="modal" id="select-collection">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">!Debe seleccionar una colección para guardar esta moneda!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('select-collection')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
 <?php
 
 if($gral){
@@ -209,8 +217,8 @@ if($gral){
         ?>
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
             <img src="../../assets/icon/billetera.svg" class="w-6 m-1">
-            <select name="estado" id="estado" class="border-0 bg-transparent w-full rounded-lg outline-none">
-                <option value="">Estado de moneda</option>
+            <select name="estado" id="estado" class="border-0 bg-transparent w-full rounded-lg outline-none" required>
+                <option value="" selected disabled>Estado de moneda</option>
                 <?php
                 if($estado){
                     while($est = mysqli_fetch_array($estado)){
@@ -240,8 +248,8 @@ if($gral){
 
         <label class="flex flex-row m-2 border-2 border-light-blue w-4/5 place-self-center rounded-full px-1">
             <img src="../../assets/icon/anomalia.svg" class="w-6 m-1">
-            <select name="coleccion" id="coleccion" class="border-0 bg-transparent w-full rounded-lg outline-none">
-                <option value="">Colección a guardar</option>
+            <select name="coleccion" id="coleccion" class="border-0 bg-transparent w-full rounded-lg outline-none" required>
+                <option value="" selected disabled>Colección a guardar</option>
                 <?php
                 if($coleccion){
                     while($col = mysqli_fetch_assoc($coleccion)){
@@ -355,6 +363,10 @@ if(isset($_GET['success'])){
 
         case 'añadir_moneda_coleccion':
             echo "<script>openModal('add-coin-collection-success');</script>";
+            break;
+
+        case 'seleccione_coleccion':
+            echo "<script>openModal('select-collection');</script>";
             break;
     }
 

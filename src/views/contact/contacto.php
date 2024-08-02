@@ -6,9 +6,24 @@
     <title>Contact Form</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../../js/funciones.js"></script>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
     <?php include '../../../header.php'; ?>
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="send_message-success">
+        <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+            <h1 class="mb-6 text-lg">El mensaje se envió con éxito</h1>
+            <p class="mb-6">¡Gracias por contactarnos!</p>
+            <div class="flex justify-around">
+                <button onclick="closeModal('send_message-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+            </div>
+        </div>
+    </div>
 
     <section class="h-screen flex items-center justify-start ">
         <div class="px-32 h-full flex flex-col items-start justify-center">
@@ -42,6 +57,23 @@
     <?php include '../../../footer.html'; ?>
 </body>
 </html>
+
+<?php
+
+if(isset($_GET['success'])){
+
+    $proceso = $_GET['success'];
+
+    switch ($proceso) {
+        case 'send_message':
+            echo "<script>openModal('send_message-success');</script>";
+            break;
+    }
+
+    echo "<script>window.history.replaceState({}, '', 'contacto.php');</script>";
+}
+
+?>
 
 <style>
     .bg-dark-blue {
