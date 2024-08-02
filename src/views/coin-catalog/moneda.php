@@ -44,6 +44,15 @@ include 'consultasmoneda.php';
         </div>
     </div>
 </div>
+<div class="modal" id="inicio-exitoso">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">!Inicio sesión éxitoso!</h1>
+        <h1 class="mb-6 text-lg">¡Ahora puedes añadir la moneda a tu colección!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('inicio-exitoso')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
 <?php
 
 if($gral){
@@ -369,9 +378,12 @@ if(isset($_GET['success'])){
         case 'seleccione_coleccion':
             echo "<script>openModal('select-collection');</script>";
             break;
+
+        case 'inicio-exitoso':
+            echo "<script>openModal('inicio-exitoso');</script>";
+            break;
     }
 
-    // Imprime el script JavaScript para modificar la URL
     echo "
     <script>
         function removeFromChar(url, char) {

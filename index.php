@@ -5,8 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NumisArg</title>
     <link rel="icon" href="src/assets/multimedia/logo/LOGO NUMISARG.ico" type="image/x-icon">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="src/js/funciones.js"></script>
    </head>
 <body class="bg-white overflow-x-hidden">
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="inicio-exitoso">
+        <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+            <h1 class="mb-6 text-lg">!Inicio sesión éxitoso!</h1>
+            <div class="flex justify-around">
+                <button onclick="closeModal('inicio-exitoso')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+            </div>
+        </div>
+    </div>
     <?php include 'header.php'; ?>
     <main class="text-center">
         <div class="w-screen h-5/6 flex justify-between items-center my-5 ">
@@ -34,4 +46,21 @@
     <?php include 'footer.html'; ?>
 </body>
 </html>
+<?php 
 
+if(isset($_GET['success'])){
+
+    $proceso = $_GET['success'];
+
+    switch ($proceso) {
+
+        case 'inicio-exitoso':
+            echo "<script>openModal('inicio-exitoso');</script>";
+            break;
+            
+    }
+
+    echo "<script>window.history.replaceState({}, '', 'index.php');</script>";
+}
+
+?>
