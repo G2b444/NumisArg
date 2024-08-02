@@ -1,46 +1,46 @@
 <?php
 include '../../inc/conexion.php';
 
-$sql="SELECT nombre, inicio_emision, fin_emision, moneda.id_moneda, id_moneda_atributo
+$sql="SELECT moneda.nombre, inicio_emision, fin_emision, moneda.id_moneda, id_moneda_atributo
     FROM  moneda
-    INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda";
+    INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda
+    INNER JOIN valor_nominal ON moneda_atributo.id_valor_nominal=valor_nominal.id_valor_nominal
+    INNER JOIN divisa ON moneda_atributo.id_divisa=divisa.id_divisa
+    INNER JOIN tipo_moneda ON moneda_atributo.id_tipo_moneda=tipo_moneda.id_tipo_moneda";
 
 
-$campo=0;
 if(isset($_GET['campo']) && isset($_GET['valor'])) {
 
     $campo= $_GET['campo'];
     $valor= $_GET['valor'];
-}
+
 
 switch($campo){
-    case 1:
-        $sql .= "WHERE moneda.nombre LIKE '%$valor%'";
-        echo $valor;
+    case 'nombre':
+        $sql .= " WHERE moneda.nombre LIKE '%$valor%'";
     break;
-    case 2:
-        $sql .= "WHERE moneda.nombre LIKE '%$valor%'";
-        echo $valor;
+    case 'valor':
+        $sql .= " WHERE valor_nominal.valor LIKE '%$valor%'";
     break;
-    case 3:
-        
+    case 'divisa':
+        $sql .= " WHERE divisa.nombre LIKE '%$valor%'";
     break;
-    case 4:
-        
+    case 'tipo_moneda':
+        $sql .= " WHERE tipo_moneda.tipo_moneda LIKE '%$valor%'"; 
     break;
-    case 5:
-        
+    case 'ini_emi':
+        $sql .= " WHERE moneda_atributo.inicio_emision LIKE %$valor%";
     break;
-    case 6:
-        
+    case 'fin_emi':
+        $sql .= " WHERE moneda_atributo.fin_emision LIKE %$valor%";
     break;
 }
-
+}
 $gen= mysqli_query($conectar,$sql);
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,17 +59,19 @@ $gen= mysqli_query($conectar,$sql);
                 <div class="inline px-1">
                     <p class="inline font-semibold">En </p>
                     <select name="campo" id="campo" class="border-2 rounded-lg  border-blue-950">
-                        <option value="1">Nombre</option>
-                        <option value="2">Valor</option>
-                        <option value="3">Divisa</option>
-                        <option value="4">Tipo de moneda</option>
-                        <option value="5">Inicio de emisión</option>
-                        <option value="6">Final de emisión</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="valor">Valor</option>
+                        <option value="divisa">Divisa</option>
+                        <option value="tipo_moneda">Tipo de moneda</option>
+                        <!-- Revisar
+                        <option value="ini_emi">Inicio de emisión</option>
+                        <option value="fin_emi">Final de emisión</option>
+                        -->
                     </select>
                 </div>
                 <div class="inline px-1">
                     <p class="inline font-semibold">buscar </p>
-                    <input type="text" name="valor" id="valor" maxlength="20"required class="border-2 rounded-lg  border-blue-950">
+                    <input type="text" name="valor" id="valor" maxlength="20" class="border-2 rounded-lg  border-blue-950">
                 </div>
                 
                 <input type="submit" class="px-3 mx-2 rounded-md bg-blue-950 font-semibold">
