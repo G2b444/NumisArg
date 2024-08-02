@@ -53,17 +53,5 @@ use PHPMailer\PHPMailer\Exception;
         }
     }
 
-    if(isset($_GET['success'])){
-
-        $proceso = $_GET['success'];
-    
-        switch ($proceso) {
-            case 'send_message':
-                echo "<script>openModal('add-collection-success');</script>";
-                break;
-        }
-    
-        echo "<script>window.history.replaceState({}, '', 'main.php');</script>";
-    }
 
 ?>
