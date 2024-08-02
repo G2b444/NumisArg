@@ -33,12 +33,12 @@ if(isset($_SESSION['id_usuario'])){
         $res = mysqli_query($conectar,$sql);
 
         if($res){
-            echo "<script>alert('Colección añadida de manera éxitosa'); window.location='main.php';</script>";
+            header('Location: main.php?success=agregar_coleccion');
         }
     }
 
 }else{
-    echo "xd";
+    echo "window.location='../../../';";
 }
 
 ?>

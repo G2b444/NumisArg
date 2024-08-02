@@ -29,9 +29,14 @@ if(!$res_perfil){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Cuenta</title>
+    <link rel="icon" href="../../assets/multimedia/logo/LOGO NUMISARG.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../../js/funciones.js"></script>
+    <link rel="stylesheet" href="../../style.css">
+
     <script>
     // Mostrar sección por defecto al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
@@ -238,6 +243,16 @@ document.addEventListener('DOMContentLoaded', () => {
     </style>
 </head>
 <body class="h-screen flex flex-col">
+
+<div class="modal-overlay" id="modal-overlay"></div>
+<div class="modal" id="add-collection-success">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">¡Colección Agregada de forma éxitosa!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('add-collection-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
     
 <div id="addCollection" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
         <div class="w-1/3 bg-white rounded-2xl shadow-xl border-light-blue border p-5">
@@ -423,3 +438,32 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 </html>
 
+<?php 
+
+if(isset($_GET['success'])){
+
+    $proceso = $_GET['success'];
+
+    switch ($proceso) {
+        case 'agregar_coleccion':
+            echo "<script>openModal('add-collection-success');</script>";
+            break;
+
+        case 'eliminar_coleccion':
+            echo "<script>openModal('delete-collection-success');</script>";
+            break;
+            
+        case 'eliminar_moneda':
+            echo "<script>openModal('delete-coin-success');</script>";
+            break;
+            
+        case 'eliminar_moneda':
+            echo "<script>openModal('delete-coin-success');</script>";
+            break;
+
+    }
+
+    echo "<script>window.history.replaceState({}, '', 'main.php');</script>";
+}
+
+?>
