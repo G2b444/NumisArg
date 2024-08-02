@@ -6,6 +6,9 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Cuenta</title>
     <link rel="icon" href="../../assets/multimedia/logo/LOGO NUMISARG.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../../js/funciones.js"></script>
+    <link rel="stylesheet" href="../../style.css">
     <style>
         @font-face {
             font-family: 'MiFuente';
@@ -70,6 +73,16 @@
             <img src="../../assets/icon/arrow.png" alt="Flecha de volver" class="w-10 h-10 m-2">
         </button>
     </form> 
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="error-iniciar">
+        <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+            <h1 class="mb-6 text-lg">¡Error al iniciar sesión!</h1>
+            <h1 class="mb-6 text-lg">Verifique que los datos que introdujo sean correctos.</h1>
+            <div class="flex justify-around">
+                <button onclick="closeModal('error-iniciar')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+            </div>
+        </div>
+    </div>
     
     <div class="flex justify-center items-center h-screen">
 
@@ -132,3 +145,20 @@
 
 </body>
 </html>
+<?php 
+
+if(isset($_GET['success'])){
+
+    $proceso = $_GET['success'];
+
+    switch ($proceso) {
+        case 'error_iniciar':
+            echo "<script>openModal('error-iniciar');</script>";
+            break;
+    }
+
+    echo "<script>window.history.replaceState({}, '', 'index.php');</script>";
+}
+
+
+?>

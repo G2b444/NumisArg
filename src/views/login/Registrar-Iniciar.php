@@ -76,8 +76,7 @@ $res_3 = mysqli_query($conectar, $sql_3);
         }
        
     }else{
-        echo "<script> alert('El inicio de sesión no se ha podido realizar. Intente nuevamente.'); 
-        history.go(-1); </script>";
+        echo "<script>window.location='index.php?success=error_iniciar'</script>";
     }
    
 }
