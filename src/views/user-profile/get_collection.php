@@ -123,7 +123,7 @@ if (isset($_GET['id_coleccion'])) {
 
     // Consulta para obtener las monedas y anomalías de la colección seleccionada
     $sql_normal = "SELECT 
-                        guarda_moneda.id_moneda AS id_guarda,
+                        guarda_moneda.id_guarda_moneda AS id_guarda,
                         moneda.id_moneda,
                         guarda_moneda.fecha_guardado,
                         moneda.nombre AS nombre_moneda,
@@ -147,7 +147,7 @@ if (isset($_GET['id_coleccion'])) {
                         coleccion.id_coleccion = $id_coleccion
 
                     GROUP BY 
-                        guarda_moneda.id_moneda,
+                        guarda_moneda.id_guarda_moneda,
                         moneda.id_moneda,
                         guarda_moneda.fecha_guardado,
                         moneda.nombre,
@@ -160,7 +160,7 @@ if (isset($_GET['id_coleccion'])) {
                     UNION ALL
 
                     SELECT 
-                        guarda_anomalia.id_anomalia AS id_guarda,
+                        guarda_anomalia.id_guarda_anomalia AS id_guarda,
                         anomalia.id_anomalia,
                         guarda_anomalia.fecha_guardado,
                         anomalia.nombre AS nombre_anomalia,
@@ -183,7 +183,7 @@ if (isset($_GET['id_coleccion'])) {
                         coleccion.id_coleccion = $id_coleccion
 
                     GROUP BY 
-                        guarda_anomalia.id_anomalia,
+                        guarda_anomalia.id_guarda_anomalia,
                         anomalia.id_anomalia,
                         guarda_anomalia.fecha_guardado,
                         anomalia.nombre,
