@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         include("../../inc/conexion.php");
 
         $ids = implode(',', array_map('intval', $items));
-        echo "<script>alert('$ids')</script>";
 
         
         $sql = "SELECT id_detalle_guarda FROM guarda_moneda WHERE id_coleccion IN ($ids)";
@@ -46,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo 'Error al eliminar coleccion: ' . mysqli_error($conectar);
             }else {
                 echo 'Registros eliminados correctamente.';
-                echo "<script>window.location='main.php';</script>";
+                echo "<script>window.location='main.php?success=eliminar_coleccion';</script>";
             }
 
         } else {

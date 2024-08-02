@@ -253,6 +253,23 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </div>
+<div class="modal" id="delete-collection-success">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">¡Colección Eliminada de forma éxitosa!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('delete-collection-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="information-select-element-success">
+    <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+        <h1 class="mb-6 text-lg">¡Debe seleccionar al menos una moneda si quiere realizar esta acción!</h1>
+        <div class="flex justify-around">
+            <button onclick="closeModal('information-select-element-success')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+        </div>
+    </div>
+</div>
+
     
 <div id="addCollection" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
         <div class="w-1/3 bg-white rounded-2xl shadow-xl border-light-blue border p-5">
@@ -448,13 +465,10 @@ if(isset($_GET['success'])){
             echo "<script>openModal('delete-collection-success');</script>";
             break;
             
-        case 'eliminar_moneda':
-            echo "<script>openModal('delete-coin-success');</script>";
+        case 'aviso-seleccionar-moneda':
+            echo "<script>openModal('information-select-element-success');</script>";
             break;
             
-        case 'eliminar_moneda':
-            echo "<script>openModal('delete-coin-success');</script>";
-            break;
 
     }
 

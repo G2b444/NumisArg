@@ -9,7 +9,7 @@ $id = $_SESSION['id_usuario'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selectedIds = isset($_POST['selected_ids']) ? json_decode($_POST['selected_ids']) : [];
     if(empty($selectedIds)){
-        echo'<script> alert("seleccione registros si desea realizar alguna acción"); window.location="main.php";  </script>';
+        echo'<script> window.location="main.php?success=aviso-seleccionar-moneda";  </script>';
     }
     $action = isset($_POST['action']) ? $_POST['action'] : '';
     $id_coleccion = isset($_POST['id_coleccion']) ? intval($_POST['id_coleccion']) : 0;
