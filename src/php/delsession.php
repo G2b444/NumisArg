@@ -6,7 +6,7 @@
         unset($_SESSION['correo']);
         unset($_SESSION['numero']);
 
-        header('Location: ../');
+        header('Location: /numisarg/');
         exit;
     }else{
 
