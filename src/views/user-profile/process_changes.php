@@ -141,13 +141,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </style>
                     </head>
                     <body class="flex items-center justify-center min-h-screen bg-gray-100 font-semibold">
-                        <div class="w-2/4 h-1/3 bg-customBlue rounded-3xl p-8 flex flex-col items-center justify-center">
-                            <h1 class="text-5xl font-normal mb-4 text-white">¿Seguro que quieres eliminarla/s?</h1>
+                        <div class="bg-customBlue rounded-3xl p-8 flex flex-col items-center justify-center">
+                            <h1 class="text-lg text-white">¿Está seguro de que desea eliminar</h1>
+                            <h1 class="text-lg mb-4 text-white">la o las monedas seleccionadas?</h1>
                             <form method="post" action="" class="w-full flex flex-col items-center">
                             <input type="hidden" name="selected_ids" value='<?php echo json_encode($selectedIds); ?>'>
                             <input type="hidden" name="action" value="delete">
                                 <div class="flex justify-center w-full gap-4">
-                                    <a href="main.php" class="bg-customBlue text-white p-2 rounded-3xl border-2 border-white w-28 text-center inline-block">Volver</a>
+                                    <a href="main.php" class="bg-customBlue text-white p-2 rounded-3xl border-2 border-white w-28 text-center inline-block">Cancelar</a>
                                     <input type="submit" value="Eliminar" name="delete" class="bg-white text-customBlue p-2 rounded-3xl font-bold border-2 border-white w-28 cursor-pointer">
                                 </div>
                             </form>
