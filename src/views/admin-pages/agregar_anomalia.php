@@ -97,18 +97,18 @@
             <div class="mt-5 flex justify-center flex-row space-x-28">
                 <div>
                     <label for=""><h1 class="text-xl">Anverso</h1></label>
-                    <div class="w-32 h-32 my-3 bg-dark-blue rounded-full cursor-pointer">
+                    <div class="w-32 h-32 my-3 bg-dark-blue rounded-full cursor-pointer imagePreview" id="imagePreviewAnver">
                     </div>
-                    <div class="grid w-full max-w-xs items-center gap-1.5">
-                            <input name="anv" id="img" type="file" class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
+                    <div class="grid w-full max-w-xs items-center gap-1.5" >
+                            <input name="anv" id="anv" type="file" class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
                     </div>
                 </div>
                 <div>
                     <label for=""><h1 class="text-xl">Reverso</h1></label>
-                    <div class="w-32 h-32 my-3 bg-dark-blue rounded-full cursor-pointer">
+                    <div class="w-32 h-32 my-3 bg-dark-blue rounded-full cursor-pointer imagePreview" id="imagePreviewRever">
                     </div>
-                    <div class="grid w-full max-w-xs items-center gap-1.5">
-                            <input name="rev" id="img" type="file" class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
+                    <div class="grid w-full max-w-xs items-center gap-1.5" >
+                            <input name="rev" id="rvo" type="file" class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
                     </div>
                 </div>
             </div>
@@ -125,3 +125,13 @@
     </form>
 </body>
 </html>
+<style>
+    .imagePreview {
+            background-size: cover;
+            background-position: center;
+    }
+</style>
+<script>
+    createImagePreview('anv', 'imagePreviewAnver');
+    createImagePreview('rvo', 'imagePreviewRever');
+</script>
