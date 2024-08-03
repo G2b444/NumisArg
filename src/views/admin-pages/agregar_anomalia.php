@@ -8,15 +8,13 @@
         $ruta_indexphp = dirname(realpath(__FILE__));
         $anverso = $_FILES['anv']['tmp_name'];
         $reverso = $_FILES['rev']['tmp_name'];
-        $anverso_destino ='assets/img/'. $_FILES['anv']['name'];
-        $reverso_destino ='assets/img/'. $_FILES['rev']['name'];
+        $anverso_destino ='../../assets/img/'. $_FILES['anv']['name'];
+        $reverso_destino ='../../assets/img/'. $_FILES['rev']['name'];
         $extensiones = array(0=>'image/jpg', 1=>'image/jpeg', 2=>'image/png');
         $max_tamanio = 1024*1024*8;
 
         if(in_array($_FILES['anv']['type'], $extensiones)){
-            echo "<script>alert('Efectivamente es una imagen');</script>";
             if($_FILES['anv']['size']<$max_tamanio){
-                echo "<script>alert('Pesa menos de 1 MB medio raro');</script>";
                 if((move_uploaded_file($anverso, $anverso_destino)) && (move_uploaded_file($reverso, $reverso_destino))){
                     include '../../inc/conexion.php';
                     $sql = "INSERT INTO `imagen`(`direccion`) VALUES ('$anverso_destino')";

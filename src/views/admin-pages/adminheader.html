@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Radio+Canada:wght@400;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="flex items-center bg-dark-blue h-20">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/numisarg/src/views/admin-pages/"><img src="/numisarg/src/assets/img/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
+            <nav class="space-x-10 px-10">
+                <a href="tabla_usuario.php" class="text-white">Usuarios</a>
+                <a href="vista_moneda.php" class="text-white">Monedas</a>
+                <a href="/numisarg/src/php/delsession.php" class="border-2 border-white text-white px-4 py-2 rounded-lg">Cerrar sesion</a>
+            </nav>
+        </div>
+    </header>
+<a name="arriba"></a>
+</body>
+</html>
+
+
+<!-- Tailwind CSS Config -->
+<style>
+    .bg-dark-blue {
+        background-color: #021526;
+    }
+    .bg-light-blue {
+        background-color: #0D3559;
+    }
+    .bg-white {
+        background-color: #FCFFFF;
+    }
+    .bg-black {
+        background-color:  #000911;
+    }
+    .border-light-blue {
+        border-color: #0D3559;
+    }
+    .font-light-blue {
+        color: #0D3559;
+    }
+    .font-patua{
+        font-family: 'Patua One', cursive;
+    }
+    .font-radio{
+        font-family: 'Radio Canada', sans-serif;
+    }
+    body {
+            font-family: 'Radio Canada', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Patua One', cursive;
+        }
+    
+        
+    #desplegable:hover + #menu, #menu:hover {
+        display: block;
+    }
+</style>

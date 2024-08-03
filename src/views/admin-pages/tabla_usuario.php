@@ -45,16 +45,7 @@ $res = mysqli_query($conectar, $sql);
     <link rel="stylesheet" href="../../style.css">
 </head>
 <body class="bg-gray-100">
-    <header class="flex items-center bg-dark-blue h-20">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html"><img src="../../assets/multimedia/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
-            <nav class="space-x-10 px-10">
-                <a href="tabla_usuario.php" class="text-white">Usuarios</a>
-                <a href="vista_moneda.php" class="text-white">Monedas</a>
-                <a href="#" class="border-2 border-white text-white px-4 py-2 rounded-lg">Cerrar sesion</a>
-            </nav>
-        </div>
-    </header>
+    <?php include 'adminheader.html'; ?>
     <main class="p-6">
         <section class="mb-6 flex flex-col justify-center items-center text-center">
         <!--Inicio del modal-->

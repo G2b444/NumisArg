@@ -11,14 +11,17 @@
     <script src=../../js/funciones.js></script>
 </head>
 <body>
-    <header class="flex items-center bg-dark-blue h-20">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#"><img src="../../assets/multimedia/logo/LOGO NUMISARG.svg" alt="logo" class="w-16 h-16 mt-2 ml-4"></a>
-            <nav class="space-x-10 px-10">
-                <a href="#" class="border-2 border-white text-white px-4 py-2 rounded-lg">Cerrar sesion</a>
-            </nav>
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="inicio-exitoso">
+        <div class="text-white rounded-3xl p-6 w-80 text-center bg-dark-blue">
+            <h1 class="mb-6 text-lg">!Inicio sesión éxitoso!</h1>
+            <h1 class="mb-6 text-lg">Bienvenido Administrador</h1>
+            <div class="flex justify-around">
+                <button onclick="closeModal('inicio-exitoso')" class="bg-transparent border-white border-2 py-2 px-4 rounded-3xl hover:bg-white hover:text-black cancel">Hecho</button>
+            </div>
         </div>
-    </header>
+    </div>
+    <?php include 'adminheader.html'; ?>
     <main>
         <section class="flex items-center flex-col mb-6">
             <h1 class="text-4xl mb-5 mt-12">Bienvenido, Administrador</h1>
@@ -42,3 +45,21 @@
     </footer>
 </body>
 </html>
+<?php 
+
+if(isset($_GET['success'])){
+
+    $proceso = $_GET['success'];
+
+    switch ($proceso) {
+
+        case 'inicio-exitoso':
+            echo "<script>openModal('inicio-exitoso');</script>";
+            break;
+            
+    }
+
+    echo "<script>window.history.replaceState({}, '', 'index.php');</script>";
+}
+
+?>
