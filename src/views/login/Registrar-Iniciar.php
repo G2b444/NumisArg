@@ -23,7 +23,7 @@ if(isset($_POST['R'])){
                 $res_2 = mysqli_query($conectar, $sql_2);
 
                 if($res_2){
-                    echo "<script> alert('El registro fue exitoso. Inicie sesión para acceder a su cuenta'); window.location='index.html'; </script>";
+                    echo "<script> alert('El registro fue exitoso. Inicie sesión para acceder a su cuenta'); window.location='index.php'; </script>";
                 } else {
                     echo "<script> alert('El registro no se ha podido llevar a cabo. Intente nuevamente'); history.go(-1); </script>";
                 }
