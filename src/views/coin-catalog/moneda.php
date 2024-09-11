@@ -103,8 +103,8 @@ if($gral){
                             $seccionescant = count($secciones);
 
                             //array de características propias de cada lado
-                            $tiposanverso = array("listel", "efigie", "leyenda", "grafilia");
-                            $tiposreverso = array("listel", "exergo", "leyenda", "grafilia");
+                            $tiposanverso = array("Listel", "Efigie", "Leyenda", "Grafilia");
+                            $tiposreverso = array("Listel", "Exergo", "Leyenda", "Grafilia");
 
                             //buscar la imagen de cada lado
                             $sql="SELECT  direccion
