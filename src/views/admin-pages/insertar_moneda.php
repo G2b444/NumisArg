@@ -58,7 +58,7 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
                     $sql = "INSERT INTO `moneda_atributo` (
                             `id_moneda`, 
                             `id_divisa`, 
-                            `id_valor_nominal`, 
+                            `valor_nominal`, 
                             `id_tipo_canto`, 
                             `id_tipo_moneda`, 
                             `composicion`, 
