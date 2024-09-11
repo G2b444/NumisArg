@@ -19,16 +19,12 @@ $fn_msm = $_POST['fin_emi'];
 $lstl_anver = $_POST['listel_anver'];
 $fg_anver = $_POST['efigie_anver'];
 $lynd_anver = $_POST['leyenda_anver'];
-$exergo_anver = $_POST['exergo_anver'];
-$ly_anver = $_POST['ley_anver'];
 $grfl_anver = $_POST['grafilia_anver'];
 
 
 $lstl_rever = $_POST['listel_rever'];
-$fg_rever = $_POST['efigie_rever'];
 $lynd_rever = $_POST['leyenda_rever'];
 $exergo_rever = $_POST['exergo_rever'];
-$ly_rever = $_POST['ley_rever'];
 $grfl_rever = $_POST['grafilia_rever'];
 
 $ruta_indexphp = dirname(realpath(__FILE__));
@@ -89,18 +85,14 @@ if(in_array($_FILES['anv']['type'], $extensiones)){
                     $id_act = mysqli_insert_id($conectar);
 
                     if($res){
-                        $sql = "INSERT INTO `partes`(`id_imagen`, `id_moneda_atributo`, `lado`, `listel`, `efigie`, 
-                        `leyenda`, `exergo`, `ley`, `grafilia`) 
-                        VALUES ($id_img_anv,$id_act,'anverso','$lstl_anver','$fg_anver','$lynd_anver','$exergo_anver'
-                        ,'$ly_anver','$grfl_anver')";
+                        $sql = "INSERT INTO `partes`(`id_imagen`, `id_moneda_atributo`, `lado`, `detalles`) 
+                            VALUES ($id_img_anv, $id_act,'anverso','$lstl_anver-$fg_anver-$lynd_anver-$grfl_anver')";
                         $res = mysqli_query($conectar, $sql);
                         var_dump($sql);
 
                         if($res){
-                            $sql = "INSERT INTO `partes`(`id_imagen`, `id_moneda_atributo`, `lado`, `listel`, `efigie`, 
-                            `leyenda`, `exergo`, `ley`, `grafilia`) 
-                            VALUES ($id_img_rev,$id_act,'reverso','$lstl_rever','$fg_rever','$lynd_rever','$exergo_rever'
-                            ,'$ly_rever','$grfl_rever')";
+                            $sql = "INSERT INTO `partes`(`id_imagen`, `id_moneda_atributo`, `lado`, `detalles`) 
+                            VALUES ($id_img_rev, $id_act,'reverso','$lstl_rever-$exergo_rever-$lynd_rever-$exergo_rever-$grfl_rever')";
                             $res = mysqli_query($conectar, $sql);
                             var_dump($sql);
 
