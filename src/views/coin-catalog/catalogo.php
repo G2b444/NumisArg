@@ -4,7 +4,6 @@ include '../../inc/conexion.php';
 $sql="SELECT moneda.nombre, inicio_emision, fin_emision, moneda.id_moneda, id_moneda_atributo
     FROM  moneda
     INNER JOIN moneda_atributo ON moneda.id_moneda=moneda_atributo.id_moneda
-    INNER JOIN valor_nominal ON moneda_atributo.id_valor_nominal=valor_nominal.id_valor_nominal
     INNER JOIN divisa ON moneda_atributo.id_divisa=divisa.id_divisa
     INNER JOIN tipo_moneda ON moneda_atributo.id_tipo_moneda=tipo_moneda.id_tipo_moneda";
 
@@ -20,7 +19,7 @@ switch($campo){
         $sql .= " WHERE moneda.nombre LIKE '%$valor%'";
     break;
     case 'valor':
-        $sql .= " WHERE valor_nominal.valor LIKE '%$valor%'";
+        $sql .= " WHERE valor_nominal LIKE '%$valor%'";
     break;
     case 'divisa':
         $sql .= " WHERE divisa.nombre LIKE '%$valor%'";
