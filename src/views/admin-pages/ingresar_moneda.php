@@ -22,21 +22,12 @@
                         <h3 class="text-lg font-semibold">General</h3>
                         <input name="nombre_moneda" type="text" placeholder="Nombre de la moneda" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="50">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <select name="v_n" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                            <option selected disabled>Valor N.</option>
-                            <?php 
-                                $sql = "SELECT * FROM valor_nominal";
-                                include '../../inc/conexion.php';
-                                $res = mysqli_query($conectar, $sql);
-
-                                foreach($res as $filas){
-                                    echo "<option value='".$filas['id_valor_nominal']."'>".$filas['valor']."</option>";
-                                }
-                            ?>
-                        </select>
+                        <input type="text" placeholder="Valor N." class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <select name="divisa" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option selected disabled>Divisa</option>
                                 <?php 
+                                    include '../../inc/conexion.php';
+                                    
                                     $sql = "SELECT * FROM divisa";
                                     $res = mysqli_query($conectar, $sql);
 
@@ -92,12 +83,24 @@
                                         <input name="anv" type="file" id="anv" class="hidden">
                                     </label>
                                 </div>
-                                <input type="text" name="listel_anver" placeholder="Listel" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
+                                <select name="listel_anver" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2" required>
+                                    <option selected disabled>Listel</option>
+                                    <option value="Elevado liso">Elevado liso</option>
+                                    <option value="Elevado con círculo de puntos">Elevado con círculo de puntos</option>
+                                    <option value="Pins">Pins</option>
+                                    <option value="Escamado">Escamado</option>
+                                    <option value="Dodecagonal">Dodecagonal</option>
+                                    <option value="Perlado">Perlado</option>
+                                </select>
                                 <input type="text" name="efigie_anver" placeholder="Efigie" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
                                 <input type="text" name="leyenda_anver" placeholder="Leyenda" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="500">
-                                <input type="text" name="exergo_anver" placeholder="Exergo" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
-                                <input type="text" name="ley_anver" placeholder="Ley" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
-                                <input type="text" name="grafilia_anver" placeholder="Grafilia" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
+                                <select name="grafilia_anver" id="" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2" required maxlength="100">
+                                    <option selected disabled>Grafilia</option>
+                                    <option value="Punteado">Punteado</option>
+                                    <option value="Sin grafilia">Sin grafilia</option>
+                                    <option value="Lineas entrecortadas">Lineas entrecortadas</option>
+                                    <option value="Linea con relieve">Linea con relieve</option>
+                                </select>
                             </div>
                             <div>
                                 <h4 class="text-center font-semibold">Reverso</h4>
@@ -106,12 +109,24 @@
                                         <input name="rvo" type="file" id="rvo" class="hidden">
                                     </label>
                                 </div>
-                                <input type="text" name="listel_rever" placeholder="Listel" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
-                                <input type="text" name="efigie_rever" placeholder="Efigie" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
-                                <input type="text" name="leyenda_rever" placeholder="Leyenda" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="500">
+                                <select name="listel_rever" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2" required>
+                                    <option selected disabled>Listel</option>
+                                    <option value="Elevado liso">Elevado liso</option>
+                                    <option value="Elevado con círculo de puntos">Elevado con círculo de puntos</option>
+                                    <option value="Pins">Pins</option>
+                                    <option value="Escamado">Escamado</option>
+                                    <option value="Dodecagonal">Dodecagonal</option>
+                                    <option value="Perlado">Perlado</option>
+                                </select>
                                 <input type="text" name="exergo_rever" placeholder="Exergo" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
-                                <input type="text" name="ley_rever" placeholder="Ley" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
-                                <input type="text" name="grafilia_rever" placeholder="Grafilia" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="100">
+                                <input type="text" name="leyenda_rever" placeholder="Leyenda" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required maxlength="500">
+                                <select name="grafilia_anver" id="" class="w-full mt-2 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2" required maxlength="100">
+                                    <option selected disabled>Grafilia</option>
+                                    <option value="Punteado">Punteado</option>
+                                    <option value="Sin grafilia">Sin grafilia</option>
+                                    <option value="Lineas entrecortadas">Lineas entrecortadas</option>
+                                    <option value="Linea con relieve">Linea con relieve</option>
+                                </select>
                             </div>
                         </div>
                     </div>
