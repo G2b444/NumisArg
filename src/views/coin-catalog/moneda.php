@@ -63,7 +63,7 @@ if($gral){
                 $nombre= mb_convert_encoding($general['nombre'], "UTF-8", mb_detect_encoding($general['nombre'],"UTF-8, ISO-8859-1, auto"));
                 $emisioni= (int) $general['inicio_emision'];
                 $emisionf= (int) $general['fin_emision'];
-                $valor= $det['valor']; 
+                $valor= $det['valor_nominal']; 
                 $divisa= mb_convert_encoding($det['nombre'], "UTF-8", mb_detect_encoding($det['nombre'],"UTF-8, ISO-8859-1, auto"));
                 $canto= $det['tipo'];
                 $tipomoneda= $det['tipo_moneda'];
@@ -93,15 +93,20 @@ if($gral){
                     </span>';
                     if($lados){
                         while($lado=mysqli_fetch_assoc($lados)){
-                            $nombrelado=$lado['lado'];
-                            $listel=$lado['listel'];
-                            $efigie=$lado['efigie'];
-                            $leyenda= mb_convert_encoding($lado['leyenda'], "UTF-8", mb_detect_encoding($lado['leyenda'],"UTF-8, ISO-8859-1, auto"));
-                            $exergo=$lado['exergo'];
-                            $ley=$lado['ley'];
-                            $grafilia=$lado['grafilia'];
-                            $detalles=$lado['detalles'];
 
+                            //características de cada lado
+                            $nombrelado=$lado['lado'];
+                            $detalles= mb_convert_encoding($lado['detalles'], "UTF-8", mb_detect_encoding($lado['detalles'],"UTF-8, ISO-8859-1, auto"));
+
+                            //convertir cadena de texto detalles a segmentos
+                            $secciones = explode("-", $detalles);
+                            $seccionescant = count($secciones);
+
+                            //array de características propias de cada lado
+                            $tiposanverso = array("Listel", "Efigie", "Leyenda", "Grafilia");
+                            $tiposreverso = array("Listel", "Exergo", "Leyenda", "Grafilia");
+
+                            //buscar la imagen de cada lado
                             $sql="SELECT  direccion
                                 FROM imagen 
                                 INNER JOIN partes ON partes.id_imagen=imagen.id_imagen
@@ -115,25 +120,43 @@ if($gral){
                             }else{
                             $imagenlado='../../assets/icon/usd-circle.svg';
                             }
+
+                            //saber qué lado es para ajustar las especificaciones
+                            if($nombrelado == 'anverso'){
+                                $tipos = $tiposanverso;
+                            }else{
+                                $tipos = $tiposreverso;
+                            }
+                            $tiposcant = count($tipos);
+                            
+                            //ajustar la cantidad de registros mostrados según la cantidad de secciones y tipos
+                            if($tiposcant <= $seccionescant){
+                                $contar = $tiposcant;
+                            }
+                            if($tiposcant > $seccionescant){
+                                $contar = $seccionescant;
+                            }
+                            //mostrar los lados
                             echo '
                             <div class="inline-block  row-span-6 p-4 ">
                                 <img src="'.$imagenlado.'" class="w-60 mx-6 rounded-full">
                                 <h3 class="font-semibold">'.$nombrelado.'</h3>
-                                <p class="text-sm">
-                                    '.$leyenda.'
-                                    <br><b>Listel:</b> '.$listel.'
-                                    <br><b>Efigie:</b> '.$efigie.'
-                                    <br><b>Exergo:</b> '.$exergo.'
-                                    <br><b>Ley:</b> '.$ley.'
-                                    <br><b>Grafilia:</b> '.$grafilia.'
-                                </p>
+                                <p class="text-sm">';
+                                for($n=0;$n<$contar;$n++){
+                                    echo "<br><b>";
+                                    echo $tipos[$n];
+                                    echo ": </b>";
+                                    echo $secciones[$n];
+                                }
+                                echo'</p>
                             </div>
                             ';
                         }
                     }
+                    //historia de la moneda
                     echo'
                 </section>
-
+                
                 <section  class="border-2 rounded-2xl shadow-lg m-7 p-4  border-light-blue font-light-blue">
                     <h2 class="mb-3 text-xl">Historia</h2>
                     <p class="break-words">
@@ -361,7 +384,6 @@ include '../../../footer.html';
 </body>
 </html>
 <?php 
-
 if(isset($_GET['success'])){
 
     $proceso = $_GET['success'];

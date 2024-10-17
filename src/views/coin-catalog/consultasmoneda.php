@@ -16,10 +16,9 @@ $id= $_GET['moneda'];
 
 
 //caracteristicas detalladas
-    $sql="SELECT divisa.nombre , valor_nominal.valor, tipo_canto.tipo, tipo_moneda, composicion, diametro, espesor, historia 
+    $sql="SELECT divisa.nombre , valor_nominal, tipo_canto.tipo, tipo_moneda, composicion, diametro, espesor, historia 
         FROM moneda_atributo
         INNER JOIN divisa ON moneda_atributo.id_divisa=divisa.id_divisa
-        INNER JOIN valor_nominal ON moneda_atributo.id_valor_nominal=valor_nominal.id_valor_nominal
         INNER JOIN tipo_canto ON moneda_atributo.id_tipo_canto=tipo_canto.id_tipo_canto
         INNER JOIN tipo_moneda ON moneda_atributo.id_tipo_moneda=tipo_moneda.id_tipo_moneda
         WHERE id_moneda='$id'";
@@ -27,7 +26,7 @@ $id= $_GET['moneda'];
 
 
 //lados
-    $sql="SELECT `lado`, `listel`, `efigie`, `leyenda`, `exergo`, `ley`, `grafilia`, `detalles` 
+    $sql="SELECT `lado`, `detalles` 
         FROM `partes` 
         INNER JOIN moneda_atributo ON moneda_atributo.id_moneda_atributo=partes.id_moneda_atributo
         WHERE id_moneda='$id'";

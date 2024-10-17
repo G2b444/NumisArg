@@ -1,41 +1,30 @@
 <?php
 
 $sql= "
-        SELECT 
-            MAX(CASE WHEN partes.lado = 'anverso' THEN imagen.direccion END) AS imagen_anverso,
-            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.listel END) AS listel_anverso,
-            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.efigie END) AS efigie_anverso,
-            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.leyenda END) AS leyenda_anverso,
-            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.exergo END) AS exergo_anverso,
-            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.ley END) AS ley_anverso,
-            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.grafilia END) AS grafilia_anverso,
-            MAX(CASE WHEN partes.lado = 'reverso' THEN imagen.direccion END) AS imagen_reverso,
-            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.listel END) AS listel_reverso,
-            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.efigie END) AS efigie_reverso,
-            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.leyenda END) AS leyenda_reverso,
-            MAX(CASE WHEN partes.lado = 'anverso' THEN partes.exergo END) AS exergo_reverso,
-            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.ley END) AS ley_reverso,
-            MAX(CASE WHEN partes.lado = 'reverso' THEN partes.grafilia END) AS grafilia_reverso,
-            valor_nominal.valor,
-            YEAR (moneda_atributo.inicio_emision) AS año_inicio,
-            YEAR (moneda_atributo.fin_emision) AS año_fin,
-            divisa.nombre AS divisa,
-            tipo_moneda,
-            tipo_canto.tipo,
-            moneda_atributo.composicion,
-            moneda_atributo.diametro,
-            moneda_atributo.espesor,
-            moneda_atributo.historia,
-            moneda_atributo.id_moneda,
-            moneda.nombre AS nombre_moneda
-        FROM moneda 
-        JOIN moneda_atributo ON moneda.id_moneda = moneda_atributo.id_moneda 
-        JOIN valor_nominal ON valor_nominal.id_valor_nominal = moneda_atributo.id_valor_nominal 
-        JOIN divisa ON divisa.id_divisa = moneda_atributo.id_divisa 
-        JOIN partes ON partes.id_moneda_atributo = moneda_atributo.id_moneda_atributo 
-        JOIN imagen ON partes.id_imagen = imagen.id_imagen
-        JOIN tipo_canto ON tipo_canto.id_tipo_canto = moneda_atributo.id_tipo_canto
-        JOIN tipo_moneda ON tipo_moneda.id_tipo_moneda = moneda_atributo.id_tipo_moneda
+    SELECT 
+        MAX(CASE WHEN partes.lado = 'anverso' THEN imagen.direccion END) AS imagen_anverso,
+        MAX(CASE WHEN partes.lado = 'anverso' THEN partes.detalles END) AS detalles_anverso,
+        MAX(CASE WHEN partes.lado = 'reverso' THEN imagen.direccion END) AS imagen_reverso,
+        MAX(CASE WHEN partes.lado = 'reverso' THEN partes.detalles END) AS detalles_reverso,
+        valor_nominal,
+        YEAR (moneda_atributo.inicio_emision) AS año_inicio,
+        YEAR (moneda_atributo.fin_emision) AS año_fin,
+        divisa.nombre AS divisa,
+        tipo_moneda,
+        tipo_canto.tipo,
+        moneda_atributo.composicion,
+        moneda_atributo.diametro,
+        moneda_atributo.espesor,
+        moneda_atributo.historia,
+        moneda_atributo.id_moneda,
+        moneda.nombre AS nombre_moneda
+    FROM moneda 
+    JOIN moneda_atributo ON moneda.id_moneda = moneda_atributo.id_moneda 
+    JOIN divisa ON divisa.id_divisa = moneda_atributo.id_divisa 
+    JOIN partes ON partes.id_moneda_atributo = moneda_atributo.id_moneda_atributo 
+    JOIN imagen ON partes.id_imagen = imagen.id_imagen
+    JOIN tipo_canto ON tipo_canto.id_tipo_canto = moneda_atributo.id_tipo_canto
+    JOIN tipo_moneda ON tipo_moneda.id_tipo_moneda = moneda_atributo.id_tipo_moneda
     ";
 
     if (isset($_POST['buscar']) && isset($_POST['filtro'])) {
@@ -63,7 +52,6 @@ include '../../inc/conexion.php';
 
 $sql .= "
         GROUP BY 
-            valor_nominal.valor,
             moneda_atributo.inicio_emision,
             moneda_atributo.fin_emision,
             divisa.nombre,
@@ -217,7 +205,7 @@ $res = mysqli_query($conectar, $sql);
                             <tr class="bg-gray-100">
                                 <td class="border px-4 py-2"><img src="<?= $filas['imagen_anverso'] ?>" alt="" class="w-16 h-16 object-cover rounded-full"></td>
                                 <td class="border px-4 py-2"><img src="<?= $filas['imagen_reverso'] ?>" alt="" class="w-16 h-16 object-cover rounded-full"></td>
-                                <td class="border px-4 py-2 truncated"><?= $filas['valor'] ?></td>
+                                <td class="border px-4 py-2 truncated"><?= $filas['valor_nominal'] ?></td>
                                 <td class="border px-4 py-2 truncated"><?= $filas['divisa'] ?></td>
                                 <td class="border px-4 py-2 truncated"><?= $filas['año_inicio'] ?>-<?= $filas['año_fin'] ?></td>
                                 <td class="border px-4 py-2 truncated"><?= $filas['tipo_moneda'] ?></td>
@@ -231,6 +219,11 @@ $res = mysqli_query($conectar, $sql);
                                 <td colspan="11">
                                     <table class="min-w-full bg-white" id="caracteristicas-<?= $index ?>" style="display:none;">
                                         <thead>
+                                            <?php
+                                            //array de detalles de lados
+                                            $detalles = array("Listel", "Efigie - Exergo", "Leyenda", "Grafilia");
+                                            $detallescant = count($detalles);
+                                            ?>
                                             <tr>
                                                 <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="3">Características Físicas</th>
                                                 <th class="py-2 px-4 bg-light-blue text-white text-left text-xl" colspan="7">Lados</th>
@@ -240,39 +233,62 @@ $res = mysqli_query($conectar, $sql);
                                                 <th class="py-2 px-4 bg-light-blue text-white">Composición</th>
                                                 <th class="py-2 px-4 bg-light-blue text-white">Diámetro</th>
                                                 <th class="py-2 px-4 bg-light-blue text-white"></th>
-                                                <th class="py-2 px-4 bg-light-blue text-white">Listel</th>
-                                                <th class="py-2 px-4 bg-light-blue text-white">Efigie</th>
-                                                <th class="py-2 px-4 bg-light-blue text-white">Leyenda</th>
-                                                <th class="py-2 px-4 bg-light-blue text-white">Exergo</th>
-                                                <th class="py-2 px-4 bg-light-blue text-white">Ley</th>
-                                                <th class="py-2 px-4 bg-light-blue text-white">Grafilia</th>
+                                                <?php
+                                                //Para listar cada detalle de lados dinamicamente
+                                                for($n=0;$n<$detallescant;$n++){
+                                                echo '<th class="py-2 px-4 bg-light-blue text-white">'.$detalles[$n].'</th>';
+                                                }
+                                                ?>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                            //convertir cadena de texto detalles a secciones según separación
+                                            $secciones_anverso = explode("-", $filas['detalles_anverso']);
+                                            $secciones_reverso = explode("-", $filas['detalles_reverso']);
+                                            $anversocant = count($secciones_anverso);
+                                            $reversocant = count($secciones_reverso);
+
+                                            //ajustar la cantidad de registros mostrados según la cantidad de secciones y tipos
+                                            if($anversocant < $detallescant){
+                                                $contar_anverso = $anversocant;
+                                            }
+                                            if($anversocant >= $detallescant){
+                                                $contar_anverso = $detallescant;
+                                            }
+
+                                            if($reversocant < $detallescant){
+                                                $contar_reverso = $reversocant;
+                                            }
+                                            if($reversocant >= $detallescant){
+                                                $contar_reverso = $detallescant;
+                                            }
+
+                                            ?>
                                             <tr>
                                                 <td class="border px-4 py-2"><?= $filas['tipo'] ?></td>
                                                 <td class="border px-4 py-2 truncated" title='<?= $filas['composicion'] ?>'><?= $filas['composicion'] ?></td>
                                                 <td class="border px-4 py-2"><?= $filas['diametro'] ?> milímetros</td>
                                                 <td class="border px-4 py-2">Anverso</td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['listel_anverso'] ?>'><?= $filas['listel_anverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['efigie_anverso'] ?>'><?= $filas['efigie_anverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['leyenda_anverso'] ?>'><?= $filas['leyenda_anverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['exergo_anverso'] ?>'><?= $filas['exergo_anverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['ley_anverso'] ?>'><?= $filas['ley_anverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['grafilia_anverso'] ?>'><?= $filas['grafilia_anverso'] ?></td>
-                                            </tr>
+                                                <?php 
+                                                //para mostrar las secciones separadas, según la cantidad de detalles agregados
+                                                for($n=0;$n<$contar_anverso;$n++){
+                                                    echo'<td class="border px-4 py-2 truncated" title="'.$secciones_anverso[$n].'">'.$secciones_anverso[$n].'</td>';
+                                                }
+                                                ?>
+                                                </tr>
                                             <tr>
                                                 <td class="border px-4 py-2"></td>
                                                 <td class="border px-4 py-2"></td>
                                                 <td class="border px-4 py-2"></td>
                                                 <td class="border px-4 py-2">Reverso</td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['listel_reverso'] ?>'><?= $filas['listel_reverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['efigie_reverso'] ?>'><?= $filas['efigie_reverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['leyenda_reverso'] ?>'><?= $filas['leyenda_reverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['exergo_reverso'] ?>'><?= $filas['exergo_reverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['ley_reverso'] ?>'><?= $filas['ley_reverso'] ?></td>
-                                                <td class="border px-4 py-2 truncated" title='<?= $filas['grafilia_reverso'] ?>'><?= $filas['grafilia_reverso'] ?></td>
-                                            </tr>
+                                                <?php 
+                                                //para mostrar las secciones separadas, según la cantidad de detalles agregados
+                                                for($n=0;$n<$contar_reverso;$n++){
+                                                    echo'<td class="border px-4 py-2 truncated" title="'.$secciones_reverso[$n].'">'.$secciones_reverso[$n].'</td>';
+                                                }
+                                                ?>
+                                                </tr>
                                         </tbody>
                                         <td colspan="11"class='w-96 break-keep'>
                                             <h2 class='py-2 px-4 bg-light-blue text-white text-xl'>Historia</h2>
